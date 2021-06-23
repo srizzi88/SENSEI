@@ -1,0 +1,71 @@
+/*=========================================================================
+
+  Program:   Visualization Toolkit
+  Module:    TestColorTransferFunctionStringArray.cxx
+
+  Copyright (c) Ken Martin, Will Schroeder, Bill Lorensen
+  All rights reserved.
+  See Copyright.txt or http://www.kitware.com/Copyright.htm for details.
+
+     This software is distributed WITHOUT ANY WARRANTY; without even
+     the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR
+     PURPOSE.  See the above copyright notice for more information.
+
+=========================================================================*/
+#include <svtkActor.h>
+#include <svtkDataObject.h>
+#include <svtkNew.h>
+#include <svtkPlane.h>
+#include <svtkPolyDataMapper.h>
+#include <svtkRenderer.h>
+#include <svtkRenderWindow.h>
+#include <svtkRenderWindowInteractor.h>
+#include <svtkSphereSource.h>
+
+int TestRendererReleaseData(int svtkNotUsed(argc), char* svtkNotUsed(argv)[])
+{
+  svtkDataObject::SetGlobalReleaseDataFlag(1);
+
+  svtkNew<svtkPolyData> polydata;
+
+  svtkNew<svtkPolyDataMapper> mapper;
+  mapper->SetInputData(polydata.GetPointer());
+  mapper->ScalarVisibilityOn();
+  mapper->SetScalarModeToUsePointFieldData();
+  mapper->ColorByArrayComponent("TextureCoordinates", 0);
+  mapper->InterpolateScalarsBeforeMappingOn();
+
+  svtkNew<svtkActor> actor;
+  actor->SetMapper(mapper.GetPointer());
+
+  svtkNew<svtkRenderer> renderer;
+  renderer->AddActor(actor.GetPointer());
+
+  //sphere->Update();
+  // Save a reference to the sphere's output.
+
+  {
+    svtkNew<svtkRenderWindow> renWin;
+    renWin->AddRenderer(renderer.GetPointer());
+
+    svtkNew<svtkRenderWindowInteractor> iren;
+    iren->SetRenderWindow(renWin.GetPointer());
+    renWin->Render();
+    renderer->ResetCamera();
+    renderer->SetBackground(1.0, 0.0, 0.0);
+  }
+
+  renderer->ReleaseData();
+  // Sources do not have a way to delete their outputs using the .
+  //sphere->SetOutput(NULL);
+
+  bool fail = false;
+  // This should now be the only reference left.
+  if (polydata->GetReferenceCount() != 1)
+    {
+    std::cerr << "ERROR: expected 1 reference, got " << polydata->GetReferenceCount() << std::endl;
+    fail = true;
+    }
+
+  return fail;
+}

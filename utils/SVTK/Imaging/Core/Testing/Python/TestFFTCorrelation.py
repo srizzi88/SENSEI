@@ -1,0 +1,57 @@
+#!/usr/bin/env python
+import svtk
+from svtk.util.misc import svtkGetDataRoot
+SVTK_DATA_ROOT = svtkGetDataRoot()
+
+# Performs a correlation in frequency domain.
+s1 = svtk.svtkImageCanvasSource2D()
+s1.SetScalarTypeToFloat()
+s1.SetExtent(0,255,0,255,0,0)
+s1.SetDrawColor(0)
+s1.FillBox(0,255,0,255)
+s1.SetDrawColor(2.0)
+s1.FillTriangle(10,100,190,150,40,250)
+s2 = svtk.svtkImageCanvasSource2D()
+s2.SetScalarTypeToFloat()
+s2.SetExtent(0,31,0,31,0,0)
+s2.SetDrawColor(0.0)
+s2.FillBox(0,31,0,31)
+s2.SetDrawColor(2.0)
+s2.FillTriangle(10,1,25,10,1,5)
+fft1 = svtk.svtkImageFFT()
+fft1.SetDimensionality(2)
+fft1.SetInputConnection(s1.GetOutputPort())
+fft1.ReleaseDataFlagOff()
+fft1.Update()
+# Pad kernel out to same size as image.
+pad2 = svtk.svtkImageConstantPad()
+pad2.SetInputConnection(s2.GetOutputPort())
+pad2.SetOutputWholeExtent(0,255,0,255,0,0)
+fft2 = svtk.svtkImageFFT()
+fft2.SetDimensionality(2)
+fft2.SetInputConnection(pad2.GetOutputPort())
+fft2.ReleaseDataFlagOff()
+fft2.Update()
+# conjugate is necessary for correlation (not convolution)
+conj = svtk.svtkImageMathematics()
+conj.SetOperationToConjugate()
+conj.SetInput1Data(fft2.GetOutput())
+conj.Update()
+# Correlation is multiplication in frequency space.
+mult = svtk.svtkImageMathematics()
+mult.SetOperationToComplexMultiply()
+mult.SetInput1Data(fft1.GetOutput())
+mult.SetInput2Data(conj.GetOutput())
+rfft = svtk.svtkImageRFFT()
+rfft.SetDimensionality(2)
+rfft.SetInputConnection(mult.GetOutputPort())
+real = svtk.svtkImageExtractComponents()
+real.SetInputConnection(rfft.GetOutputPort())
+real.SetComponents(0)
+viewer = svtk.svtkImageViewer()
+viewer.SetInputConnection(real.GetOutputPort())
+viewer.SetColorWindow(256)
+viewer.SetColorLevel(127.5)
+# make interface
+#skipping source
+# --- end of script --

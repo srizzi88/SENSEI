@@ -1,0 +1,18 @@
+NAME
+  SVTK::IOMySQL
+LIBRARY_NAME
+  svtkIOMySQL
+KIT
+  SVTK::IO
+IMPLEMENTS
+  SVTK::IOSQL
+DEPENDS
+  SVTK::IOSQL
+PRIVATE_DEPENDS
+  SVTK::CommonCore
+  SVTK::CommonDataModel
+  SVTK::CommonExecutionModel
+  SVTK::svtksys
+TEST_DEPENDS
+  SVTK::TestingCore
+  SVTK::TestingIOSQL

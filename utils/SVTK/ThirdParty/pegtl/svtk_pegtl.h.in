@@ -1,0 +1,30 @@
+/*=========================================================================
+
+  Program:   Visualization Toolkit
+  Module:    svtk_pegtl.h
+
+  Copyright (c) Ken Martin, Will Schroeder, Bill Lorensen
+  All rights reserved.
+  See Copyright.txt or http://www.kitware.com/Copyright.htm for details.
+
+     This software is distributed WITHOUT ANY WARRANTY; without even
+     the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR
+     PURPOSE.  See the above copyright notice for more information.
+
+=========================================================================*/
+#ifndef svtk_pegtl_h
+#define svtk_pegtl_h
+
+/* Use the pegtl library configured for SVTK.  */
+#cmakedefine01 SVTK_MODULE_USE_EXTERNAL_svtkpegtl
+
+#if SVTK_MODULE_USE_EXTERNAL_svtkpegtl
+# define SVTK_PEGTL(x) <tao/x>
+#else
+# include <svtkpegtl/include/tao/pegtl.hpp>
+# define SVTK_PEGTL(x) <svtkpegtl/include/tao/x>
+#endif
+
+#include SVTK_PEGTL(pegtl.hpp)
+
+#endif

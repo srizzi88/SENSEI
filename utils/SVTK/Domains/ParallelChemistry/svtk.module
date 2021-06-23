@@ -1,0 +1,22 @@
+NAME
+  SVTK::DomainsParallelChemistry
+LIBRARY_NAME
+  svtkDomainsParallelChemistry
+DESCRIPTION
+  Parallel versions of algorithms used in chemistry
+KIT
+  SVTK::Parallel
+GROUPS
+  MPI
+IMPLEMENTS
+  SVTK::DomainsChemistry
+DEPENDS
+  SVTK::DomainsChemistry
+PRIVATE_DEPENDS
+  SVTK::CommonCore
+  SVTK::ParallelMPI
+  SVTK::FiltersParallelMPI
+  SVTK::mpi
+TEST_DEPENDS
+  SVTK::ParallelMPI
+  SVTK::TestingCore

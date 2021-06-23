@@ -1,0 +1,33 @@
+set(classes
+  svtkCompositeDataReader
+  svtkCompositeDataWriter
+  svtkDataObjectReader
+  svtkDataObjectWriter
+  svtkDataReader
+  svtkDataSetReader
+  svtkDataSetWriter
+  svtkDataWriter
+  svtkGenericDataObjectReader
+  svtkGenericDataObjectWriter
+  svtkGraphReader
+  svtkGraphWriter
+  svtkPixelExtentIO
+  svtkPolyDataReader
+  svtkPolyDataWriter
+  svtkRectilinearGridReader
+  svtkRectilinearGridWriter
+  svtkSimplePointsReader
+  svtkSimplePointsWriter
+  svtkStructuredGridReader
+  svtkStructuredGridWriter
+  svtkStructuredPointsReader
+  svtkStructuredPointsWriter
+  svtkTableReader
+  svtkTableWriter
+  svtkTreeReader
+  svtkTreeWriter
+  svtkUnstructuredGridReader
+  svtkUnstructuredGridWriter)
+
+svtk_module_add_module(SVTK::IOLegacy
+  CLASSES ${classes})

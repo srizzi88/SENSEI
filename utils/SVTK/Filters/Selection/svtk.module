@@ -1,0 +1,21 @@
+NAME
+  SVTK::FiltersSelection
+LIBRARY_NAME
+  svtkFiltersSelection
+KIT
+  SVTK::Filters
+GROUPS
+  StandAlone
+DEPENDS
+  SVTK::CommonCore
+  SVTK::CommonExecutionModel
+PRIVATE_DEPENDS
+  SVTK::CommonDataModel
+TEST_DEPENDS
+  SVTK::FiltersExtraction
+  SVTK::IOLegacy
+  SVTK::IOXML
+  SVTK::InteractionStyle
+  SVTK::RenderingAnnotation
+  SVTK::RenderingOpenGL2
+  SVTK::TestingRendering

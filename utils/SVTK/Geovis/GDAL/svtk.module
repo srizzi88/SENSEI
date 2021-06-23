@@ -1,0 +1,16 @@
+NAME
+  SVTK::GeovisGDAL
+LIBRARY_NAME
+  svtkGeovisGDAL
+DEPENDS
+  SVTK::CommonCore
+  SVTK::CommonDataModel
+  SVTK::IOGDAL
+TEST_DEPENDS
+  SVTK::GeovisCore
+  SVTK::ImagingCore
+  SVTK::ImagingStatistics
+  SVTK::InteractionImage
+  SVTK::RenderingOpenGL2
+  SVTK::TestingCore
+  SVTK::TestingRendering

@@ -1,0 +1,57 @@
+set(classes
+  svtkRTXMLPolyDataReader
+  svtkXMLCompositeDataReader
+  svtkXMLCompositeDataWriter
+  svtkXMLDataObjectWriter
+  svtkXMLDataReader
+  svtkXMLDataSetWriter
+  svtkXMLFileReadTester
+  svtkXMLGenericDataObjectReader
+  svtkXMLHierarchicalBoxDataFileConverter
+  svtkXMLHierarchicalBoxDataReader
+  svtkXMLHierarchicalBoxDataWriter
+  svtkXMLHierarchicalDataReader
+  svtkXMLHyperTreeGridReader
+  svtkXMLHyperTreeGridWriter
+  svtkXMLImageDataReader
+  svtkXMLImageDataWriter
+  svtkXMLMultiBlockDataReader
+  svtkXMLMultiBlockDataWriter
+  svtkXMLMultiGroupDataReader
+  svtkXMLPDataObjectReader
+  svtkXMLPDataReader
+  svtkXMLPHyperTreeGridReader
+  svtkXMLPImageDataReader
+  svtkXMLPPolyDataReader
+  svtkXMLPRectilinearGridReader
+  svtkXMLPStructuredDataReader
+  svtkXMLPStructuredGridReader
+  svtkXMLPTableReader
+  svtkXMLPUnstructuredDataReader
+  svtkXMLPUnstructuredGridReader
+  svtkXMLPartitionedDataSetCollectionReader
+  svtkXMLPartitionedDataSetCollectionWriter
+  svtkXMLPartitionedDataSetReader
+  svtkXMLPartitionedDataSetWriter
+  svtkXMLPolyDataReader
+  svtkXMLPolyDataWriter
+  svtkXMLReader
+  svtkXMLRectilinearGridReader
+  svtkXMLRectilinearGridWriter
+  svtkXMLStructuredDataReader
+  svtkXMLStructuredDataWriter
+  svtkXMLStructuredGridReader
+  svtkXMLStructuredGridWriter
+  svtkXMLTableReader
+  svtkXMLTableWriter
+  svtkXMLUniformGridAMRReader
+  svtkXMLUniformGridAMRWriter
+  svtkXMLUnstructuredDataReader
+  svtkXMLUnstructuredDataWriter
+  svtkXMLUnstructuredGridReader
+  svtkXMLUnstructuredGridWriter
+  svtkXMLWriter
+  svtkXMLWriterC)
+
+svtk_module_add_module(SVTK::IOXML
+  CLASSES ${classes})

@@ -1,0 +1,36 @@
+NAME
+  SVTK::IOParallel
+LIBRARY_NAME
+  svtkIOParallel
+IMPLEMENTABLE
+KIT
+  SVTK::Parallel
+GROUPS
+  StandAlone
+DEPENDS
+  SVTK::CommonCore
+  SVTK::CommonDataModel
+  SVTK::CommonExecutionModel
+  SVTK::IOCore
+  SVTK::IOGeometry
+  SVTK::IOImage
+  SVTK::IOLegacy
+  SVTK::jsoncpp
+PRIVATE_DEPENDS
+  SVTK::CommonMisc
+  SVTK::CommonSystem
+  SVTK::FiltersCore
+  SVTK::FiltersExtraction
+  SVTK::FiltersParallel
+  SVTK::ParallelCore
+  SVTK::svtksys
+TEST_DEPENDS
+  SVTK::FiltersGeometry
+  SVTK::ImagingCore
+  SVTK::InteractionImage
+  SVTK::RenderingOpenGL2
+  SVTK::RenderingParallel
+  SVTK::TestingCore
+  SVTK::TestingRendering
+TEST_OPTIONAL_DEPENDS
+  SVTK::ParallelMPI

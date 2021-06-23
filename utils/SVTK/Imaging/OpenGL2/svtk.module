@@ -1,0 +1,16 @@
+NAME
+  SVTK::ImagingOpenGL2
+LIBRARY_NAME
+  svtkImagingOpenGL2
+DEPENDS
+  SVTK::ImagingGeneral
+  SVTK::RenderingOpenGL2
+PRIVATE_DEPENDS
+  SVTK::CommonCore
+  SVTK::CommonDataModel
+  SVTK::CommonExecutionModel
+  SVTK::RenderingOpenGL2
+TEST_DEPENDS
+  SVTK::InteractionStyle
+  SVTK::IOImage
+  SVTK::TestingRendering

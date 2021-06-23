@@ -1,0 +1,34 @@
+NAME
+  SVTK::RenderingAnnotation
+LIBRARY_NAME
+  svtkRenderingAnnotation
+KIT
+  SVTK::Rendering
+GROUPS
+  Rendering
+DEPENDS
+  SVTK::CommonCore
+  SVTK::CommonDataModel
+  SVTK::CommonExecutionModel
+  SVTK::RenderingCore
+PRIVATE_DEPENDS
+  SVTK::CommonMath
+  SVTK::CommonTransforms
+  SVTK::FiltersCore
+  SVTK::FiltersGeneral
+  SVTK::FiltersSources
+  SVTK::ImagingColor
+  SVTK::RenderingFreeType
+TEST_DEPENDS
+  SVTK::FiltersGeometry
+  SVTK::FiltersModeling
+  SVTK::FiltersSources
+  SVTK::IOGeometry
+  SVTK::IOParallel
+  SVTK::ImagingColor
+  SVTK::ImagingCore
+  SVTK::ImagingSources
+  SVTK::InteractionStyle
+  SVTK::RenderingLOD
+  SVTK::RenderingOpenGL2
+  SVTK::TestingRendering

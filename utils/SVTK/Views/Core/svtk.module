@@ -1,0 +1,17 @@
+NAME
+  SVTK::ViewsCore
+LIBRARY_NAME
+  svtkViewsCore
+KIT
+  SVTK::Views
+GROUPS
+  Rendering
+DEPENDS
+  SVTK::CommonCore
+  SVTK::CommonExecutionModel
+  SVTK::InteractionWidgets
+PRIVATE_DEPENDS
+  SVTK::CommonDataModel
+  SVTK::FiltersGeneral
+  SVTK::RenderingCore
+  SVTK::RenderingUI

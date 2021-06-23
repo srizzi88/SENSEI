@@ -1,0 +1,22 @@
+NAME
+  SVTK::IOCore
+LIBRARY_NAME
+  svtkIOCore
+KIT
+  SVTK::IO
+GROUPS
+  StandAlone
+DEPENDS
+  SVTK::CommonCore
+  SVTK::CommonExecutionModel
+PRIVATE_DEPENDS
+  SVTK::CommonDataModel
+  SVTK::CommonMisc
+  SVTK::doubleconversion
+  SVTK::lz4
+  SVTK::lzma
+  SVTK::utf8
+  SVTK::svtksys
+  SVTK::zlib
+TEST_DEPENDS
+  SVTK::TestingCore

@@ -1,0 +1,20 @@
+NAME
+  SVTK::ImagingColor
+LIBRARY_NAME
+  svtkImagingColor
+KIT
+  SVTK::Imaging
+GROUPS
+  Imaging
+  StandAlone
+DEPENDS
+  SVTK::CommonExecutionModel
+  SVTK::ImagingCore
+PRIVATE_DEPENDS
+  SVTK::CommonCore
+  SVTK::CommonDataModel
+  SVTK::CommonSystem
+TEST_DEPENDS
+  SVTK::IOImage
+  SVTK::ImagingCore
+  SVTK::TestingCore

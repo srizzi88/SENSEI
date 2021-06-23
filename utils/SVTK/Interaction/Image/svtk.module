@@ -1,0 +1,19 @@
+NAME
+  SVTK::InteractionImage
+LIBRARY_NAME
+  svtkInteractionImage
+KIT
+  SVTK::Interaction
+GROUPS
+  Imaging
+  Rendering
+DEPENDS
+  SVTK::CommonCore
+  SVTK::RenderingCore
+PRIVATE_DEPENDS
+  SVTK::CommonDataModel
+  SVTK::CommonExecutionModel
+  SVTK::ImagingColor
+  SVTK::ImagingCore
+  SVTK::InteractionStyle
+  SVTK::InteractionWidgets

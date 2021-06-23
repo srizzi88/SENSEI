@@ -1,0 +1,39 @@
+NAME
+  SVTK::IOGeometry
+LIBRARY_NAME
+  svtkIOGeometry
+IMPLEMENTABLE
+KIT
+  SVTK::IO
+GROUPS
+  StandAlone
+DEPENDS
+  SVTK::CommonCore
+  SVTK::CommonDataModel
+  SVTK::CommonExecutionModel
+  SVTK::IOCore
+  SVTK::IOLegacy
+PRIVATE_DEPENDS
+  SVTK::CommonMisc
+  SVTK::CommonSystem
+  SVTK::CommonTransforms
+  SVTK::FiltersGeneral
+  SVTK::FiltersHybrid
+  SVTK::ImagingCore
+  SVTK::IOImage
+  SVTK::RenderingCore
+  SVTK::jsoncpp
+  SVTK::svtksys
+  SVTK::zlib
+TEST_DEPENDS
+  SVTK::CommonSystem
+  SVTK::FiltersExtraction
+  SVTK::FiltersGeneral
+  SVTK::FiltersGeometry
+  SVTK::FiltersSources
+  SVTK::IOAMR
+  SVTK::IOImage
+  SVTK::IOLegacy
+  SVTK::InteractionStyle
+  SVTK::RenderingOpenGL2
+  SVTK::TestingRendering

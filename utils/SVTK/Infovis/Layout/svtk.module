@@ -1,0 +1,29 @@
+NAME
+  SVTK::InfovisLayout
+LIBRARY_NAME
+  svtkInfovisLayout
+GROUPS
+  StandAlone
+TEST_DEPENDS
+  SVTK::IOInfovis
+  SVTK::InfovisCore
+  SVTK::InteractionStyle
+  SVTK::RenderingLabel
+  SVTK::RenderingOpenGL2
+  SVTK::TestingRendering
+DEPENDS
+  SVTK::CommonCore
+  SVTK::CommonDataModel
+  SVTK::CommonExecutionModel
+PRIVATE_DEPENDS
+  SVTK::CommonComputationalGeometry
+  SVTK::CommonSystem
+  SVTK::CommonTransforms
+  SVTK::FiltersCore
+  SVTK::FiltersGeneral
+  SVTK::FiltersModeling
+  SVTK::FiltersSources
+  SVTK::ImagingHybrid
+  SVTK::InfovisCore
+OPTIONAL_DEPENDS
+  SVTK::InfovisBoostGraphAlgorithms

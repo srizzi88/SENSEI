@@ -1,0 +1,61 @@
+#!/usr/bin/env python
+
+# Lets create a data set.
+data = svtk.svtkImageData()
+data.SetExtent(0,31,0,31,0,31)
+data.SetScalarType(10,data.GetInformation())
+# First the data array:
+gauss = svtk.svtkImageGaussianSource()
+gauss.SetWholeExtent(0,30,0,30,0,30)
+gauss.SetCenter(18,12,20)
+gauss.SetMaximum(1.0)
+gauss.SetStandardDeviation(10.0)
+gauss.Update()
+a = gauss.GetOutput().GetPointData().GetScalars()
+a.SetName("Gauss")
+data.GetCellData().SetScalars(a)
+del gauss
+# Now the material array:
+ellipse = svtk.svtkImageEllipsoidSource()
+ellipse.SetWholeExtent(0,30,0,30,0,30)
+ellipse.SetCenter(11,12,13)
+ellipse.SetRadius(5,9,13)
+ellipse.SetInValue(1)
+ellipse.SetOutValue(0)
+ellipse.SetOutputScalarTypeToInt()
+ellipse.Update()
+m = ellipse.GetOutput().GetPointData().GetScalars()
+m.SetName("Material")
+data.GetCellData().AddArray(m)
+del ellipse
+cut = svtk.svtkCutMaterial()
+cut.SetInputData(data)
+cut.SetMaterialArrayName("Material")
+cut.SetMaterial(1)
+cut.SetArrayName("Gauss")
+cut.SetUpVector(1,0,0)
+cut.Update()
+mapper2 = svtk.svtkPolyDataMapper()
+mapper2.SetInputConnection(cut.GetOutputPort())
+mapper2.SetScalarRange(0,1)
+#apper2 SetScalarModeToUseCellFieldData
+#apper2 SetColorModeToMapScalars
+#apper2 ColorByArrayComponent svtk.svtkDataSetAttributes.GhostArrayName() 0
+actor2 = svtk.svtkActor()
+actor2.SetMapper(mapper2)
+actor2.SetPosition(1.5,0,0)
+ren = svtk.svtkRenderer()
+ren.AddActor(actor2)
+renWin = svtk.svtkRenderWindow()
+renWin.AddRenderer(ren)
+p = cut.GetCenterPoint()
+n = cut.GetNormal()
+cam = ren.GetActiveCamera()
+cam.SetFocalPoint(p)
+cam.SetViewUp(cut.GetUpVector())
+cam.SetPosition(expr.expr(globals(), locals(),["lindex(n,0)","+","lindex(p,0)"]),expr.expr(globals(), locals(),["lindex(n,1)","+","lindex(p,1)"]),expr.expr(globals(), locals(),["lindex(n,2)","+","lindex(p,2)"]))
+ren.ResetCamera()
+iren = svtk.svtkRenderWindowInteractor()
+iren.SetRenderWindow(renWin)
+iren.Initialize()
+# --- end of script --

@@ -1,0 +1,38 @@
+NAME
+  SVTK::FiltersGeneral
+LIBRARY_NAME
+  svtkFiltersGeneral
+DESCRIPTION
+  Filters for transforming data
+KIT
+  SVTK::Filters
+GROUPS
+  StandAlone
+DEPENDS
+  SVTK::CommonCore
+  SVTK::CommonDataModel
+  SVTK::CommonExecutionModel
+  SVTK::CommonMisc
+  SVTK::FiltersCore
+PRIVATE_DEPENDS
+  SVTK::CommonComputationalGeometry
+  SVTK::CommonMath
+  SVTK::CommonSystem
+  SVTK::CommonTransforms
+TEST_DEPENDS
+  SVTK::FiltersExtraction
+  SVTK::FiltersFlowPaths
+  SVTK::FiltersGeometry
+  SVTK::FiltersModeling
+  SVTK::FiltersSources
+  SVTK::IOGeometry
+  SVTK::IOImage
+  SVTK::IOLegacy
+  SVTK::IOXML
+  SVTK::ImagingCore
+  SVTK::ImagingMath
+  SVTK::InteractionStyle
+  SVTK::RenderingAnnotation
+  SVTK::RenderingLabel
+  SVTK::RenderingOpenGL2
+  SVTK::TestingRendering

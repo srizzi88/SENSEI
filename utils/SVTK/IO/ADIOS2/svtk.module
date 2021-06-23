@@ -1,0 +1,36 @@
+NAME
+  SVTK::IOADIOS2
+LIBRARY_NAME
+  svtkIOADIOS2
+KIT
+  SVTK::IO
+DEPENDS
+  SVTK::CommonCore
+  SVTK::CommonExecutionModel
+  SVTK::ParallelCore
+OPTIONAL_DEPENDS
+  SVTK::ParallelMPI
+  SVTK::mpi
+  SVTK::svtksys
+  SVTK::pugixml
+PRIVATE_DEPENDS
+  SVTK::CommonDataModel
+TEST_DEPENDS
+  SVTK::IOLegacy
+  SVTK::IOXML
+  SVTK::IOParallelXML
+  SVTK::FiltersGeneral
+  SVTK::FiltersGeometry
+  SVTK::FiltersSources
+  SVTK::ImagingCore
+  SVTK::InteractionImage
+  SVTK::InteractionStyle
+  SVTK::RenderingCore
+  SVTK::RenderingOpenGL2
+  SVTK::RenderingVolumeOpenGL2 # svtkMultiBlockVolumeMapper
+  SVTK::TestingCore
+  SVTK::TestingRendering
+TEST_OPTIONAL_DEPENDS
+  SVTK::mpi
+  SVTK::ParallelMPI
+  SVTK::RenderingParallel

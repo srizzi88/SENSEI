@@ -1,0 +1,43 @@
+NAME
+  SVTK::FiltersParallel
+LIBRARY_NAME
+  svtkFiltersParallel
+IMPLEMENTABLE
+KIT
+  SVTK::Parallel
+GROUPS
+  StandAlone
+DEPENDS
+  SVTK::CommonCore
+  SVTK::CommonDataModel
+  SVTK::CommonExecutionModel
+  SVTK::FiltersCore
+  SVTK::FiltersExtraction
+  SVTK::FiltersGeneral
+  SVTK::FiltersGeometry
+  SVTK::FiltersHybrid
+  SVTK::FiltersModeling
+  SVTK::FiltersSources
+  SVTK::FiltersTexture
+PRIVATE_DEPENDS
+  SVTK::CommonSystem
+  SVTK::CommonTransforms
+  SVTK::IOLegacy
+  SVTK::ParallelCore
+TEST_DEPENDS
+  SVTK::FiltersFlowPaths
+  SVTK::FiltersParallelImaging
+  SVTK::IOExodus
+  SVTK::IOImage
+  SVTK::IOLegacy
+  SVTK::IOParallelExodus
+  SVTK::IOXML
+  SVTK::InteractionStyle
+  SVTK::RenderingOpenGL2
+  SVTK::RenderingParallel
+  SVTK::TestingCore
+  SVTK::TestingRendering
+TEST_OPTIONAL_DEPENDS
+  SVTK::FiltersParallelGeometry
+  SVTK::FiltersParallelMPI
+  SVTK::ParallelMPI

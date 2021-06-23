@@ -1,0 +1,16 @@
+NAME
+  SVTK::IOH5part
+LIBRARY_NAME
+  svtkIOH5part
+KIT
+  SVTK::IO
+DEPENDS
+  SVTK::CommonCore
+  SVTK::CommonDataModel
+  SVTK::CommonExecutionModel
+PRIVATE_DEPENDS
+  SVTK::h5part
+  SVTK::hdf5
+  SVTK::svtksys
+TEST_DEPENDS
+  SVTK::TestingRendering

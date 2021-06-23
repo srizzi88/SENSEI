@@ -1,0 +1,37 @@
+NAME
+  SVTK::RenderingVolume
+LIBRARY_NAME
+  svtkRenderingVolume
+IMPLEMENTABLE
+KIT
+  SVTK::Rendering
+GROUPS
+  Rendering
+DEPENDS
+  SVTK::CommonCore
+  SVTK::CommonExecutionModel
+  SVTK::RenderingCore
+PRIVATE_DEPENDS
+  SVTK::CommonDataModel
+  SVTK::CommonMath
+  SVTK::CommonMisc
+  SVTK::CommonSystem
+  SVTK::CommonTransforms
+  SVTK::ImagingCore
+TEST_DEPENDS
+  SVTK::CommonSystem
+  SVTK::FiltersModeling
+  SVTK::FiltersSources
+  SVTK::IOImage
+  SVTK::IOLegacy
+  SVTK::IOXML
+  SVTK::ImagingGeneral
+  SVTK::ImagingHybrid
+  SVTK::ImagingSources
+  SVTK::InteractionStyle
+  SVTK::RenderingAnnotation
+  SVTK::RenderingFreeType
+  SVTK::RenderingOpenGL2
+  SVTK::RenderingVolumeOpenGL2
+  SVTK::TestingCore
+  SVTK::TestingRendering

@@ -1,0 +1,8 @@
+NAME
+  SVTK::TestingCore
+LIBRARY_NAME
+  svtkTestingCore
+DEPENDS
+  SVTK::CommonCore
+  SVTK::svtksys
+EXCLUDE_WRAP

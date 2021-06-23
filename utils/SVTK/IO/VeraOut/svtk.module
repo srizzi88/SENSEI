@@ -1,0 +1,14 @@
+NAME
+  SVTK::IOVeraOut
+LIBRARY_NAME
+  svtkIOVeraOut
+KIT
+  SVTK::IO
+GROUPS
+  StandAlone
+DEPENDS
+  SVTK::CommonExecutionModel
+PRIVATE_DEPENDS
+  SVTK::CommonCore
+  SVTK::CommonDataModel
+  SVTK::hdf5

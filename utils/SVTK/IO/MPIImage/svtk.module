@@ -1,0 +1,27 @@
+NAME
+  SVTK::IOMPIImage
+LIBRARY_NAME
+  svtkIOMPIImage
+KIT
+  SVTK::Parallel
+GROUPS
+  MPI
+IMPLEMENTS
+  SVTK::IOImage
+DEPENDS
+  SVTK::IOImage
+PRIVATE_DEPENDS
+  SVTK::CommonCore
+  SVTK::CommonDataModel
+  SVTK::CommonTransforms
+  SVTK::ParallelCore
+  SVTK::ParallelMPI
+  SVTK::mpi
+  SVTK::svtksys
+TEST_DEPENDS
+  SVTK::FiltersSources
+  SVTK::InteractionStyle
+  SVTK::ParallelMPI
+  SVTK::RenderingOpenGL2
+  SVTK::TestingCore
+  SVTK::TestingRendering

@@ -1,0 +1,24 @@
+NAME
+  SVTK::IOMINC
+LIBRARY_NAME
+  svtkIOMINC
+GROUPS
+  StandAlone
+DEPENDS
+  SVTK::CommonCore
+  SVTK::CommonExecutionModel
+  SVTK::IOCore
+  SVTK::IOImage
+PRIVATE_DEPENDS
+  SVTK::CommonDataModel
+  SVTK::CommonMath
+  SVTK::CommonMisc
+  SVTK::CommonTransforms
+  SVTK::FiltersHybrid
+  SVTK::RenderingCore
+  SVTK::netcdf
+  SVTK::svtksys
+TEST_DEPENDS
+  SVTK::InteractionImage
+  SVTK::RenderingOpenGL2
+  SVTK::TestingRendering

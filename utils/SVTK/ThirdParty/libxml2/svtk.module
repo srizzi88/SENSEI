@@ -1,0 +1,7 @@
+NAME
+  SVTK::libxml2
+LIBRARY_NAME
+  svtklibxml2
+DEPENDS
+  SVTK::zlib
+THIRD_PARTY

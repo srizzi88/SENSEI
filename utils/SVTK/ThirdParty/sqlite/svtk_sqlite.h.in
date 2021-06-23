@@ -1,0 +1,27 @@
+/*=========================================================================
+
+  Program:   Visualization Toolkit
+  Module:    svtk_sqlite.h
+
+  Copyright (c) Ken Martin, Will Schroeder, Bill Lorensen
+  All rights reserved.
+  See Copyright.txt or http://www.kitware.com/Copyright.htm for details.
+
+     This software is distributed WITHOUT ANY WARRANTY; without even
+     the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR
+     PURPOSE.  See the above copyright notice for more information.
+
+=========================================================================*/
+#ifndef svtk_sqlite_h
+#define svtk_sqlite_h
+
+/* Use the sqlite library configured for SVTK.  */
+#cmakedefine01 SVTK_MODULE_USE_EXTERNAL_svtksqlite
+
+#if SVTK_MODULE_USE_EXTERNAL_svtksqlite
+# include <sqlite3.h>
+#else
+# include <svtksqlite/sqlite3.h>
+#endif
+
+#endif

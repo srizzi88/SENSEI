@@ -1,0 +1,44 @@
+NAME
+  SVTK::ViewsInfovis
+LIBRARY_NAME
+  svtkViewsInfovis
+GROUPS
+  Rendering
+DEPENDS
+  SVTK::CommonCore
+  SVTK::CommonDataModel
+  SVTK::CommonExecutionModel
+  SVTK::InteractionStyle
+  SVTK::RenderingContext2D
+  SVTK::ViewsCore
+PRIVATE_DEPENDS
+  SVTK::ChartsCore
+  SVTK::CommonColor
+  SVTK::CommonTransforms
+  SVTK::FiltersCore
+  SVTK::FiltersExtraction
+  SVTK::FiltersGeneral
+  SVTK::FiltersGeometry
+  SVTK::FiltersImaging
+  SVTK::FiltersModeling
+  SVTK::FiltersSources
+  SVTK::FiltersStatistics
+  SVTK::ImagingGeneral
+  SVTK::InfovisCore
+  SVTK::InfovisLayout
+  SVTK::InteractionWidgets
+  SVTK::RenderingAnnotation
+  SVTK::RenderingCore
+  SVTK::RenderingLabel
+TEST_DEPENDS
+  SVTK::FiltersGeometry
+  SVTK::InfovisCore
+  SVTK::InfovisLayout
+  SVTK::IOImage
+  SVTK::IOInfovis
+  SVTK::IOSQL
+  SVTK::IOXML
+  SVTK::RenderingAnnotation
+  SVTK::RenderingContextOpenGL2
+  SVTK::TestingRendering
+  SVTK::ViewsContext2D

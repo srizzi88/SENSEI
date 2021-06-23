@@ -1,0 +1,102 @@
+/*=========================================================================
+
+Program:   Visualization Toolkit
+
+Copyright (c) Ken Martin, Will Schroeder, Bill Lorensen
+All rights reserved.
+See Copyright.txt or http://www.kitware.com/Copyright.htm for details.
+
+This software is distributed WITHOUT ANY WARRANTY; without even
+the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR
+PURPOSE.  See the above copyright notice for more information.
+
+=========================================================================*/
+/**
+ * @class   svtkOpenVRRenderer
+ * @brief   OpenVR renderer
+ *
+ * svtkOpenVRRenderer is a concrete implementation of the abstract class
+ * svtkRenderer.  svtkOpenVRRenderer interfaces to the OpenVR rendering library.
+ */
+
+#ifndef svtkOpenVRRenderer_h
+#define svtkOpenVRRenderer_h
+
+#include "svtkOpenGLRenderer.h"
+#include "svtkRenderingOpenVRModule.h" // For export macro
+
+class svtkActor;
+
+class SVTKRENDERINGOPENVR_EXPORT svtkOpenVRRenderer : public svtkOpenGLRenderer
+{
+public:
+  static svtkOpenVRRenderer* New();
+  svtkTypeMacro(svtkOpenVRRenderer, svtkOpenGLRenderer);
+  void PrintSelf(ostream& os, svtkIndent indent) override;
+
+  /**
+   * Automatically set up the camera based on the visible actors.
+   * The camera will reposition itself to view the center point of the actors,
+   * and move along its initial view plane normal (i.e., vector defined from
+   * camera position to focal point) so that all of the actors can be seen.
+   */
+  void ResetCamera() override;
+
+  /**
+   * Automatically set up the camera based on a specified bounding box
+   * (xmin,xmax, ymin,ymax, zmin,zmax). Camera will reposition itself so
+   * that its focal point is the center of the bounding box, and adjust its
+   * distance and position to preserve its initial view plane normal
+   * (i.e., vector defined from camera position to focal point). Note: is
+   * the view plane is parallel to the view up axis, the view up axis will
+   * be reset to one of the three coordinate axes.
+   */
+  void ResetCamera(double bounds[6]) override;
+
+  /**
+   * Alternative version of ResetCamera(bounds[6]);
+   */
+  void ResetCamera(
+    double xmin, double xmax, double ymin, double ymax, double zmin, double zmax) override;
+
+  using svtkRenderer::ResetCameraClippingRange;
+
+  //@{
+  /**
+   * Reset the camera clipping range based on a bounding box.
+   * This method is called from ResetCameraClippingRange()
+   * If Deering frustrum is used then the bounds get expanded
+   * by the camera's modelview matrix.
+   */
+  void ResetCameraClippingRange(double bounds[6]) override;
+  //@}
+
+  /**
+   * Create a new Camera suitable for use with this type of Renderer.
+   */
+  svtkCamera* MakeCamera() override;
+
+  /**
+   * Concrete open gl render method.
+   */
+  void DeviceRender(void);
+
+  /**
+   * SHow the floor of the VR world
+   */
+  virtual void SetShowFloor(bool);
+  virtual bool GetShowFloor() { return this->ShowFloor; }
+
+protected:
+  svtkOpenVRRenderer();
+  ~svtkOpenVRRenderer() override;
+
+  svtkActor* FloorActor;
+  bool ShowFloor;
+
+private:
+  svtkOpenVRRenderer(const svtkOpenVRRenderer&) = delete;
+  void operator=(const svtkOpenVRRenderer&) = delete;
+};
+
+#endif

@@ -1,0 +1,38 @@
+set(classes
+  svtkDirectionEncoder
+  svtkEncodedGradientEstimator
+  svtkEncodedGradientShader
+  svtkFiniteDifferenceGradientEstimator
+  svtkFixedPointRayCastImage
+  svtkFixedPointVolumeRayCastCompositeGOHelper
+  svtkFixedPointVolumeRayCastCompositeGOShadeHelper
+  svtkFixedPointVolumeRayCastCompositeHelper
+  svtkFixedPointVolumeRayCastCompositeShadeHelper
+  svtkFixedPointVolumeRayCastHelper
+  svtkFixedPointVolumeRayCastMapper
+  svtkFixedPointVolumeRayCastMIPHelper
+  svtkGPUVolumeRayCastMapper
+  svtkMultiVolume
+  svtkOSPRayVolumeInterface
+  svtkProjectedTetrahedraMapper
+  svtkRayCastImageDisplayHelper
+  svtkRecursiveSphereDirectionEncoder
+  svtkSphericalDirectionEncoder
+  svtkUnstructuredGridBunykRayCastFunction
+  svtkUnstructuredGridHomogeneousRayIntegrator
+  svtkUnstructuredGridLinearRayIntegrator
+  svtkUnstructuredGridPartialPreIntegration
+  svtkUnstructuredGridPreIntegration
+  svtkUnstructuredGridVolumeMapper
+  svtkUnstructuredGridVolumeRayCastFunction
+  svtkUnstructuredGridVolumeRayCastIterator
+  svtkUnstructuredGridVolumeRayCastMapper
+  svtkUnstructuredGridVolumeRayIntegrator
+  svtkUnstructuredGridVolumeZSweepMapper
+  svtkVolumeMapper
+  svtkVolumeOutlineSource
+  svtkVolumePicker
+  svtkVolumeRayCastSpaceLeapingImageFilter)
+
+svtk_module_add_module(SVTK::RenderingVolume
+  CLASSES ${classes})

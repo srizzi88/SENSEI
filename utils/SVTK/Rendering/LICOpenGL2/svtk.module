@@ -1,0 +1,35 @@
+NAME
+  SVTK::RenderingLICOpenGL2
+LIBRARY_NAME
+  svtkRenderingLICOpenGL2
+IMPLEMENTABLE
+DEPENDS
+  SVTK::CommonCore
+  SVTK::CommonDataModel
+  SVTK::CommonExecutionModel
+  SVTK::RenderingOpenGL2
+PRIVATE_DEPENDS
+  SVTK::CommonMath
+  SVTK::CommonSystem
+  SVTK::IOCore
+  SVTK::IOLegacy
+  SVTK::IOXML
+  SVTK::ImagingCore
+  SVTK::ImagingSources
+  SVTK::RenderingCore
+  SVTK::glew
+  SVTK::opengl
+  SVTK::svtksys
+TEST_DEPENDS
+  SVTK::CommonSystem
+  SVTK::FiltersExtraction
+  SVTK::FiltersGeometry
+  SVTK::FiltersSources
+  SVTK::IOImage
+  SVTK::IOLegacy
+  SVTK::IOXML
+  SVTK::ImagingCore
+  SVTK::InteractionStyle
+  SVTK::TestingCore
+  SVTK::TestingRendering
+  SVTK::opengl

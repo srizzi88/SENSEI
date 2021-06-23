@@ -1,0 +1,8 @@
+NAME
+  SVTK::exodusII
+LIBRARY_NAME
+  svtkexodusII
+DEPENDS
+  SVTK::hdf5
+  SVTK::netcdf
+THIRD_PARTY

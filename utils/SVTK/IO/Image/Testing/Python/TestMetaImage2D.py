@@ -1,0 +1,21 @@
+#!/usr/bin/env python
+import svtk
+from svtk.util.misc import svtkGetDataRoot
+SVTK_DATA_ROOT = svtkGetDataRoot()
+
+# This scripts shows a compressed spectrum of an image.
+# Image pipeline
+reader = svtk.svtkMetaImageReader()
+reader.SetFileName(SVTK_DATA_ROOT + "/Data/foot/foot.mha")
+
+viewer = svtk.svtkImageViewer2()
+viewer.SetInputConnection(reader.GetOutputPort())
+viewer.SetColorWindow(255)
+viewer.SetColorLevel(127.5)
+
+viewInt = svtk.svtkRenderWindowInteractor()
+viewer.SetupInteractor(viewInt)
+viewer.Render()
+
+# This is needed if you want to interact with the image.
+# viewInt.Start()

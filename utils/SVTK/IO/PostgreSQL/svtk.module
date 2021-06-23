@@ -1,0 +1,18 @@
+NAME
+  SVTK::IOPostgreSQL
+LIBRARY_NAME
+  svtkIOPostgreSQL
+KIT
+  SVTK::IO
+IMPLEMENTS
+  SVTK::IOSQL
+DEPENDS
+  SVTK::CommonCore
+  SVTK::IOSQL
+PRIVATE_DEPENDS
+  SVTK::CommonDataModel
+  SVTK::CommonExecutionModel
+  SVTK::svtksys
+TEST_DEPENDS
+  SVTK::TestingCore
+  SVTK::TestingIOSQL

@@ -1,0 +1,40 @@
+/*=========================================================================
+
+  Program:   Visualization Toolkit
+  Module:    svtk_libxml2.h
+
+  Copyright (c) Ken Martin, Will Schroeder, Bill Lorensen
+  All rights reserved.
+  See Copyright.txt or http://www.kitware.com/Copyright.htm for details.
+
+     This software is distributed WITHOUT ANY WARRANTY; without even
+     the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR
+     PURPOSE.  See the above copyright notice for more information.
+
+=========================================================================*/
+#ifndef svtk_libxml2_h
+#define svtk_libxml2_h
+
+/* Use the libxml2 library configured for SVTK.  */
+#cmakedefine01 SVTK_MODULE_USE_EXTERNAL_svtklibxml2
+
+#cmakedefine LIBXML_STATIC
+
+/* Macro to help include a header file from the libxml2 configured for
+   SVTK.  Since libxml2 has many public header files we cannot just
+   include them all here.  Instead user code can include this header
+   first and then use the macro to construct the name of the desired
+   header:
+
+   #include "svtk_libxml2.h"
+   #include SVTKLIBXML2_HEADER(xmlstring.h)
+*/
+#if SVTK_MODULE_USE_EXTERNAL_svtklibxml2
+#define SVTKLIBXML2_HEADER(x)  <libxml/x>
+#else
+#define SVTKLIBXML2_HEADER(x)  <svtklibxml2/include/libxml/x>
+#endif
+
+#include SVTKLIBXML2_HEADER(xmlversion.h)
+
+#endif

@@ -1,0 +1,27 @@
+NAME
+  SVTK::IOParallelNetCDF
+LIBRARY_NAME
+  svtkIOParallelNetCDF
+KIT
+  SVTK::Parallel
+GROUPS
+  MPI
+IMPLEMENTS
+  SVTK::IONetCDF
+DEPENDS
+  SVTK::CommonExecutionModel
+  SVTK::IONetCDF
+PRIVATE_DEPENDS
+  SVTK::CommonCore
+  SVTK::CommonDataModel
+  SVTK::ParallelMPI
+  SVTK::mpi
+  SVTK::netcdf
+TEST_DEPENDS
+  SVTK::CommonExecutionModel
+  SVTK::FiltersGeometry
+  SVTK::InteractionStyle
+  SVTK::ParallelMPI
+  SVTK::RenderingOpenGL2
+  SVTK::RenderingParallel
+  SVTK::TestingRendering

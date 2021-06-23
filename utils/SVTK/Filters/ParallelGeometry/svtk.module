@@ -1,0 +1,35 @@
+NAME
+  SVTK::FiltersParallelGeometry
+LIBRARY_NAME
+  svtkFiltersParallelGeometry
+KIT
+  SVTK::Parallel
+GROUPS
+  MPI
+IMPLEMENTS
+  SVTK::FiltersCore
+DEPENDS
+  SVTK::CommonCore
+  SVTK::CommonSystem
+  SVTK::CommonExecutionModel
+  SVTK::FiltersCore
+  SVTK::FiltersGeometry
+  SVTK::FiltersParallel
+  SVTK::ParallelMPI
+PRIVATE_DEPENDS
+  SVTK::CommonDataModel
+  SVTK::CommonSystem
+  SVTK::FiltersExtraction
+  SVTK::FiltersGeneral
+  SVTK::IOLegacy
+  SVTK::ParallelCore
+TEST_DEPENDS
+  SVTK::CommonDataModel
+  SVTK::FiltersGeneral
+  SVTK::FiltersParallelMPI
+  SVTK::IOParallel
+  SVTK::IOParallelXML
+  SVTK::IOXML
+  SVTK::ImagingCore
+  SVTK::ParallelMPI
+  SVTK::TestingCore

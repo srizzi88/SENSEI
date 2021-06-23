@@ -1,0 +1,32 @@
+NAME
+  SVTK::FiltersHybrid
+LIBRARY_NAME
+  svtkFiltersHybrid
+GROUPS
+  StandAlone
+DEPENDS
+  SVTK::CommonCore
+  SVTK::CommonDataModel
+  SVTK::CommonExecutionModel
+  SVTK::CommonTransforms
+  SVTK::FiltersGeometry
+PRIVATE_DEPENDS
+  SVTK::CommonMath
+  SVTK::CommonMisc
+  SVTK::FiltersCore
+  SVTK::FiltersGeneral
+  SVTK::ImagingCore
+  SVTK::ImagingSources
+  SVTK::RenderingCore
+  SVTK::svtksys
+TEST_DEPENDS
+  SVTK::FiltersGeneral
+  SVTK::FiltersHyperTree
+  SVTK::FiltersSources
+  SVTK::IOLegacy
+  SVTK::IOXML
+  SVTK::ImagingCore
+  SVTK::ImagingStencil
+  SVTK::InteractionStyle
+  SVTK::RenderingOpenGL2
+  SVTK::TestingRendering

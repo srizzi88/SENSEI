@@ -1,0 +1,19 @@
+NAME
+  SVTK::RenderingQt
+LIBRARY_NAME
+  svtkRenderingQt
+GROUPS
+  Qt
+DEPENDS
+  SVTK::CommonCore
+  SVTK::CommonExecutionModel
+  SVTK::RenderingCore
+  SVTK::RenderingLabel
+PRIVATE_DEPENDS
+  SVTK::CommonDataModel
+  SVTK::CommonSystem
+  SVTK::FiltersSources
+  SVTK::FiltersTexture
+  SVTK::GUISupportQt
+TEST_DEPENDS
+  SVTK::TestingCore

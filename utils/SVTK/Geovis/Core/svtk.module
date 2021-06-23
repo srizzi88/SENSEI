@@ -1,0 +1,37 @@
+NAME
+  SVTK::GeovisCore
+LIBRARY_NAME
+  svtkGeovisCore
+GROUPS
+  Rendering
+DEPENDS
+  SVTK::CommonCore
+  SVTK::CommonDataModel
+  SVTK::CommonExecutionModel
+  SVTK::CommonTransforms
+  SVTK::InfovisCore
+  SVTK::InteractionStyle
+  SVTK::InteractionWidgets
+  SVTK::RenderingCore
+  SVTK::ViewsCore
+  SVTK::libproj
+PRIVATE_DEPENDS
+  SVTK::CommonSystem
+  SVTK::FiltersCore
+  SVTK::FiltersGeneral
+  SVTK::IOImage
+  SVTK::IOXML
+  SVTK::ImagingCore
+  SVTK::ImagingSources
+  SVTK::InfovisLayout
+TEST_DEPENDS
+  SVTK::IOImage
+  SVTK::IOXML
+  SVTK::InteractionStyle
+  SVTK::RenderingCore
+  SVTK::RenderingOpenGL2
+  SVTK::TestingRendering
+  SVTK::ViewsInfovis
+TEST_OPTIONAL_DEPENDS
+  # XXX(SVTK_LEGACY_REMOVE): This is only required by legacy-using tests.
+  SVTK::ViewsGeovis

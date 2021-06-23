@@ -1,0 +1,21 @@
+// This header is automatically #included in every source file in the Xcode project.
+
+// OpenGL is deprecated in macOS, but used extensively by SVTK, so silence compiler warnings.
+#define GL_SILENCE_DEPRECATION 1
+
+#ifdef __cplusplus
+
+// SVTK factory methods now require "auto-initialization".
+// <https://www.svtk.org/Wiki/SVTK/SVTK_6_Migration/Factories_now_require_defines>
+// Match the definitions used to build SVTK.
+// Required for proper object factory initialization.
+// It happens automatically when building with CMake,
+// but not when building directly with Xcode.
+
+#include "svtkAutoInit.h"
+
+SVTK_MODULE_INIT(svtkInteractionStyle)
+SVTK_MODULE_INIT(svtkRenderingFreeType)
+SVTK_MODULE_INIT(svtkRenderingOpenGL2)
+
+#endif

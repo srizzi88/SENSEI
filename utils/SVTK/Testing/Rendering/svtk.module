@@ -1,0 +1,17 @@
+NAME
+  SVTK::TestingRendering
+LIBRARY_NAME
+  svtkTestingRendering
+GROUPS
+  Rendering
+DEPENDS
+  SVTK::CommonCore
+  SVTK::RenderingCore
+  SVTK::TestingCore
+PRIVATE_DEPENDS
+  SVTK::CommonDataModel
+  SVTK::CommonExecutionModel
+  SVTK::CommonSystem
+  SVTK::IOImage
+  SVTK::ImagingCore
+  SVTK::svtksys

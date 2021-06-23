@@ -1,0 +1,40 @@
+NAME
+  SVTK::IOExport
+LIBRARY_NAME
+  svtkIOExport
+KIT
+  SVTK::IO
+IMPLEMENTABLE
+GROUPS
+  Rendering
+DEPENDS
+  SVTK::CommonCore
+  SVTK::IOCore
+  SVTK::IOImage
+  SVTK::IOXML
+  SVTK::RenderingContext2D
+  SVTK::RenderingCore
+  SVTK::RenderingFreeType
+  SVTK::RenderingVtkJS
+PRIVATE_DEPENDS
+  SVTK::CommonDataModel
+  SVTK::CommonMath
+  SVTK::CommonTransforms
+  SVTK::FiltersGeometry
+  SVTK::IOImage
+  SVTK::ImagingCore
+  SVTK::jsoncpp
+  SVTK::libharu
+TEST_DEPENDS
+  SVTK::ChartsCore
+  SVTK::CommonColor
+  SVTK::FiltersModeling
+  SVTK::IOParallel
+  SVTK::InteractionImage
+  SVTK::InteractionStyle
+  SVTK::RenderingAnnotation
+  SVTK::RenderingContextOpenGL2
+  SVTK::RenderingLabel
+  SVTK::RenderingVolumeOpenGL2
+  SVTK::TestingRendering
+  SVTK::ViewsContext2D

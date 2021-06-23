@@ -1,0 +1,15 @@
+NAME
+  SVTK::ParallelMPI4Py
+LIBRARY_NAME
+  svtkParallelMPI4Py
+CONDITION
+  SVTK_WRAP_PYTHON
+GROUPS
+  MPI
+DEPENDS
+  SVTK::CommonCore
+  SVTK::Python
+PRIVATE_DEPENDS
+  SVTK::ParallelMPI
+  SVTK::mpi
+  SVTK::mpi4py

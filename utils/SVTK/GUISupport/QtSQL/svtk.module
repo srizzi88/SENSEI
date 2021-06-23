@@ -1,0 +1,15 @@
+NAME
+  SVTK::GUISupportQtSQL
+LIBRARY_NAME
+  svtkGUISupportQtSQL
+GROUPS
+  Qt
+DEPENDS
+  SVTK::CommonCore
+  SVTK::GUISupportQt
+  SVTK::IOSQL
+PRIVATE_DEPENDS
+  SVTK::svtksys
+TEST_DEPENDS
+  SVTK::TestingCore
+EXCLUDE_WRAP

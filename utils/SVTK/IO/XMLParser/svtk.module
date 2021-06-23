@@ -1,0 +1,15 @@
+NAME
+  SVTK::IOXMLParser
+LIBRARY_NAME
+  svtkIOXMLParser
+KIT
+  SVTK::IO
+GROUPS
+  StandAlone
+DEPENDS
+  SVTK::CommonCore
+  SVTK::CommonDataModel
+PRIVATE_DEPENDS
+  SVTK::IOCore
+  SVTK::expat
+  SVTK::svtksys

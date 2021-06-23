@@ -1,0 +1,14 @@
+NAME
+  SVTK::ImagingMath
+LIBRARY_NAME
+  svtkImagingMath
+KIT
+  SVTK::Imaging
+GROUPS
+  Imaging
+  StandAlone
+DEPENDS
+  SVTK::CommonExecutionModel
+PRIVATE_DEPENDS
+  SVTK::CommonCore
+  SVTK::CommonDataModel

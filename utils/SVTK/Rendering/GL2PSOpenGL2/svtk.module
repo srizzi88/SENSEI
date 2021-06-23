@@ -1,0 +1,22 @@
+NAME
+  SVTK::RenderingGL2PSOpenGL2
+LIBRARY_NAME
+  svtkRenderingGL2PSOpenGL2
+CONDITION
+  NOT ANDROID AND NOT APPLE_IOS AND NOT SVTK_OPENGL_USE_GLES
+IMPLEMENTS
+  SVTK::RenderingOpenGL2
+DEPENDS
+  SVTK::RenderingOpenGL2
+PRIVATE_DEPENDS
+  SVTK::CommonCore
+  SVTK::CommonDataModel
+  SVTK::CommonMath
+  SVTK::RenderingCore
+  SVTK::RenderingOpenGL2
+  SVTK::gl2ps
+  SVTK::opengl
+TEST_DEPENDS
+  SVTK::InteractionStyle
+  SVTK::TestingRendering
+  SVTK::gl2ps

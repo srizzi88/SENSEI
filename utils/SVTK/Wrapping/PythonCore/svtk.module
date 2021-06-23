@@ -1,0 +1,9 @@
+NAME
+  SVTK::WrappingPythonCore
+LIBRARY_NAME
+  svtkWrappingPythonCore
+DEPENDS
+  SVTK::CommonCore
+  SVTK::Python
+  SVTK::svtksys
+EXCLUDE_WRAP

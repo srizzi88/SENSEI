@@ -1,0 +1,31 @@
+NAME
+  SVTK::FiltersHyperTree
+LIBRARY_NAME
+  svtkFiltersHyperTree
+DESCRIPTION
+  Hypertree filters and algorithms
+KIT
+  SVTK::Filters
+GROUPS
+  StandAlone
+DEPENDS
+  SVTK::CommonDataModel
+  SVTK::CommonExecutionModel
+  SVTK::CommonMisc
+  SVTK::FiltersCore
+  SVTK::FiltersGeneral
+PRIVATE_DEPENDS
+  SVTK::CommonCore
+  SVTK::CommonSystem
+TEST_DEPENDS
+  SVTK::CommonSystem
+  SVTK::FiltersExtraction
+  SVTK::FiltersModeling
+  SVTK::FiltersSources
+  SVTK::IOLegacy
+  SVTK::IOXML
+  SVTK::ImagingHybrid
+  SVTK::InteractionStyle
+  SVTK::RenderingAnnotation
+  SVTK::RenderingOpenGL2
+  SVTK::TestingRendering

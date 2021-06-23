@@ -1,0 +1,21 @@
+NAME
+  SVTK::ParallelDIY
+DESCRIPTION
+  DIY utility classes to simplify DIY-based filters
+KIT
+  SVTK::Parallel
+LIBRARY_NAME
+  svtkParallelDIY
+GROUPS
+  StandAlone
+DEPENDS
+  SVTK::CommonCore
+  SVTK::CommonDataModel
+  SVTK::ParallelCore
+  SVTK::diy2
+OPTIONAL_DEPENDS
+  SVTK::ParallelMPI
+PRIVATE_DEPENDS
+  SVTK::FiltersGeneral
+  SVTK::IOXML
+EXCLUDE_WRAP

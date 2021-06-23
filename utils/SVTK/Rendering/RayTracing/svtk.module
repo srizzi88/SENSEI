@@ -1,0 +1,51 @@
+NAME
+  SVTK::RenderingRayTracing
+LIBRARY_NAME
+  svtkRenderingRayTracing
+IMPLEMENTS
+  SVTK::RenderingVolume
+DEPENDS
+  SVTK::CommonDataModel
+  SVTK::DomainsChemistry
+  SVTK::RenderingCore
+  SVTK::RenderingOpenGL2
+  SVTK::RenderingSceneGraph
+  SVTK::RenderingVolume
+PRIVATE_DEPENDS
+  SVTK::CommonCore
+  SVTK::IOImage
+  SVTK::IOLegacy
+  SVTK::IOXML
+  SVTK::ImagingCore
+  SVTK::RenderingVolumeAMR
+  SVTK::jsoncpp
+  SVTK::svtksys
+TEST_DEPENDS
+  SVTK::CommonColor
+  SVTK::CommonSystem
+  SVTK::FiltersAMR
+  SVTK::FiltersCore
+  SVTK::FiltersExtraction
+  SVTK::FiltersHybrid
+  SVTK::FiltersModeling
+  SVTK::FiltersSources
+  SVTK::FiltersTexture
+  SVTK::IOGeometry
+  SVTK::IOImage
+  SVTK::IOLegacy
+  SVTK::IOPLY
+  SVTK::IOXML
+  SVTK::ImagingGeneral
+  SVTK::ImagingHybrid
+  SVTK::ImagingSources
+  SVTK::InteractionStyle
+  SVTK::InteractionStyle
+  #SVTK::ParallelMPI
+  SVTK::RenderingAnnotation
+  SVTK::RenderingFreeType
+  #SVTK::RenderingParallel
+  SVTK::RenderingVolume
+  SVTK::RenderingVolumeAMR
+  SVTK::RenderingVolumeOpenGL2
+  SVTK::TestingCore
+  SVTK::TestingRendering

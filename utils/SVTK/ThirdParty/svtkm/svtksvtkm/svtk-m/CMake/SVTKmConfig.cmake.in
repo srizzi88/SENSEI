@@ -1,0 +1,118 @@
+##============================================================================
+##  Copyright (c) Kitware, Inc.
+##  All rights reserved.
+##  See LICENSE.txt for details.
+##
+##  This software is distributed WITHOUT ANY WARRANTY; without even
+##  the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR
+##  PURPOSE.  See the above copyright notice for more information.
+##============================================================================
+
+# When this file is run by CMake through the find_package command, the
+# following targets will exist:
+#   svtkm_cont       Target that contains most of SVTK-m
+#
+#   svtkm_rendering  Target that contains all the rendering code
+#
+#   svtkm_filter     Target that contains all of SVTK-m pre-built filters
+#
+#   svtkm_source     Target that contains all of SVTK-m pre-built sources
+#
+#   svtkm::tbb       Target that contains tbb related link information
+#                   implicitly linked to by `svtkm_cont` if tbb is enabled
+#
+#   svtkm::openmp    Target that contains openmp related link information
+#                   implicitly linked to by `svtkm_cont` if openmp is enabled
+#
+#   svtkm::cuda      Target that contains cuda related link information
+#                   implicitly linked to by `svtkm_cont` if cuda is enabled
+#
+# The following local variables will also be defined:
+#
+#  SVTKm_VERSION         Holds the version string of "Major.Minor"
+#  SVTKm_VERSION_FULL    Holds the version string of "Major.Minor.Patch.GitSha1"
+#  SVTKm_VERSION_MAJOR   Holds just the major version number
+#  SVTKm_VERSION_MINOR   Holds just the minor version number
+#  SVTKm_VERSION_PATCH   Holds just the patch version number
+#
+#  SVTKm_BUILD_SHARED_LIBS     Will be enabled if SVTK-m was built shared/dynamic
+#  SVTKm_ENABLE_CUDA           Will be enabled if SVTK-m was built with CUDA support
+#  SVTKm_ENABLE_TBB            Will be enabled if SVTK-m was built with TBB support
+#  SVTKm_ENABLE_OPENMP         Will be enabled if SVTK-m was built with OpenMP support
+#  SVTKm_ENABLE_LOGGING        Will be enabled if SVTK-m was built with logging support
+#  SVTKm_ENABLE_MPI            Will be enabled if SVTK-m was built with MPI support
+#  SVTKm_ENABLE_RENDERING      Will be enabled if SVTK-m was built with rendering support
+#  SVTKm_ENABLE_GL_CONTEXT     Will be enabled if SVTK-m rendering was built with a GL context
+#  SVTKm_ENABLE_OSMESA_CONTEXT Will be enabled if SVTK-m rendering was built with a osmesa context
+#  SVTKm_ENABLE_EGL_CONTEXT    Will be enabled if SVTK-m rendering was built with a EGL context
+#
+#
+
+if (CMAKE_VERSION VERSION_LESS "3.8")
+  message(FATAL_ERROR "SVTK-m requires CMake 3.8+")
+endif()
+if("${CMAKE_GENERATOR}" MATCHES "Visual Studio" AND
+   CMAKE_VERSION VERSION_LESS "3.11")
+  message(FATAL_ERROR "SVTK-m requires CMake 3.11+ when using the Visual Studio Generators")
+endif()
+
+@PACKAGE_INIT@
+
+# The SVTKm version number
+set(SVTKm_VERSION_MAJOR "@SVTKm_VERSION_MAJOR@")
+set(SVTKm_VERSION_MINOR "@SVTKm_VERSION_MINOR@")
+set(SVTKm_VERSION_PATCH "@SVTKm_VERSION_PATCH@")
+set(SVTKm_VERSION_FULL "@SVTKm_VERSION_FULL@")
+set(SVTKm_VERSION "@SVTKm_VERSION@")
+
+set(SVTKm_BUILD_SHARED_LIBS "@SVTKm_BUILD_SHARED_LIBS@")
+set(SVTKm_ENABLE_CUDA "@SVTKm_ENABLE_CUDA@")
+set(SVTKm_ENABLE_TBB "@SVTKm_ENABLE_TBB@")
+set(SVTKm_ENABLE_OPENMP "@SVTKm_ENABLE_OPENMP@")
+set(SVTKm_ENABLE_LOGGING "@SVTKm_ENABLE_LOGGING@")
+set(SVTKm_ENABLE_RENDERING "@SVTKm_ENABLE_RENDERING@")
+set(SVTKm_ENABLE_GL_CONTEXT "@SVTKm_ENABLE_GL_CONTEXT@")
+set(SVTKm_ENABLE_OSMESA_CONTEXT "@SVTKm_ENABLE_OSMESA_CONTEXT@")
+set(SVTKm_ENABLE_EGL_CONTEXT "@SVTKm_ENABLE_EGL_CONTEXT@")
+set(SVTKm_ENABLE_MPI "@SVTKm_ENABLE_MPI@")
+
+# This is true when the package is still in the build directory (not installed)
+if(CMAKE_CURRENT_LIST_DIR STREQUAL "@SVTKm_BUILD_CMAKE_BASE_DIR@/@SVTKm_INSTALL_CONFIG_DIR@")
+  set(SVTKm_PACKAGE_IN_BUILD TRUE)
+endif()
+
+if(SVTKm_PACKAGE_IN_BUILD)
+  set_and_check(SVTKm_CMAKE_MODULE_PATH "@SVTKm_SOURCE_DIR@/CMake")
+else()
+  set_and_check(SVTKm_CMAKE_MODULE_PATH "@PACKAGE_SVTKm_INSTALL_CMAKE_MODULE_DIR@")
+endif()
+
+# Load the library exports, but only if not compiling SVTK-m itself
+set_and_check(SVTKm_CONFIG_DIR "@PACKAGE_SVTKm_INSTALL_CONFIG_DIR@")
+set(SVTKM_FROM_INSTALL_DIR FALSE)
+if(NOT "${CMAKE_BINARY_DIR}" STREQUAL "@SVTKm_BINARY_DIR@")
+  set(SVTKM_FROM_INSTALL_DIR TRUE)
+  include(${SVTKm_CONFIG_DIR}/SVTKmTargets.cmake)
+endif()
+
+# Once we can require CMake 3.15 for all cuda builds we can
+# replace this with setting `cuda_architecture_flags` as part of the
+# EXPORT_PROPERTIES of the svtkm_cuda target
+if(SVTKm_ENABLE_CUDA AND SVTKM_FROM_INSTALL_DIR)
+  set_target_properties(svtkm::cuda PROPERTIES cuda_architecture_flags "@SVTKm_CUDA_Architecture_Flags@")
+  set_target_properties(svtkm::cuda PROPERTIES requires_static_builds TRUE)
+endif()
+
+# SVTKm requires some CMake Find modules not included with CMake, so
+# include the CMake modules distributed with SVTKm.
+set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${SVTKm_CMAKE_MODULE_PATH})
+
+if(SVTKm_ENABLE_CUDA)
+  if (CMAKE_VERSION VERSION_LESS 3.13)
+    message(FATAL_ERROR "SVTK-m with CUDA requires CMake 3.13+")
+  endif()
+endif()
+
+# This includes a host of functions used by SVTK-m CMake.
+include(SVTKmWrappers)
+include(SVTKmRenderingContexts)

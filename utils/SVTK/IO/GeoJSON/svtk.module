@@ -1,0 +1,16 @@
+NAME
+  SVTK::IOGeoJSON
+LIBRARY_NAME
+  svtkIOGeoJSON
+KIT
+  SVTK::IO
+DEPENDS
+  SVTK::CommonDataModel
+  SVTK::CommonExecutionModel
+  SVTK::IOCore
+  SVTK::jsoncpp
+PRIVATE_DEPENDS
+  SVTK::CommonCore
+  SVTK::FiltersCore
+TEST_DEPENDS
+  SVTK::TestingCore

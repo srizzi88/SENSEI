@@ -1,0 +1,46 @@
+set(classes
+  svtkAbstractImageInterpolator
+  svtkExtractVOI
+  svtkImageAppendComponents
+  svtkImageBlend
+  svtkImageBSplineCoefficients
+  svtkImageBSplineInternals
+  svtkImageBSplineInterpolator
+  svtkImageCacheFilter
+  svtkImageCast
+  svtkImageChangeInformation
+  svtkImageClip
+  svtkImageConstantPad
+  svtkImageDataStreamer
+  svtkImageDecomposeFilter
+  svtkImageDifference
+  svtkImageExtractComponents
+  svtkImageFlip
+  svtkImageInterpolator
+  svtkImageIterateFilter
+  svtkImageMagnify
+  svtkImageMapToColors
+  svtkImageMask
+  svtkImageMirrorPad
+  svtkImagePadFilter
+  svtkImagePermute
+  svtkImagePointDataIterator
+  svtkImagePointIterator
+  svtkImageResample
+  svtkImageResize
+  svtkImageReslice
+  svtkImageResliceToColors
+  svtkImageShiftScale
+  svtkImageShrink3D
+  svtkImageSincInterpolator
+  svtkImageStencilAlgorithm
+  svtkImageStencilData
+  svtkImageStencilIterator
+  svtkImageStencilSource # Needed by svtkImageStencilData
+  svtkImageThreshold
+  svtkImageTranslateExtent
+  svtkImageWrapPad
+  svtkRTAnalyticSource)
+
+svtk_module_add_module(SVTK::ImagingCore
+  CLASSES ${classes})

@@ -1,0 +1,20 @@
+NAME
+  SVTK::IOAsynchronous
+LIBRARY_NAME
+  svtkIOAsynchronous
+GROUPS
+  StandAlone
+DEPENDS
+  SVTK::CommonCore
+  SVTK::CommonExecutionModel
+  SVTK::IOCore
+  SVTK::IOImage
+  SVTK::IOXML
+PRIVATE_DEPENDS
+  SVTK::CommonDataModel
+  SVTK::CommonMath
+  SVTK::CommonMisc
+  SVTK::CommonSystem
+  SVTK::ParallelCore
+TEST_DEPENDS
+  SVTK::TestingCore

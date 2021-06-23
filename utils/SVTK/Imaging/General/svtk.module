@@ -1,0 +1,16 @@
+NAME
+  SVTK::ImagingGeneral
+LIBRARY_NAME
+  svtkImagingGeneral
+KIT
+  SVTK::Imaging
+GROUPS
+  Imaging
+  StandAlone
+DEPENDS
+  SVTK::CommonExecutionModel
+  SVTK::ImagingCore
+PRIVATE_DEPENDS
+  SVTK::CommonCore
+  SVTK::CommonDataModel
+  SVTK::ImagingSources

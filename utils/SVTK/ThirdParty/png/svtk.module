@@ -1,0 +1,7 @@
+NAME
+  SVTK::png
+LIBRARY_NAME
+  svtkpng
+DEPENDS
+  SVTK::zlib
+THIRD_PARTY

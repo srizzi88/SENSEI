@@ -1,0 +1,56 @@
+NAME
+  SVTK::InteractionWidgets
+LIBRARY_NAME
+  svtkInteractionWidgets
+KIT
+  SVTK::Interaction
+GROUPS
+  Rendering
+DEPENDS
+  SVTK::CommonCore
+  SVTK::CommonExecutionModel
+  SVTK::FiltersGeneral
+  SVTK::FiltersSources
+  SVTK::RenderingCore
+PRIVATE_DEPENDS
+  SVTK::CommonComputationalGeometry
+  SVTK::CommonDataModel
+  SVTK::CommonMath
+  SVTK::CommonSystem
+  SVTK::CommonTransforms
+  SVTK::FiltersCore
+  SVTK::FiltersHybrid
+  SVTK::FiltersModeling
+  SVTK::ImagingColor
+  SVTK::ImagingCore
+  SVTK::ImagingGeneral
+  SVTK::ImagingHybrid
+  SVTK::InteractionStyle
+  SVTK::RenderingAnnotation
+  SVTK::RenderingFreeType
+  SVTK::RenderingVolume
+TEST_DEPENDS
+  SVTK::CommonComputationalGeometry
+  SVTK::CommonSystem
+  SVTK::FiltersExtraction
+  SVTK::FiltersFlowPaths
+  SVTK::FiltersHybrid
+  SVTK::FiltersModeling
+  SVTK::FiltersProgrammable
+  SVTK::FiltersSelection
+  SVTK::FiltersSources
+  SVTK::ImagingColor
+  SVTK::ImagingGeneral
+  SVTK::ImagingHybrid
+  SVTK::ImagingSources
+  SVTK::ImagingStencil
+  SVTK::InteractionImage
+  SVTK::InteractionStyle
+  SVTK::IOLegacy
+  SVTK::IOParallel
+  SVTK::IOXML
+  SVTK::RenderingAnnotation
+  SVTK::RenderingLOD
+  SVTK::RenderingOpenGL2
+  SVTK::RenderingVolumeOpenGL2
+  SVTK::TestingRendering

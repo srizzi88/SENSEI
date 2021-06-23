@@ -1,0 +1,10 @@
+[hooks]
+	url = https://gitlab.kitware.com/utils/gitsetup.git
+[upstream]
+	url = https://gitlab.kitware.com/svtk/svtk-m.git
+[gitlab]
+	host = gitlab.kitware.com
+	group-path = svtk
+	group-name = SVTK
+	project-path = svtk-m
+	project-name = SVTK-m

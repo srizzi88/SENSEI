@@ -1,0 +1,8 @@
+NAME
+  SVTK::freetype
+LIBRARY_NAME
+  svtkfreetype
+DEPENDS
+  SVTK::kwiml
+  SVTK::zlib
+THIRD_PARTY

@@ -1,0 +1,17 @@
+NAME
+  SVTK::CommonComputationalGeometry
+LIBRARY_NAME
+  svtkCommonComputationalGeometry
+DESCRIPTION
+  Parametric splines and curves
+KIT
+  SVTK::Common
+GROUPS
+  StandAlone
+DEPENDS
+  SVTK::CommonCore
+  SVTK::CommonDataModel
+TEST_DEPENDS
+  SVTK::RenderingOpenGL2
+  SVTK::TestingCore
+  SVTK::TestingRendering

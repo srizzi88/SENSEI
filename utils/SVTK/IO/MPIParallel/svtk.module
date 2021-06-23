@@ -1,0 +1,32 @@
+NAME
+  SVTK::IOMPIParallel
+LIBRARY_NAME
+  svtkIOMPIParallel
+# We don't build the parallel readers on windows because there are problems
+# with the MPI_File_open() function when there are paths in the filenames.
+CONDITION
+  NOT WIN32
+KIT
+  SVTK::Parallel
+GROUPS
+  MPI
+IMPLEMENTS
+  SVTK::IOGeometry
+  SVTK::IOParallel
+DEPENDS
+  SVTK::IOGeometry
+  SVTK::IOParallel
+PRIVATE_DEPENDS
+  SVTK::CommonCore
+  SVTK::CommonDataModel
+  SVTK::CommonExecutionModel
+  SVTK::CommonMisc
+  SVTK::ParallelMPI
+  SVTK::mpi
+  SVTK::svtksys
+TEST_DEPENDS
+  SVTK::FiltersGeometry
+  SVTK::InteractionStyle
+  SVTK::ParallelMPI
+  SVTK::RenderingOpenGL2
+  SVTK::TestingRendering

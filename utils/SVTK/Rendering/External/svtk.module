@@ -1,0 +1,19 @@
+NAME
+  SVTK::RenderingExternal
+LIBRARY_NAME
+  svtkRenderingExternal
+DEPENDS
+  SVTK::CommonCore
+  SVTK::RenderingCore
+  SVTK::RenderingOpenGL2
+PRIVATE_DEPENDS
+  SVTK::CommonMath
+  SVTK::CommonTransforms
+  SVTK::RenderingOpenGL2
+  SVTK::glew
+  SVTK::opengl
+TEST_DEPENDS
+  SVTK::FiltersGeometry
+  SVTK::FiltersSources
+  SVTK::TestingRendering
+  SVTK::opengl

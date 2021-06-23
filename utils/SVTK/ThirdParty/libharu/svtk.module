@@ -1,0 +1,8 @@
+NAME
+  SVTK::libharu
+LIBRARY_NAME
+  svtklibharu
+PRIVATE_DEPENDS
+  SVTK::png
+  SVTK::zlib
+THIRD_PARTY

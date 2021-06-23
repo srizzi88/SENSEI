@@ -1,0 +1,27 @@
+NAME
+  SVTK::InfovisCore
+LIBRARY_NAME
+  svtkInfovisCore
+GROUPS
+  StandAlone
+DEPENDS
+  SVTK::CommonCore
+  SVTK::CommonDataModel
+  SVTK::CommonExecutionModel
+  SVTK::CommonColor
+  SVTK::IOImage
+  SVTK::ImagingCore
+  SVTK::ImagingSources
+  SVTK::RenderingFreeType
+PRIVATE_DEPENDS
+  SVTK::FiltersExtraction
+  SVTK::FiltersGeneral
+TEST_DEPENDS
+  SVTK::FiltersSources
+  SVTK::IOImage
+  SVTK::IOInfovis
+  SVTK::InfovisLayout
+  SVTK::InteractionImage
+  SVTK::InteractionStyle
+  SVTK::RenderingOpenGL2
+  SVTK::TestingRendering

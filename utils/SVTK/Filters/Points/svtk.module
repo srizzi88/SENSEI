@@ -1,0 +1,26 @@
+NAME
+  SVTK::FiltersPoints
+LIBRARY_NAME
+  svtkFiltersPoints
+KIT
+  SVTK::Filters
+GROUPS
+  StandAlone
+DEPENDS
+  SVTK::CommonCore
+  SVTK::CommonExecutionModel
+  SVTK::CommonMisc
+  SVTK::FiltersModeling
+TEST_DEPENDS
+  SVTK::ChartsCore
+  SVTK::FiltersGeneral
+  SVTK::IOLegacy
+  SVTK::IOXML
+  SVTK::ImagingCore
+  SVTK::InteractionStyle
+  SVTK::RenderingContext2D
+  SVTK::RenderingContextOpenGL2
+  SVTK::RenderingOpenGL2
+  SVTK::RenderingVolumeOpenGL2
+  SVTK::TestingRendering
+  SVTK::ViewsContext2D

@@ -1,0 +1,25 @@
+NAME
+  SVTK::IOParallelXdmf3
+LIBRARY_NAME
+  svtkIOParallelXdmf3
+KIT
+  SVTK::Parallel
+IMPLEMENTS
+  SVTK::IOXdmf3
+DEPENDS
+  SVTK::CommonCore
+  SVTK::CommonDataModel
+  SVTK::CommonExecutionModel
+  SVTK::IOLegacy
+  SVTK::IOXdmf3
+  SVTK::ParallelCore
+PRIVATE_DEPENDS
+  SVTK::FiltersExtraction
+  SVTK::mpi
+  SVTK::svtksys
+  SVTK::xdmf3
+TEST_DEPENDS
+  SVTK::FiltersGeneral
+  SVTK::ParallelMPI
+  SVTK::TestingCore
+  SVTK::TestingRendering

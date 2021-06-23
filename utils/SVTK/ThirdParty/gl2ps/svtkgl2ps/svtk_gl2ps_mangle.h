@@ -1,0 +1,31 @@
+#ifndef svtk_gl2ps_mangle_h
+#define svtk_gl2ps_mangle_h
+
+#define gl2psAddPolyPrimitive svtkgl2ps_gl2psAddPolyPrimitive
+#define gl2psBeginPage svtkgl2ps_gl2psBeginPage
+#define gl2psBeginViewport svtkgl2ps_gl2psBeginViewport
+#define gl2psBlendFunc svtkgl2ps_gl2psBlendFunc
+#define gl2psDisable svtkgl2ps_gl2psDisable
+#define gl2psDrawImageMap svtkgl2ps_gl2psDrawImageMap
+#define gl2psDrawPixels svtkgl2ps_gl2psDrawPixels
+#define gl2psEnable svtkgl2ps_gl2psEnable
+#define gl2psEndPage svtkgl2ps_gl2psEndPage
+#define gl2psEndViewport svtkgl2ps_gl2psEndViewport
+#define gl2psForceRasterPos svtkgl2ps_gl2psForceRasterPos
+#define gl2psGetFileExtension svtkgl2ps_gl2psGetFileExtension
+#define gl2psGetFileFormat svtkgl2ps_gl2psGetFileFormat
+#define gl2psGetFormatDescription svtkgl2ps_gl2psGetFormatDescription
+#define gl2psGetOptions svtkgl2ps_gl2psGetOptions
+#define gl2psLineCap svtkgl2ps_gl2psLineCap
+#define gl2psLineJoin svtkgl2ps_gl2psLineJoin
+#define gl2psLineWidth svtkgl2ps_gl2psLineWidth
+#define gl2psPointSize svtkgl2ps_gl2psPointSize
+#define gl2psSetOptions svtkgl2ps_gl2psSetOptions
+#define gl2psSpecial svtkgl2ps_gl2psSpecial
+#define gl2psSpecialColor svtkgl2ps_gl2psSpecialColor
+#define gl2psText svtkgl2ps_gl2psText
+#define gl2psTextOpt svtkgl2ps_gl2psTextOpt
+#define gl2psTextOptColor svtkgl2ps_gl2psTextOptColor
+#define gl2psTextOptColorBL svtkgl2ps_gl2psTextOptColorBL
+
+#endif

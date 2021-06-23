@@ -1,0 +1,36 @@
+/*=========================================================================
+
+  Program:   Visualization Toolkit
+  Module:    svtk_jsoncpp.h.in
+
+  Copyright (c) Ken Martin, Will Schroeder, Bill Lorensen
+  All rights reserved.
+  See Copyright.txt or http://www.kitware.com/Copyright.htm for details.
+
+     This software is distributed WITHOUT ANY WARRANTY; without even
+     the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR
+     PURPOSE.  See the above copyright notice for more information.
+
+=========================================================================*/
+#ifndef svtk_jsoncpp_h
+#define svtk_jsoncpp_h
+
+/* Use the jsoncpp library configured for SVTK.  */
+#cmakedefine01 SVTK_MODULE_USE_EXTERNAL_svtkjsoncpp
+
+#cmakedefine01 SVTK_JSONCPP_SHARED
+
+#if SVTK_MODULE_USE_EXTERNAL_svtkjsoncpp
+# if !defined(JSON_DLL) && defined(_WIN32) && SVTK_JSONCPP_SHARED
+#  define JSON_DLL
+# endif
+# include <json/json.h>
+#else
+// Needed for Windows declspec import logic
+# if !defined(JSON_DLL) && defined(_WIN32) && SVTK_JSONCPP_SHARED
+#  define JSON_DLL
+# endif
+# include <svtkjsoncpp/json/json.h>
+#endif
+
+#endif

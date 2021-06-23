@@ -1,0 +1,16 @@
+NAME
+  SVTK::IOEnSight
+LIBRARY_NAME
+  svtkIOEnSight
+KIT
+  SVTK::IO
+GROUPS
+  StandAlone
+DEPENDS
+  SVTK::CommonExecutionModel
+PRIVATE_DEPENDS
+  SVTK::CommonCore
+  SVTK::CommonDataModel
+TEST_DEPENDS
+  SVTK::RenderingOpenGL2
+  SVTK::TestingRendering

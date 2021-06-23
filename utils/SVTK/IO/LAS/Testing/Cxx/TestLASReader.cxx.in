@@ -1,0 +1,132 @@
+/*=========================================================================
+
+  Program:   Visualization Toolkit
+  Module:    TestGaussianBlurPass.cxx
+
+  Copyright (c) Ken Martin, Will Schroeder, Bill Lorensen
+  All rights reserved.
+  See Copyright.txt or http://www.kitware.com/Copyright.htm for details.
+
+     This software is distributed WITHOUT ANY WARRANTY; without even
+     the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR
+     PURPOSE.  See the above copyright notice for more information.
+
+=========================================================================*/
+/**
+ * This tests reading a LAS file.
+ */
+
+#include "svtkCamera.h"
+#include "svtkLookupTable.h"
+#include "svtkNew.h"
+#include "svtkPointData.h"
+#include "svtkPolyDataMapper.h"
+#include "svtkRegressionTestImage.h"
+#include "svtkRenderer.h"
+#include "svtkRenderWindowInteractor.h"
+#include "svtkRenderWindow.h"
+#include "svtkSmartPointer.h"
+#include "svtkTestUtilities.h"
+#include "svtkUnsignedCharArray.h"
+#include "svtkUnsignedShortArray.h"
+
+
+//#include "svtkXMLPolyDataWriter.h"
+
+#include "svtkLASReader.h"
+
+int TestLASReader_@SVTK_LAS_READER_POSTFIX@(int argc, char **argv)
+{
+  const char* fileName = "Data/@SVTK_LAS_READER_TEST_INPUT@";
+  const char* path = svtkTestUtilities::ExpandDataFileName(argc, argv, fileName);
+  svtkNew<svtkLASReader> reader;
+  //Select source file
+  reader->SetFileName(path);
+
+  //Read the output
+  reader->Update();
+
+  delete [] path;
+
+  svtkSmartPointer<svtkPolyData> outputData = reader->GetOutput();
+
+  bool useClassification = false;
+  bool useColor = false;
+  svtkUnsignedShortArray* classification =
+    svtkUnsignedShortArray::SafeDownCast(outputData->GetPointData()->GetArray("classification"));
+  svtkUnsignedShortArray* intensity =
+    svtkUnsignedShortArray::SafeDownCast(outputData->GetPointData()->GetArray("intensity"));
+  svtkUnsignedShortArray* color =
+    svtkUnsignedShortArray::SafeDownCast(outputData->GetPointData()->GetArray("color"));
+  double range[2];
+  if (classification)
+  {
+    classification->GetRange(range, 0);
+    if (range[0] != range[1])
+    {
+      std::cout << "Color by classification\n";
+      useClassification = true;
+      outputData->GetPointData()->SetActiveScalars("classification");
+    }
+  }
+  if (! useClassification)
+  {
+    if (color)
+    {
+      color->GetRange(range, 0);
+      if (range[0] != range[1])
+      {
+        std::cout << "Color by color scalar\n";
+        useColor = true;
+        outputData->GetPointData()->SetActiveScalars("color");
+      }
+    }
+    else
+    {
+      std::cout << "Color by intensity\n";
+      intensity->GetRange(range, 0);
+      outputData->GetPointData()->SetActiveScalars("intensity");
+    }
+  }
+
+
+  // svtkNew<svtkXMLPolyDataWriter> writer;
+  // writer->SetFileName("test.vtp");
+  // writer->SetInputData(outputData);
+  // writer->Write();
+
+  //Visualise in a render window
+  svtkNew<svtkPolyDataMapper> mapper;
+  mapper->SetInputData(outputData);
+  if (useColor)
+  {
+    mapper->SetColorModeToDirectScalars();
+  }
+  else
+  {
+    mapper->SetScalarRange(range);
+  }
+
+  svtkNew<svtkActor> actor;
+  actor->SetMapper(mapper);
+
+  svtkNew<svtkRenderer> renderer;
+  svtkNew<svtkRenderWindow> renderWindow;
+  renderWindow->AddRenderer(renderer);
+
+  svtkNew<svtkRenderWindowInteractor> renderWindowInteractor;
+  renderWindowInteractor->SetRenderWindow(renderWindow);
+  renderer->AddActor(actor);
+  renderer->ResetCamera();
+
+  svtkCamera *camera=renderer->GetActiveCamera();
+  camera->Elevation(@SVTK_LAS_READER_ELEVATION@);
+
+  int retVal = svtkRegressionTestImageThreshold (renderWindow, 0.2);
+  if (retVal == svtkRegressionTester::DO_INTERACTOR)
+  {
+    renderWindowInteractor->Start ();
+    retVal = svtkRegressionTester::PASSED;
+  }
+  return !((retVal == svtkTesting::PASSED) || (retVal == svtkTesting::DO_INTERACTOR));
+}

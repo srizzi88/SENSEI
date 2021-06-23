@@ -1,0 +1,20 @@
+NAME
+  SVTK::IOVPIC
+LIBRARY_NAME
+  svtkIOVPIC
+KIT
+  SVTK::Parallel
+DEPENDS
+  SVTK::CommonExecutionModel
+  SVTK::vpic
+PRIVATE_DEPENDS
+  SVTK::CommonCore
+  SVTK::CommonDataModel
+  SVTK::CommonMisc
+  SVTK::ParallelCore
+TEST_DEPENDS
+  SVTK::FiltersGeometry
+  SVTK::IOImage
+  SVTK::InteractionStyle
+  SVTK::RenderingOpenGL2
+  SVTK::TestingRendering

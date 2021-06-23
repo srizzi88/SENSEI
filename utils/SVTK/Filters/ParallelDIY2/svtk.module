@@ -1,0 +1,38 @@
+NAME
+  SVTK::FiltersParallelDIY2
+LIBRARY_NAME
+  svtkFiltersParallelDIY2
+KIT
+  SVTK::Parallel
+IMPLEMENTS
+  SVTK::FiltersCore
+  SVTK::FiltersParallel
+DEPENDS
+  SVTK::FiltersCore
+  SVTK::FiltersParallel
+  SVTK::ParallelDIY
+OPTIONAL_DEPENDS
+  SVTK::ParallelMPI
+PRIVATE_DEPENDS
+  SVTK::CommonCore
+  SVTK::CommonDataModel
+  SVTK::CommonExecutionModel
+  SVTK::ImagingCore
+  SVTK::IOXML
+  SVTK::ParallelCore
+TEST_DEPENDS
+  SVTK::diy2
+  SVTK::FiltersGeometry
+  SVTK::ImagingCore
+  SVTK::InteractionStyle
+  SVTK::IOXML
+  SVTK::ParallelCore
+  SVTK::IOExodus
+  SVTK::RenderingOpenGL2
+  SVTK::RenderingParallel
+  SVTK::TestingCore
+  SVTK::TestingRendering
+TEST_OPTIONAL_DEPENDS
+  SVTK::FiltersParallelMPI
+  SVTK::mpi
+  SVTK::ParallelMPI

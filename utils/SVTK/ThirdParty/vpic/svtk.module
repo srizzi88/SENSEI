@@ -1,0 +1,8 @@
+NAME
+  SVTK::vpic
+LIBRARY_NAME
+  svtkvpic
+DEPENDS
+  SVTK::CommonCore
+  SVTK::svtksys
+THIRD_PARTY

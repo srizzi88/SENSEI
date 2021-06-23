@@ -1,0 +1,29 @@
+set(classes
+  svtkAdaptiveDataSetSurfaceFilter
+  svtkBSplineTransform
+  svtkDepthSortPolyData
+  svtkDSPFilterDefinition
+  svtkDSPFilterGroup
+  svtkEarthSource
+  svtkFacetReader
+  svtkForceTime
+  svtkGreedyTerrainDecimation
+  svtkGridTransform
+  svtkImageToPolyDataFilter
+  svtkImplicitModeller
+  svtkPCAAnalysisFilter
+  svtkPolyDataSilhouette
+  svtkProcrustesAlignmentFilter
+  svtkProjectedTerrainPath
+  svtkRenderLargeImage
+  svtkTemporalArrayOperatorFilter
+  svtkTemporalDataSetCache
+  svtkTemporalFractal
+  svtkTemporalInterpolator
+  svtkTemporalShiftScale
+  svtkTemporalSnapToTimeStep
+  svtkTransformToGrid
+  svtkWeightedTransformFilter)
+
+svtk_module_add_module(SVTK::FiltersHybrid
+  CLASSES ${classes})

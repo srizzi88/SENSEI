@@ -1,0 +1,22 @@
+NAME
+  SVTK::IOFFMPEG
+LIBRARY_NAME
+  svtkIOFFMPEG
+KIT
+  SVTK::IO
+DEPENDS
+  SVTK::IOMovie
+  SVTK::IOVideo
+PRIVATE_DEPENDS
+  SVTK::CommonCore
+  SVTK::CommonDataModel
+  SVTK::CommonMisc
+  SVTK::CommonSystem
+  SVTK::svtksys
+TEST_DEPENDS
+  SVTK::ImagingCore
+  SVTK::ImagingSources
+  SVTK::InteractionStyle
+  SVTK::RenderingOpenGL2
+  SVTK::TestingCore
+  SVTK::TestingRendering

@@ -1,0 +1,9 @@
+NAME
+  SVTKMY::Imaging
+LIBRARY_NAME
+  svtkmyImaging
+DEPENDS
+  SVTKMY::Common
+  SVTK::CommonExecutionModel
+TEST_DEPENDS
+  SVTK::TestingCore

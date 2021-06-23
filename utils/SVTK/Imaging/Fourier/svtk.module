@@ -1,0 +1,15 @@
+NAME
+  SVTK::ImagingFourier
+LIBRARY_NAME
+  svtkImagingFourier
+KIT
+  SVTK::Imaging
+GROUPS
+  StandAlone
+DEPENDS
+  SVTK::CommonCore
+  SVTK::CommonExecutionModel
+  SVTK::ImagingCore
+PRIVATE_DEPENDS
+  SVTK::CommonDataModel
+  SVTK::svtksys

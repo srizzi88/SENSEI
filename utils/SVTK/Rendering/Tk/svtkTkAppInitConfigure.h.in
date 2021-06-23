@@ -1,0 +1,18 @@
+#ifndef svtkTkAppInitConfigure_h
+#define svtkTkAppInitConfigure_h
+
+/* Whether we are linking to Tcl/Tk statically.  */
+#cmakedefine SVTK_TCL_TK_STATIC
+
+/* Whether Tk widgets are NOT initialized when svtkRendering loads.  */
+#cmakedefine SVTK_USE_TK
+
+/* Whether the Tcl/Tk support files are copied to the build dir */
+#cmakedefine SVTK_TCL_TK_COPY_SUPPORT_LIBRARY
+
+/* Where the SVTK Tcl packages can be found */
+#define SVTK_INSTALL_TCL_DIR "@SVTK_INSTALL_TCL_DIR@"
+
+@SVTK_EXTRA_TCL_WRAPPING_CODE@
+
+#endif

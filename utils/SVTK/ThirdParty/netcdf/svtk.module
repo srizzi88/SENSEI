@@ -1,0 +1,9 @@
+NAME
+  SVTK::netcdf
+LIBRARY_NAME
+  svtknetcdf
+DEPENDS
+  SVTK::hdf5
+OPTIONAL_DEPENDS
+  SVTK::mpi
+THIRD_PARTY

@@ -1,0 +1,7 @@
+NAME
+  SVTK::h5part
+LIBRARY_NAME
+  svtkh5part
+DEPENDS
+  SVTK::hdf5
+THIRD_PARTY

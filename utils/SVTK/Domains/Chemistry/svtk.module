@@ -1,0 +1,32 @@
+NAME
+  SVTK::DomainsChemistry
+LIBRARY_NAME
+  svtkDomainsChemistry
+DESCRIPTION
+  File readers and algorithms used in chemistry
+IMPLEMENTABLE
+GROUPS
+  StandAlone
+DEPENDS
+  SVTK::CommonCore
+  SVTK::CommonDataModel
+  SVTK::CommonExecutionModel
+  SVTK::IOLegacy
+  SVTK::IOXMLParser
+  SVTK::RenderingCore
+PRIVATE_DEPENDS
+  SVTK::CommonTransforms
+  SVTK::FiltersCore
+  SVTK::FiltersGeneral
+  SVTK::FiltersSources
+  SVTK::svtksys
+TEST_DEPENDS
+  SVTK::CommonSystem
+  SVTK::DomainsChemistryOpenGL2
+  SVTK::FiltersGeometry
+  SVTK::InteractionStyle
+  SVTK::IOGeometry
+  SVTK::IOLegacy
+  SVTK::RenderingOpenGL2
+  SVTK::TestingCore
+  SVTK::TestingRendering

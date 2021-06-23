@@ -1,0 +1,28 @@
+NAME
+  SVTK::RenderingImage
+LIBRARY_NAME
+  svtkRenderingImage
+KIT
+  SVTK::Rendering
+GROUPS
+  Imaging
+  Rendering
+DEPENDS
+  SVTK::CommonExecutionModel
+  SVTK::RenderingCore
+PRIVATE_DEPENDS
+  SVTK::CommonCore
+  SVTK::CommonDataModel
+  SVTK::CommonMath
+  SVTK::CommonTransforms
+  SVTK::ImagingCore
+TEST_DEPENDS
+  SVTK::FiltersModeling
+  SVTK::FiltersSources
+  SVTK::IOImage
+  SVTK::ImagingCore
+  SVTK::ImagingSources
+  SVTK::InteractionStyle
+  SVTK::RenderingOpenGL2
+  SVTK::TestingCore
+  SVTK::TestingRendering

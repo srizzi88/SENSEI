@@ -1,0 +1,73 @@
+set(classes
+  svtkAlgorithm
+  svtkAlgorithmOutput
+  svtkAnnotationLayersAlgorithm
+  svtkArrayDataAlgorithm
+  svtkCachedStreamingDemandDrivenPipeline
+  svtkCastToConcrete
+  svtkCompositeDataPipeline
+  svtkCompositeDataSetAlgorithm
+  svtkDataObjectAlgorithm
+  svtkDataSetAlgorithm
+  svtkDemandDrivenPipeline
+  svtkDirectedGraphAlgorithm
+  svtkEnsembleSource
+  svtkExecutive
+  svtkExplicitStructuredGridAlgorithm
+  svtkExtentRCBPartitioner
+  svtkExtentSplitter
+  svtkExtentTranslator
+  svtkFilteringInformationKeyManager
+  svtkGraphAlgorithm
+  svtkHierarchicalBoxDataSetAlgorithm
+  svtkHyperTreeGridAlgorithm
+  svtkImageAlgorithm
+  svtkImageInPlaceFilter
+  svtkImageProgressIterator
+  svtkImageToStructuredGrid
+  svtkImageToStructuredPoints
+  svtkInformationDataObjectMetaDataKey
+  svtkInformationExecutivePortKey
+  svtkInformationExecutivePortVectorKey
+  svtkInformationIntegerRequestKey
+  svtkMoleculeAlgorithm
+  svtkMultiBlockDataSetAlgorithm
+  svtkMultiTimeStepAlgorithm
+  svtkParallelReader
+  svtkPassInputTypeAlgorithm
+  svtkPiecewiseFunctionAlgorithm
+  svtkPiecewiseFunctionShiftScale
+  svtkPointSetAlgorithm
+  svtkPolyDataAlgorithm
+  svtkProgressObserver
+  svtkReaderAlgorithm
+  svtkReaderExecutive
+  svtkRectilinearGridAlgorithm
+  svtkSMPProgressObserver
+  svtkScalarTree
+  svtkSelectionAlgorithm
+  svtkSimpleImageToImageFilter
+  svtkSimpleReader
+  svtkSimpleScalarTree
+  svtkSpanSpace
+  svtkSphereTree
+  svtkStreamingDemandDrivenPipeline
+  svtkStructuredGridAlgorithm
+  svtkTableAlgorithm
+  svtkThreadedCompositeDataPipeline
+  svtkThreadedImageAlgorithm
+  svtkTreeAlgorithm
+  svtkTrivialConsumer
+  svtkTrivialProducer
+  svtkUndirectedGraphAlgorithm
+  svtkUniformGridPartitioner
+  svtkUnstructuredGridAlgorithm
+  svtkUnstructuredGridBaseAlgorithm
+
+  # New AMR classes
+  svtkNonOverlappingAMRAlgorithm
+  svtkOverlappingAMRAlgorithm
+  svtkUniformGridAMRAlgorithm)
+
+svtk_module_add_module(SVTK::CommonExecutionModel
+  CLASSES ${classes})

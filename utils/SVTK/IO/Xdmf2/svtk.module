@@ -1,0 +1,18 @@
+NAME
+  SVTK::IOXdmf2
+LIBRARY_NAME
+  svtkIOXdmf2
+DEPENDS
+  SVTK::CommonCore
+  SVTK::CommonDataModel
+  SVTK::CommonExecutionModel
+  SVTK::IOLegacy
+PRIVATE_DEPENDS
+  SVTK::IOXMLParser
+  SVTK::libxml2
+  SVTK::svtksys
+  SVTK::xdmf2
+  SVTK::FiltersExtraction
+TEST_DEPENDS
+  SVTK::FiltersGeneral
+  SVTK::TestingCore

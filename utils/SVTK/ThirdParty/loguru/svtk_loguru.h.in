@@ -1,0 +1,27 @@
+/*=========================================================================
+
+  Program:   Visualization Toolkit
+  Module:    svtk_loguru.h
+
+  Copyright (c) Ken Martin, Will Schroeder, Bill Lorensen
+  All rights reserved.
+  See Copyright.txt or http://www.kitware.com/Copyright.htm for details.
+
+     This software is distributed WITHOUT ANY WARRANTY; without even
+     the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR
+     PURPOSE.  See the above copyright notice for more information.
+
+=========================================================================*/
+#ifndef svtk_loguru_h
+#define svtk_loguru_h
+
+/* Use the loguru library configured for SVTK.  */
+#cmakedefine01 SVTK_MODULE_USE_EXTERNAL_svtkloguru
+
+#if SVTK_MODULE_USE_EXTERNAL_svtkloguru
+# include <loguru.hpp>
+#else
+#include <svtkloguru/loguru.hpp>
+#endif
+
+#endif

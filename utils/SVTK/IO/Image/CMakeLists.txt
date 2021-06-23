@@ -1,0 +1,43 @@
+set(classes
+  svtkBMPReader
+  svtkBMPWriter
+  svtkDEMReader
+  svtkDICOMImageReader
+  svtkGESignaReader
+  svtkHDRReader
+  svtkImageExport
+  svtkImageImport
+  svtkImageImportExecutive
+  svtkImageReader
+  svtkImageReader2
+  svtkImageReader2Collection
+  svtkImageReader2Factory
+  svtkImageWriter
+  svtkJPEGReader
+  svtkJPEGWriter
+  svtkJSONImageWriter
+  svtkMedicalImageProperties
+  svtkMedicalImageReader2
+  svtkMetaImageReader
+  svtkMetaImageWriter
+  svtkMRCReader
+  svtkNIFTIImageHeader
+  svtkNIFTIImageReader
+  svtkNIFTIImageWriter
+  svtkNrrdReader
+  svtkOMETIFFReader
+  svtkPNGReader
+  svtkPNGWriter
+  svtkPNMReader
+  svtkPNMWriter
+  svtkPostScriptWriter
+  svtkSEPReader
+  svtkSLCReader
+  svtkTIFFReader
+  svtkTIFFWriter
+  svtkVolume16Reader
+  svtkVolumeReader)
+
+svtk_module_add_module(SVTK::IOImage
+  PRIVATE_HEADERS svtkTIFFReaderInternal.h
+  CLASSES ${classes})

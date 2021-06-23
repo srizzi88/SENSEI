@@ -1,0 +1,11 @@
+NAME
+  SVTK::IOTRUCHAS
+LIBRARY_NAME
+  svtkIOTRUCHAS
+DEPENDS
+  SVTK::CommonExecutionModel
+PRIVATE_DEPENDS
+  SVTK::hdf5
+TEST_DEPENDS
+  SVTK::TestingCore
+  SVTK::TestingRendering

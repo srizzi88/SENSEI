@@ -1,0 +1,56 @@
+set(classes
+  svtkAdaptiveTemporalInterpolator
+  svtkAggregateDataSetFilter
+  svtkAngularPeriodicFilter
+  svtkCollectGraph
+  svtkCollectPolyData
+  svtkCollectTable
+  svtkCutMaterial
+  svtkDistributedDataFilter
+  svtkDuplicatePolyData
+  svtkExtractCTHPart
+  svtkExtractPolyDataPiece
+  svtkExtractUnstructuredGridPiece
+  svtkExtractUserDefinedPiece
+  svtkHyperTreeGridGhostCellsGenerator
+  svtkIntegrateAttributes
+  svtkPCellDataToPointData
+  svtkPExtractDataArraysOverTime
+  svtkPExtractExodusGlobalTemporalVariables
+  svtkPExtractSelectedArraysOverTime
+  svtkPeriodicFilter
+  svtkPKdTree
+  svtkPLinearExtrusionFilter
+  svtkPMaskPoints
+  svtkPMergeArrays
+  svtkPOutlineCornerFilter
+  svtkPOutlineFilter
+  svtkPOutlineFilterInternals
+  svtkPPolyDataNormals
+  svtkPProbeFilter
+  svtkPProjectSphereFilter
+  svtkPReflectionFilter
+  svtkPResampleFilter
+  svtkPSphereSource
+  svtkPYoungsMaterialInterface
+  svtkPassThroughFilter
+  svtkPieceRequestFilter
+  svtkPieceScalars
+  svtkPipelineSize
+  svtkProcessIdScalars
+  svtkPTextureMapToSphere
+  svtkRectilinearGridOutlineFilter
+  svtkRemoveGhosts
+  svtkTransmitPolyDataPiece
+  svtkTransmitStructuredDataPiece
+  svtkTransmitRectilinearGridPiece
+  svtkTransmitStructuredGridPiece
+  svtkTransmitUnstructuredGridPiece
+  svtkUnstructuredGridGhostCellsGenerator)
+
+set(headers
+  svtkBlockDistribution.h)
+
+svtk_module_add_module(SVTK::FiltersParallel
+  CLASSES ${classes}
+  HEADERS ${headers})

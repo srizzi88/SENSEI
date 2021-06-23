@@ -1,0 +1,25 @@
+NAME
+  SVTK::FiltersSMP
+LIBRARY_NAME
+  svtkFiltersSMP
+KIT
+  SVTK::Filters
+GROUPS
+  StandAlone
+DEPENDS
+  SVTK::CommonCore
+  SVTK::CommonDataModel
+  SVTK::CommonExecutionModel
+  SVTK::CommonMisc
+  SVTK::CommonTransforms
+  SVTK::FiltersCore
+  SVTK::FiltersGeneral
+PRIVATE_DEPENDS
+  SVTK::CommonMath
+  SVTK::CommonSystem
+TEST_DEPENDS
+  SVTK::CommonSystem
+  SVTK::IOXML
+  SVTK::ImagingCore
+  SVTK::TestingCore
+  SVTK::TestingRendering

@@ -1,0 +1,8 @@
+NAME
+  SVTK::xdmf2
+LIBRARY_NAME
+  svtkxdmf2
+DEPENDS
+  SVTK::hdf5
+  SVTK::libxml2
+THIRD_PARTY

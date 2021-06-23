@@ -1,0 +1,32 @@
+NAME
+  SVTK::IOImport
+LIBRARY_NAME
+  svtkIOImport
+GROUPS
+  StandAlone
+DEPENDS
+  SVTK::CommonCore
+  SVTK::CommonExecutionModel
+  SVTK::CommonMisc
+  SVTK::RenderingCore
+  SVTK::svtksys
+PRIVATE_DEPENDS
+  SVTK::CommonDataModel
+  SVTK::CommonTransforms
+  SVTK::FiltersCore
+  SVTK::FiltersSources
+  SVTK::ImagingCore
+  SVTK::IOGeometry
+  SVTK::IOImage
+  SVTK::jsoncpp
+TEST_DEPENDS
+  SVTK::CommonColor
+  SVTK::IOExport
+  SVTK::IOImage
+  SVTK::IOXML
+  SVTK::ImagingCore
+  SVTK::ImagingSources
+  SVTK::InteractionStyle
+  SVTK::RenderingOpenGL2
+  SVTK::TestingRendering
+  SVTK::opengl

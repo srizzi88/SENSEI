@@ -1,0 +1,53 @@
+# add tests that do not require data or produce vector output
+set(TestFreeTypeTextMapperNoMath_ARGS DATA{../Data/Fonts/DejaVuSans.ttf})
+set(TestMathTextFreeTypeTextRendererNoMath_ARGS
+  DATA{../Data/Fonts/DejaVuSans.ttf}
+)
+svtk_add_test_cxx(svtkRenderingFreeTypeCxxTests tests
+  TestBillboardTextActor3D.cxx
+  TestFTStringToPath.cxx
+  TestFlagpoleLabel.cxx
+  TestFreeTypeTextMapperNoMath.cxx
+  TestFreeTypeTools.cxx,NO_VALID
+  TestMathTextFreeTypeTextRendererNoMath.cxx
+  TestTextActor.cxx
+  TestTextActor3D.cxx
+  TestTextActorAlphaBlending.cxx
+  TestTextActorDepthPeeling.cxx
+  TestTextActor3DAlphaBlending.cxx
+  TestTextActor3DDepthPeeling.cxx
+  TestTextActorScaleModeProp.cxx
+  TestTextMapper.cxx
+  TestTextOpaquePass.cxx
+  )
+
+svtk_add_test_cxx(svtkRenderingFreeTypeCxxTests no_data_tests
+  NO_DATA NO_VALID NO_OUTPUT
+  TestTextBoundingBox.cxx
+  )
+list(APPEND tests
+  ${no_data_tests})
+
+# Check for svtkErrorMacro calls in these tests (mainly for empty inputs):
+set_tests_properties(
+  SVTK::RenderingFreeTypeCxx-TestTextActor
+  SVTK::RenderingFreeTypeCxx-TestTextActor3D
+  PROPERTIES FAIL_REGULAR_EXPRESSION "ERROR:"
+)
+
+if(TARGET SVTK::RenderingMatplotlib)
+  set(TestMathTextFreeTypeTextRenderer_ARGS DATA{../Data/Fonts/DejaVuSans.ttf})
+  set(TestFreeTypeTextMapper_ARGS DATA{../Data/Fonts/DejaVuSans.ttf})
+  set(TestFontDPIScaling_ARGS DATA{../Data/Fonts/DejaVuSans.ttf})
+
+  svtk_add_test_cxx(svtkRenderingFreeTypeCxxTests matplotlib_tests
+    TestMathTextFreeTypeTextRenderer.cxx
+    TestFreeTypeTextMapper.cxx
+    TestFontDPIScaling.cxx
+    )
+  list(APPEND tests
+    ${matplotlib_tests})
+endif()
+
+svtk_test_cxx_executable(svtkRenderingFreeTypeCxxTests tests
+  RENDERING_FACTORY)

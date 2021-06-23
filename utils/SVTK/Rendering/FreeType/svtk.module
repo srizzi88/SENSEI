@@ -1,0 +1,26 @@
+NAME
+  SVTK::RenderingFreeType
+LIBRARY_NAME
+  svtkRenderingFreeType
+IMPLEMENTABLE
+KIT
+  SVTK::Rendering
+IMPLEMENTS
+  SVTK::RenderingCore
+GROUPS
+  Rendering
+DEPENDS
+  SVTK::CommonCore
+  SVTK::CommonExecutionModel
+  SVTK::RenderingCore
+  SVTK::freetype
+PRIVATE_DEPENDS
+  SVTK::CommonDataModel
+  SVTK::FiltersGeneral
+TEST_DEPENDS
+  SVTK::RenderingContextOpenGL2
+  SVTK::RenderingOpenGL2
+  SVTK::TestingRendering
+  SVTK::ViewsContext2D
+TEST_OPTIONAL_DEPENDS
+  SVTK::RenderingMatplotlib

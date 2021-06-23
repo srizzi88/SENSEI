@@ -1,0 +1,18 @@
+NAME
+  SVTK::RenderingVolumeAMR
+LIBRARY_NAME
+  svtkRenderingVolumeAMR
+KIT
+  SVTK::Parallel
+DEPENDS
+  SVTK::ImagingCore
+  SVTK::RenderingVolume
+  SVTK::RenderingVolumeOpenGL2
+PRIVATE_DEPENDS
+  SVTK::CommonCore
+  SVTK::CommonDataModel
+  SVTK::CommonExecutionModel
+  SVTK::CommonMath
+  SVTK::CommonSystem
+  SVTK::FiltersAMR
+  SVTK::RenderingCore

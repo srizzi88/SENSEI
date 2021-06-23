@@ -1,0 +1,20 @@
+NAME
+  SVTK::IOParallelExodus
+LIBRARY_NAME
+  svtkIOParallelExodus
+KIT
+  SVTK::Parallel
+IMPLEMENTS
+  SVTK::IOExodus
+DEPENDS
+  SVTK::CommonCore
+  SVTK::IOExodus
+PRIVATE_DEPENDS
+  SVTK::CommonDataModel
+  SVTK::CommonExecutionModel
+  SVTK::FiltersCore
+  SVTK::ParallelCore
+  SVTK::exodusII
+  SVTK::svtksys
+TEST_DEPENDS
+  SVTK::TestingRendering

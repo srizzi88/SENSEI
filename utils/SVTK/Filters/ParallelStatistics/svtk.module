@@ -1,0 +1,17 @@
+NAME
+  SVTK::FiltersParallelStatistics
+LIBRARY_NAME
+  svtkFiltersParallelStatistics
+KIT
+  SVTK::Parallel
+DEPENDS
+  SVTK::FiltersStatistics
+PRIVATE_DEPENDS
+  SVTK::CommonCore
+  SVTK::CommonDataModel
+  SVTK::CommonSystem
+  SVTK::ParallelCore
+TEST_DEPENDS
+  SVTK::CommonSystem
+  SVTK::ParallelMPI
+  SVTK::TestingCore

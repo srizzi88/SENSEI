@@ -1,0 +1,22 @@
+NAME
+  SVTK::IOAMR
+LIBRARY_NAME
+  svtkIOAMR
+KIT
+  SVTK::Parallel
+GROUPS
+  StandAlone
+DEPENDS
+  SVTK::CommonCore
+  SVTK::CommonDataModel
+  SVTK::CommonExecutionModel
+PRIVATE_DEPENDS
+  SVTK::CommonSystem
+  SVTK::FiltersAMR
+  SVTK::ParallelCore
+  SVTK::hdf5
+  SVTK::svtksys
+TEST_DEPENDS
+  SVTK::IOXML
+  SVTK::TestingCore
+  SVTK::TestingRendering

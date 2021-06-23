@@ -1,0 +1,19 @@
+NAME
+  SVTK::ParallelCore
+LIBRARY_NAME
+  svtkParallelCore
+KIT
+  SVTK::Parallel
+GROUPS
+  StandAlone
+DEPENDS
+  SVTK::CommonCore
+PRIVATE_DEPENDS
+  SVTK::CommonDataModel
+  SVTK::CommonSystem
+  SVTK::IOLegacy
+  SVTK::svtksys
+TEST_DEPENDS
+  SVTK::CommonSystem
+  SVTK::RenderingOpenGL2
+  SVTK::TestingRendering

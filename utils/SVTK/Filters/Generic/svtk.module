@@ -1,0 +1,33 @@
+NAME
+  SVTK::FiltersGeneric
+LIBRARY_NAME
+  svtkFiltersGeneric
+DESCRIPTION
+  Filters for selecting subsets of data at arbitrary points
+KIT
+  SVTK::Filters
+GROUPS
+  StandAlone
+DEPENDS
+  SVTK::CommonExecutionModel
+  SVTK::CommonMath
+PRIVATE_DEPENDS
+  SVTK::CommonCore
+  SVTK::CommonDataModel
+  SVTK::CommonMisc
+  SVTK::CommonSystem
+  SVTK::CommonTransforms
+  SVTK::FiltersCore
+  SVTK::FiltersSources
+TEST_DEPENDS
+  SVTK::FiltersExtraction
+  SVTK::FiltersGeometry
+  SVTK::FiltersModeling
+  SVTK::FiltersSources
+  SVTK::IOLegacy
+  SVTK::IOXML
+  SVTK::InteractionStyle
+  SVTK::RenderingLabel
+  SVTK::RenderingOpenGL2
+  SVTK::TestingGenericBridge
+  SVTK::TestingRendering

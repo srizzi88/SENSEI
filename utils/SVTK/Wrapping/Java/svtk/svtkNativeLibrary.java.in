@@ -1,0 +1,125 @@
+package svtk;
+
+import java.io.File;
+
+/**
+ * Enum used to load native library more easily. If you don't want to set the
+ * specific environment variable you can provide the path of the directory that
+ * contains the SVTK library through a Java Property. Like in the following
+ * command line:
+ *
+ * > java -cp svtk.jar -Dsvtk.lib.dir=.../svtk-libs svtk.sample.SimpleSVTK
+ *
+ * The directory .../svtk-libs must contain the so/dll/dylib + the jnilib files
+ *
+ * @author sebastien jourdain - sebastien.jourdain@kitware.com
+ */
+public enum svtkNativeLibrary {
+
+@svtk_java_native_libraries@
+
+  /**
+   * Try to load all library
+   *
+   * @return true if all library have been successfully loaded
+   */
+  public static boolean LoadAllNativeLibraries() {
+    boolean isEveryThingLoaded = true;
+    for (svtkNativeLibrary lib : values()) {
+      try {
+        lib.LoadLibrary();
+      } catch (UnsatisfiedLinkError e) {
+        isEveryThingLoaded = false;
+        e.printStackTrace();
+      }
+    }
+
+    return isEveryThingLoaded;
+  }
+
+  /**
+   * Load the set of given library and trows runtime exception if any given
+   * library failed in the loading process
+   *
+   * @param nativeLibraries
+   */
+  public static void LoadNativeLibraries(svtkNativeLibrary... nativeLibraries) {
+    for (svtkNativeLibrary lib : nativeLibraries) {
+      lib.LoadLibrary();
+    }
+  }
+
+  /**
+   * Disable the pop-in svtkErrorWindow by writing the error to a log file.
+   * If the provided logFile is null the default "svtkError.txt" file will be
+   * used.
+   *
+   * @param logFile
+   */
+  public static void DisableOutputWindow(File logFile) {
+    if(logFile == null) {
+      logFile = new File("svtkError.txt");
+    }
+    svtkFileOutputWindow outputError = new svtkFileOutputWindow();
+    outputError.SetFileName(logFile.getAbsolutePath());
+    outputError.SetInstance(outputError);
+  }
+
+  private svtkNativeLibrary(String nativeLibraryName) {
+    this.nativeLibraryName = nativeLibraryName;
+    this.loaded = false;
+  }
+
+  /**
+   * Load the library and throws runtime exception if the library failed in
+   * the loading process
+   */
+  public void LoadLibrary() throws UnsatisfiedLinkError {
+    if (!loaded) {
+      if (System.getProperty("svtk.lib.dir") != null) {
+        File dir = new File(System.getProperty("svtk.lib.dir"));
+        patchJavaLibraryPath(dir.getAbsolutePath());
+        File libPath = new File(dir, System.mapLibraryName(nativeLibraryName));
+        if (libPath.exists()) {
+          try {
+            Runtime.getRuntime().load(libPath.getAbsolutePath());
+            loaded = true;
+            return;
+          } catch (UnsatisfiedLinkError e) {
+            e.printStackTrace();
+          }
+        }
+      }
+      System.loadLibrary(nativeLibraryName);
+    }
+    loaded = true;
+  }
+
+  /**
+   * @return true if the library has already been successfully loaded
+   */
+  public boolean IsLoaded() {
+    return loaded;
+  }
+
+  /**
+   * @return the library name
+   */
+  public String GetLibraryName() {
+    return nativeLibraryName;
+  }
+
+  private static void patchJavaLibraryPath(String svtkLibDir) {
+    if (svtkLibDir != null) {
+      String path_separator = System.getProperty("path.separator");
+      String s = System.getProperty("java.library.path");
+      if (!s.contains(svtkLibDir)) {
+        s = s + path_separator + svtkLibDir;
+        System.setProperty("java.library.path", s);
+      }
+    }
+  }
+
+  private String nativeLibraryName;
+  private boolean loaded;
+}

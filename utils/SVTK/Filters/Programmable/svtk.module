@@ -1,0 +1,19 @@
+NAME
+  SVTK::FiltersProgrammable
+LIBRARY_NAME
+  svtkFiltersProgrammable
+KIT
+  SVTK::Filters
+GROUPS
+  StandAlone
+DEPENDS
+  SVTK::CommonExecutionModel
+PRIVATE_DEPENDS
+  SVTK::CommonCore
+  SVTK::CommonDataModel
+  SVTK::CommonTransforms
+TEST_DEPENDS
+  SVTK::FiltersSources
+  SVTK::InteractionStyle
+  SVTK::RenderingOpenGL2
+  SVTK::TestingRendering

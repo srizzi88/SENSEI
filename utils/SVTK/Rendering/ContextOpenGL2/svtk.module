@@ -1,0 +1,21 @@
+NAME
+  SVTK::RenderingContextOpenGL2
+LIBRARY_NAME
+  svtkRenderingContextOpenGL2
+KIT
+  SVTK::OpenGL
+IMPLEMENTS
+  SVTK::RenderingContext2D
+DEPENDS
+  SVTK::CommonCore
+  SVTK::CommonDataModel
+  SVTK::RenderingContext2D
+  SVTK::RenderingCore
+  SVTK::RenderingFreeType
+  SVTK::RenderingOpenGL2
+PRIVATE_DEPENDS
+  SVTK::CommonMath
+  SVTK::CommonTransforms
+  SVTK::ImagingCore
+  SVTK::glew
+  SVTK::opengl

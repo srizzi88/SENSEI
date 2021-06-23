@@ -1,0 +1,5 @@
+set(PCellSizeFilter_NUMPROCS 2)
+svtk_add_test_mpi(svtkFiltersParallelVerdictCxxTests-MPI tests PCellSizeFilter.cxx,TESTING_DATA,NO_VALID)
+
+svtk_test_cxx_executable(svtkFiltersParallelVerdictCxxTests-MPI tests
+  PCellSizeFilter.cxx)

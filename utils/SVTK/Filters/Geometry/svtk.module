@@ -1,0 +1,28 @@
+NAME
+  SVTK::FiltersGeometry
+LIBRARY_NAME
+  svtkFiltersGeometry
+DESCRIPTION
+  Geometric transformation filters
+KIT
+  SVTK::Filters
+GROUPS
+  StandAlone
+DEPENDS
+  SVTK::CommonCore
+  SVTK::CommonDataModel
+  SVTK::CommonExecutionModel
+PRIVATE_DEPENDS
+  SVTK::FiltersCore
+  SVTK::svtksys
+TEST_DEPENDS
+  SVTK::CommonSystem
+  SVTK::FiltersGeneral
+  SVTK::FiltersGeometry
+  SVTK::FiltersSources
+  SVTK::IOImage
+  SVTK::IOXML
+  SVTK::ImagingCore
+  SVTK::InteractionStyle
+  SVTK::RenderingOpenGL2
+  SVTK::TestingRendering

@@ -1,0 +1,27 @@
+/*=========================================================================
+
+  Program:   Visualization Toolkit
+  Module:    svtk_ogg.h
+
+  Copyright (c) Ken Martin, Will Schroeder, Bill Lorensen
+  All rights reserved.
+  See Copyright.txt or http://www.kitware.com/Copyright.htm for details.
+
+     This software is distributed WITHOUT ANY WARRANTY; without even
+     the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR
+     PURPOSE.  See the above copyright notice for more information.
+
+=========================================================================*/
+#ifndef svtk_ogg_h
+#define svtk_ogg_h
+
+/* Use the ogg library configured for SVTK.  */
+#cmakedefine01 SVTK_MODULE_USE_EXTERNAL_svtkogg
+
+#if SVTK_MODULE_USE_EXTERNAL_svtkogg
+# include <ogg/ogg.h>
+#else
+# include <svtkogg/include/ogg/ogg.h>
+#endif
+
+#endif

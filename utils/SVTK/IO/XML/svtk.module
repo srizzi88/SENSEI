@@ -1,0 +1,32 @@
+NAME
+  SVTK::IOXML
+LIBRARY_NAME
+  svtkIOXML
+KIT
+  SVTK::IO
+GROUPS
+  StandAlone
+DEPENDS
+  SVTK::CommonCore
+  SVTK::CommonExecutionModel
+  SVTK::IOXMLParser
+PRIVATE_DEPENDS
+  SVTK::CommonDataModel
+  SVTK::CommonMisc
+  SVTK::CommonSystem
+  SVTK::IOCore
+  SVTK::svtksys
+TEST_DEPENDS
+  SVTK::FiltersAMR
+  SVTK::FiltersCore
+  SVTK::FiltersGeometry
+  SVTK::FiltersHyperTree
+  SVTK::FiltersSources
+  SVTK::IOLegacy
+  SVTK::IOParallelXML
+  SVTK::ImagingSources
+  SVTK::InfovisCore
+  SVTK::InteractionStyle
+  SVTK::RenderingOpenGL2
+  SVTK::TestingCore
+  SVTK::TestingRendering

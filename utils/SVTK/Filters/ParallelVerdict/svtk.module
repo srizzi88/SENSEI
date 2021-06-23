@@ -1,0 +1,15 @@
+NAME
+  SVTK::FiltersParallelVerdict
+LIBRARY_NAME
+  svtkFiltersParallelVerdict
+KIT
+  SVTK::Parallel
+GROUPS
+  MPI
+DEPENDS
+  SVTK::FiltersVerdict
+  SVTK::ParallelCore
+TEST_DEPENDS
+  SVTK::IOLegacy
+  SVTK::ParallelMPI
+  SVTK::TestingCore

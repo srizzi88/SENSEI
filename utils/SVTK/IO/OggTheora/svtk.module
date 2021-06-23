@@ -1,0 +1,17 @@
+NAME
+  SVTK::IOOggTheora
+LIBRARY_NAME
+  svtkIOOggTheora
+KIT
+  SVTK::IO
+GROUPS
+  StandAlone
+DEPENDS
+  SVTK::CommonExecutionModel
+  SVTK::IOMovie
+PRIVATE_DEPENDS
+  SVTK::CommonCore
+  SVTK::CommonDataModel
+  SVTK::CommonMisc
+  SVTK::CommonSystem
+  SVTK::theora

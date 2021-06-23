@@ -1,0 +1,15 @@
+NAME
+  SVTK::IOTecplotTable
+LIBRARY_NAME
+  svtkIOTecplotTable
+GROUPS
+  StandAlone
+DEPENDS
+  SVTK::CommonCore
+  SVTK::CommonExecutionModel
+PRIVATE_DEPENDS
+  SVTK::CommonDataModel
+  SVTK::IOCore
+  SVTK::svtksys
+TEST_DEPENDS
+  SVTK::TestingCore

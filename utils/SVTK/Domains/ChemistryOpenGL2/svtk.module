@@ -1,0 +1,26 @@
+NAME
+  SVTK::DomainsChemistryOpenGL2
+LIBRARY_NAME
+  svtkDomainsChemistryOpenGL2
+DESCRIPTION
+  OpenGL support for chemistry data
+IMPLEMENTS
+  SVTK::DomainsChemistry
+DEPENDS
+  SVTK::CommonCore
+  SVTK::DomainsChemistry
+  SVTK::RenderingOpenGL2
+PRIVATE_DEPENDS
+  SVTK::CommonDataModel
+  SVTK::CommonExecutionModel
+  SVTK::CommonMath
+  SVTK::glew
+  SVTK::RenderingCore
+TEST_DEPENDS
+  SVTK::CommonSystem
+  SVTK::FiltersSources
+  SVTK::InteractionStyle
+  SVTK::IOGeometry
+  SVTK::RenderingOpenGL2
+  SVTK::TestingCore
+  SVTK::TestingRendering

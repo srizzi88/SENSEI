@@ -1,0 +1,23 @@
+NAME
+  SVTK::IOLegacy
+LIBRARY_NAME
+  svtkIOLegacy
+KIT
+  SVTK::IO
+GROUPS
+  StandAlone
+DEPENDS
+  SVTK::CommonCore
+  SVTK::CommonDataModel
+  SVTK::CommonExecutionModel
+  SVTK::IOCore
+PRIVATE_DEPENDS
+  SVTK::CommonMisc
+  SVTK::svtksys
+TEST_DEPENDS
+  SVTK::FiltersAMR
+  SVTK::FiltersGeometry
+  SVTK::ImagingCore
+  SVTK::InteractionStyle
+  SVTK::RenderingOpenGL2
+  SVTK::TestingRendering

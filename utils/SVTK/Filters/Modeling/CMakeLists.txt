@@ -1,0 +1,37 @@
+set(classes
+  svtkAdaptiveSubdivisionFilter
+  svtkBandedPolyDataContourFilter
+  svtkButterflySubdivisionFilter
+  svtkCollisionDetectionFilter
+  svtkContourLoopExtraction
+  svtkCookieCutter
+  svtkDijkstraGraphGeodesicPath
+  svtkDijkstraImageGeodesicPath
+  svtkFillHolesFilter
+  svtkFitToHeightMapFilter
+  svtkGeodesicPath
+  svtkGraphGeodesicPath
+  svtkHausdorffDistancePointSetFilter
+  svtkHyperTreeGridOutlineFilter
+  svtkLinearCellExtrusionFilter
+  svtkLinearExtrusionFilter
+  svtkLinearSubdivisionFilter
+  svtkLoopSubdivisionFilter
+  svtkOutlineFilter
+  svtkPolyDataPointSampler
+  svtkProjectedTexture
+  svtkQuadRotationalExtrusionFilter
+  svtkRibbonFilter
+  svtkRotationalExtrusionFilter
+  svtkRuledSurfaceFilter
+  svtkSectorSource
+  svtkSelectEnclosedPoints
+  svtkSelectPolyData
+  svtkSpherePuzzle
+  svtkSpherePuzzleArrows
+  svtkSubdivideTetra
+  svtkTrimmedExtrusionFilter
+  svtkVolumeOfRevolutionFilter)
+
+svtk_module_add_module(SVTK::FiltersModeling
+  CLASSES ${classes})

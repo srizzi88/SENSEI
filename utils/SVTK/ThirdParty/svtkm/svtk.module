@@ -1,0 +1,7 @@
+NAME
+  SVTK::svtkm
+PRIVATE_DEPENDS
+  # While not needed to satisfy symbols, this is necessary to guarantee that
+  # SVTK_SMP_IMPLEMENTATION_TYPE is available when configuring svtk-m.
+  SVTK::CommonCore
+THIRD_PARTY

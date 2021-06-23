@@ -1,0 +1,62 @@
+Introduction:
+-------------
+
+This directory demonstrates how to organize a local source repository
+where local SVTK classes can be compiled and wrapped into
+C++/Python libraries without interfering with the main SVTK
+source dir.
+
+It might be good thing to sort local classes into different 'package'
+directories like SVTK does (Common, Rendering, Filtering, Imaging, IO,
+etc.). It prevents numerous dependencies problems and provides a
+better overview of the class hierarchy.
+
+ - this example enforces this 'package' organization by referring to a
+   svtkBar class into the Common/ directory and a svtkImageFoo class into
+   the Imaging/ directory (the later uses an instance of svtkBar to
+   "work", thus demonstrating how CMake resolves dependencies between
+   both directories).
+
+Nevertheless, if you do not care about this ordering, you might just
+put your classes into the Unsorted/ directory, like the svtkBar2 class
+for example. By default, members of the Unsorted package will depend
+on all other packages and will be linked against all SVTK packages too.
+
+What you should do:
+-------------------
+
+- Copy this svtkMy directory to a different out-of-source place.
+
+- Fill the subdirs with your own classes. Remove the dummy classes if
+  needed. For each CMakeList.txt in the package dirs, add or remove the
+  class(es) pertaining to this directory (SET command). Depending on
+  the directory, your class must #include "svtkmy*Win32Header.h"
+  (see dummy classes for example) and use the corresponding SVTK_MY_*_EXPORT
+  macro after the 'class' keyword to ensure proper DLL build.
+
+- Run CMake as usual.  Use your svtkMy local dir as source dir, and
+  choose whatever build directory.  Your SVTK build- or install- directory
+  should be found automatically.
+
+- Build your project.
+
+- Add the path to your build-dir bin/ directory to your PATH
+  environment variable (as well as LD_LIBRARY_PATH for Unix users), so
+  these C++ DLL can be found (if any).
+
+Distribute or exchange your modules:
+------------------------------------
+
+Ideally, if you plan to exchange or distribute your modules then you
+should rename the svtkmy lib prefix to something more personal or
+unique. You might use your initials for example. In a nutshell, if you
+were to choose svtksb, then you should take care of the following:
+
+  - Search for the svtkmy string and replace it with svtksb in all files.
+  - In the same way, replace SVTKMY by SVTKSB.
+  - In all SVTK headers, change SVTKMY_*_EXPORT to SVTKSB_*_EXPORT.
+
+Any prefix should work, but make sure that your class names start with
+'svtk', otherwise the wrappers will fail (hence the svtksb or svtkmy
+prefix, not sbsvtk or mysvtk). A safe bet is to use something starting
+'svtk' in a consistent way.

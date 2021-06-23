@@ -1,0 +1,19 @@
+NAME
+  SVTK::IOSegY
+LIBRARY_NAME
+  svtkIOSegY
+KIT
+  SVTK::IO
+GROUPS
+  StandAlone
+DEPENDS
+  SVTK::CommonDataModel
+  SVTK::CommonExecutionModel
+  SVTK::IOImage
+PRIVATE_DEPENDS
+  SVTK::CommonCore
+TEST_DEPENDS
+  SVTK::InteractionStyle
+  SVTK::RenderingOpenGL2
+  SVTK::TestingCore
+  SVTK::TestingRendering

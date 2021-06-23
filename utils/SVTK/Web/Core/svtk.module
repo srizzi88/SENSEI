@@ -1,0 +1,25 @@
+NAME
+  SVTK::WebCore
+LIBRARY_NAME
+  svtkWebCore
+GROUPS
+  Web
+DEPENDS
+  SVTK::CommonCore
+PRIVATE_DEPENDS
+  SVTK::CommonDataModel
+  SVTK::CommonSystem
+  SVTK::FiltersGeneral
+  SVTK::FiltersGeometry
+  SVTK::IOCore
+  SVTK::IOImage
+  SVTK::ParallelCore
+  SVTK::Python
+  SVTK::RenderingCore
+  SVTK::WebGLExporter
+  SVTK::svtksys
+TEST_LABELS
+  SVTK::Web
+TEST_DEPENDS
+  SVTK::ImagingSources
+  SVTK::TestingCore

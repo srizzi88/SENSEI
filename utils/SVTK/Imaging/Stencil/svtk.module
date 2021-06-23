@@ -1,0 +1,16 @@
+NAME
+  SVTK::ImagingStencil
+LIBRARY_NAME
+  svtkImagingStencil
+KIT
+  SVTK::Imaging
+GROUPS
+  Imaging
+  StandAlone
+DEPENDS
+  SVTK::CommonExecutionModel
+  SVTK::ImagingCore
+PRIVATE_DEPENDS
+  SVTK::CommonComputationalGeometry
+  SVTK::CommonCore
+  SVTK::CommonDataModel

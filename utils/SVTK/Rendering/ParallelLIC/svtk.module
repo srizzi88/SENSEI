@@ -1,0 +1,19 @@
+NAME
+  SVTK::RenderingParallelLIC
+LIBRARY_NAME
+  svtkRenderingParallelLIC
+KIT
+  SVTK::Parallel
+IMPLEMENTS
+  SVTK::RenderingLICOpenGL2
+DEPENDS
+  SVTK::CommonCore
+  SVTK::CommonDataModel
+  SVTK::ParallelMPI
+  SVTK::RenderingLICOpenGL2
+  SVTK::RenderingOpenGL2
+PRIVATE_DEPENDS
+  SVTK::IOLegacy
+  SVTK::ParallelCore
+  SVTK::RenderingCore
+  SVTK::glew

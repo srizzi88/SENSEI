@@ -1,0 +1,15 @@
+NAME
+  SVTK::ViewsContext2D
+LIBRARY_NAME
+  svtkViewsContext2D
+KIT
+  SVTK::Views
+GROUPS
+  Rendering
+  Views
+DEPENDS
+  SVTK::CommonCore
+  SVTK::RenderingCore
+  SVTK::ViewsCore
+PRIVATE_DEPENDS
+  SVTK::RenderingContext2D

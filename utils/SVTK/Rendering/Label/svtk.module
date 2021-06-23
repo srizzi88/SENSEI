@@ -1,0 +1,28 @@
+NAME
+  SVTK::RenderingLabel
+LIBRARY_NAME
+  svtkRenderingLabel
+KIT
+  SVTK::Rendering
+GROUPS
+  Rendering
+DEPENDS
+  SVTK::CommonCore
+  SVTK::CommonDataModel
+  SVTK::CommonExecutionModel
+  SVTK::RenderingCore
+  SVTK::RenderingFreeType
+PRIVATE_DEPENDS
+  SVTK::CommonMath
+  SVTK::CommonSystem
+  SVTK::CommonTransforms
+  SVTK::FiltersGeneral
+  SVTK::octree
+TEST_DEPENDS
+  SVTK::FiltersGeneral
+  SVTK::FiltersSources
+  SVTK::IOXML
+  SVTK::InteractionStyle
+  SVTK::RenderingOpenGL2
+  SVTK::TestingCore
+  SVTK::TestingRendering

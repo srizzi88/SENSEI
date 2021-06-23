@@ -1,0 +1,18 @@
+NAME
+  SVTK::CommonColor
+LIBRARY_NAME
+  svtkCommonColor
+DESCRIPTION
+  Color palette and named color support classes
+KIT
+  SVTK::Common
+DEPENDS
+  SVTK::CommonCore
+  SVTK::CommonDataModel
+TEST_DEPENDS
+  SVTK::CommonExecutionModel
+  SVTK::IOImage
+  SVTK::InteractionStyle
+  SVTK::RenderingOpenGL2
+  SVTK::TestingCore
+  SVTK::TestingRendering

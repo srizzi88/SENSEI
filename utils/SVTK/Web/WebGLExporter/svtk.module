@@ -1,0 +1,19 @@
+NAME
+  SVTK::WebGLExporter
+LIBRARY_NAME
+  svtkWebGLExporter
+GROUPS
+  Web
+DEPENDS
+  SVTK::CommonCore
+  SVTK::IOExport
+PRIVATE_DEPENDS
+  SVTK::CommonDataModel
+  SVTK::CommonMath
+  SVTK::FiltersCore
+  SVTK::FiltersGeometry
+  SVTK::IOCore
+  SVTK::InteractionWidgets
+  SVTK::RenderingAnnotation
+  SVTK::RenderingCore
+  SVTK::svtksys

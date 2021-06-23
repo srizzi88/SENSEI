@@ -1,0 +1,27 @@
+NAME
+  SVTK::RenderingContext2D
+LIBRARY_NAME
+  svtkRenderingContext2D
+IMPLEMENTABLE
+KIT
+  SVTK::Rendering
+GROUPS
+  Rendering
+DEPENDS
+  SVTK::CommonCore
+  SVTK::CommonDataModel
+  SVTK::CommonExecutionModel
+  SVTK::RenderingCore
+PRIVATE_DEPENDS
+  SVTK::CommonMath
+  SVTK::CommonSystem
+  SVTK::CommonTransforms
+  SVTK::FiltersGeneral
+  SVTK::RenderingFreeType
+TEST_DEPENDS
+  SVTK::ChartsCore
+  SVTK::FiltersModeling
+  SVTK::IOXML
+  SVTK::RenderingContextOpenGL2
+  SVTK::TestingRendering
+  SVTK::ViewsContext2D

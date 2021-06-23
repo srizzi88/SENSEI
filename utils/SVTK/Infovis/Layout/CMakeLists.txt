@@ -1,0 +1,48 @@
+set(classes
+  svtkArcParallelEdgeStrategy
+  svtkAreaLayout
+  svtkAreaLayoutStrategy
+  svtkAssignCoordinates
+  svtkAssignCoordinatesLayoutStrategy
+  svtkAttributeClustering2DLayoutStrategy
+  svtkBoxLayoutStrategy
+  svtkCirclePackFrontChainLayoutStrategy
+  svtkCirclePackLayout
+  svtkCirclePackLayoutStrategy
+  svtkCirclePackToPolyData
+  svtkCircularLayoutStrategy
+  svtkClustering2DLayoutStrategy
+  svtkCommunity2DLayoutStrategy
+  svtkConeLayoutStrategy
+  svtkConstrained2DLayoutStrategy
+  svtkCosmicTreeLayoutStrategy
+  svtkEdgeLayout
+  svtkEdgeLayoutStrategy
+  svtkFast2DLayoutStrategy
+  svtkForceDirectedLayoutStrategy
+  svtkGeoEdgeStrategy
+  svtkGeoMath
+  svtkGraphLayout
+  svtkGraphLayoutStrategy
+  svtkIncrementalForceLayout
+  svtkKCoreLayout
+  svtkPassThroughEdgeStrategy
+  svtkPassThroughLayoutStrategy
+  svtkPerturbCoincidentVertices
+  svtkRandomLayoutStrategy
+  svtkSimple2DLayoutStrategy
+  svtkSimple3DCirclesStrategy
+  svtkSliceAndDiceLayoutStrategy
+  svtkSpanTreeLayoutStrategy
+  svtkSplineGraphEdges
+  svtkSquarifyLayoutStrategy
+  svtkStackedTreeLayoutStrategy
+  svtkTreeLayoutStrategy
+  svtkTreeMapLayout
+  svtkTreeMapLayoutStrategy
+  svtkTreeMapToPolyData
+  svtkTreeOrbitLayoutStrategy
+  svtkTreeRingToPolyData)
+
+svtk_module_add_module(SVTK::InfovisLayout
+  CLASSES ${classes})

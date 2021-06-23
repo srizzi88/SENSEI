@@ -1,0 +1,14 @@
+NAME
+  SVTK::RenderingVtkJS
+LIBRARY_NAME
+  svtkRenderingVtkJS
+DEPENDS
+  SVTK::CommonCore
+  SVTK::RenderingSceneGraph
+  SVTK::jsoncpp
+PRIVATE_DEPENDS
+  SVTK::CommonDataModel
+  SVTK::CommonExecutionModel
+  SVTK::RenderingCore
+OPTIONAL_DEPENDS
+  SVTK::RenderingOpenGL2

@@ -1,0 +1,8 @@
+NAME
+  SVTK::tiff
+LIBRARY_NAME
+  svtktiff
+PRIVATE_DEPENDS
+  SVTK::jpeg
+  SVTK::zlib
+THIRD_PARTY

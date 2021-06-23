@@ -1,0 +1,12 @@
+NAME
+  SVTK::RenderingUI
+LIBRARY_NAME
+  svtkRenderingUI
+IMPLEMENTS
+  SVTK::RenderingCore
+GROUPS
+  Rendering
+DEPENDS
+  SVTK::RenderingCore
+ORDER_DEPENDS
+  SVTK::opengl

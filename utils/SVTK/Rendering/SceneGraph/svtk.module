@@ -1,0 +1,17 @@
+NAME
+  SVTK::RenderingSceneGraph
+LIBRARY_NAME
+  svtkRenderingSceneGraph
+KIT
+  SVTK::Rendering
+DEPENDS
+  SVTK::CommonCore
+PRIVATE_DEPENDS
+  SVTK::CommonDataModel
+  SVTK::CommonMath
+  SVTK::RenderingCore
+TEST_DEPENDS
+  SVTK::FiltersSources
+  SVTK::RenderingOpenGL2
+  SVTK::RenderingVolume
+  SVTK::TestingCore

@@ -1,0 +1,19 @@
+NAME
+  SVTK::RenderingFreeTypeFontConfig
+LIBRARY_NAME
+  svtkRenderingFreeTypeFontConfig
+KIT
+  SVTK::Rendering
+IMPLEMENTS
+  SVTK::RenderingFreeType
+DEPENDS
+  SVTK::RenderingFreeType
+PRIVATE_DEPENDS
+  SVTK::CommonCore
+  SVTK::RenderingCore
+TEST_DEPENDS
+  SVTK::ChartsCore
+  SVTK::RenderingContextOpenGL2
+  SVTK::TestingRendering
+  SVTK::ViewsContext2D
+EXCLUDE_WRAP

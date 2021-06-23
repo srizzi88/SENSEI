@@ -1,0 +1,8 @@
+NAME
+  SVTKMY::Common
+LIBRARY_NAME
+  svtkmyCommon
+DEPENDS
+  SVTK::CommonCore
+TEST_DEPENDS
+  SVTK::TestingCore

@@ -1,0 +1,15 @@
+NAME
+  SVTK::FiltersTopology
+LIBRARY_NAME
+  svtkFiltersTopology
+KIT
+  SVTK::Filters
+GROUPS
+  StandAlone
+DEPENDS
+  SVTK::CommonCore
+  SVTK::CommonDataModel
+  SVTK::CommonExecutionModel
+TEST_DEPENDS
+  SVTK::IOLegacy
+  SVTK::TestingRendering

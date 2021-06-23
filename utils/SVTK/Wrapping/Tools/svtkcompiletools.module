@@ -1,0 +1,5 @@
+NAME
+  SVTKCompileTools::WrappingTools
+LIBRARY_NAME
+  svtkWrappingTools
+EXCLUDE_WRAP

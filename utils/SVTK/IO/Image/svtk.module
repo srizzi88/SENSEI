@@ -1,0 +1,38 @@
+NAME
+  SVTK::IOImage
+LIBRARY_NAME
+  svtkIOImage
+IMPLEMENTABLE
+KIT
+  SVTK::IO
+GROUPS
+  StandAlone
+DEPENDS
+  SVTK::CommonCore
+  SVTK::CommonExecutionModel
+  SVTK::ImagingCore
+PRIVATE_DEPENDS
+  SVTK::CommonDataModel
+  SVTK::CommonMath
+  SVTK::CommonMisc
+  SVTK::CommonSystem
+  SVTK::CommonTransforms
+  SVTK::DICOMParser
+  SVTK::jpeg
+  SVTK::metaio
+  SVTK::png
+  SVTK::pugixml
+  SVTK::tiff
+  SVTK::svtksys
+  SVTK::zlib
+TEST_DEPENDS
+  SVTK::FiltersGeometry
+  SVTK::ImagingMath
+  SVTK::ImagingSources
+  SVTK::InteractionImage
+  SVTK::InteractionStyle
+  SVTK::IOLegacy
+  SVTK::RenderingContextOpenGL2
+  SVTK::RenderingOpenGL2
+  SVTK::TestingCore
+  SVTK::TestingRendering

@@ -1,0 +1,42 @@
+set(classes
+  svtkBoundedPointSource
+  svtkConnectedPointsFilter
+  svtkDensifyPointCloudFilter
+  svtkEllipsoidalGaussianKernel
+  svtkEuclideanClusterExtraction
+  svtkExtractEnclosedPoints
+  svtkExtractHierarchicalBins
+  svtkExtractPointCloudPiece
+  svtkExtractPoints
+  svtkExtractSurface
+  svtkFitImplicitFunction
+  svtkGaussianKernel
+  svtkGeneralizedKernel
+  svtkHierarchicalBinningFilter
+  svtkInterpolationKernel
+  svtkLinearKernel
+  svtkMaskPointsFilter
+  svtkPCACurvatureEstimation
+  svtkPCANormalEstimation
+  svtkPointCloudFilter
+  svtkPointDensityFilter
+  svtkPointInterpolator
+  svtkPointInterpolator2D
+  svtkPointOccupancyFilter
+  svtkProbabilisticVoronoiKernel
+  svtkRadiusOutlierRemoval
+  svtkSPHCubicKernel
+  svtkSPHInterpolator
+  svtkSPHKernel
+  svtkSPHQuarticKernel
+  svtkSPHQuinticKernel
+  svtkShepardKernel
+  svtkSignedDistance
+  svtkStatisticalOutlierRemoval
+  svtkUnsignedDistance
+  svtkVoronoiKernel
+  svtkVoxelGrid
+  svtkWendlandQuinticKernel)
+
+svtk_module_add_module(SVTK::FiltersPoints
+  CLASSES ${classes})

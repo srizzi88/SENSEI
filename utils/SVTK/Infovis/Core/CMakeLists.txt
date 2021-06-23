@@ -1,0 +1,49 @@
+set(classes
+  svtkAddMembershipArray
+  svtkAdjacencyMatrixToEdgeTable
+  svtkArrayNorm
+  svtkArrayToTable
+  svtkCollapseGraph
+  svtkCollapseVerticesByArray
+  svtkContinuousScatterplot
+  svtkDataObjectToTable
+  svtkDotProductSimilarity
+  svtkEdgeCenters
+  svtkExpandSelectedGraph
+  svtkExtractSelectedGraph
+  svtkExtractSelectedTree
+  svtkGenerateIndexArray
+  svtkGraphHierarchicalBundleEdges
+  svtkGroupLeafVertices
+  svtkKCoreDecomposition
+  svtkMergeColumns
+  svtkMergeGraphs
+  svtkMergeTables
+  svtkMutableGraphHelper
+  svtkNetworkHierarchy
+  svtkPipelineGraphSource
+  svtkPruneTreeFilter
+  svtkRandomGraphSource
+  svtkReduceTable
+  svtkRemoveHiddenData
+  svtkRemoveIsolatedVertices
+  svtkSparseArrayToTable
+  svtkStreamGraph
+  svtkStringToCategory
+  svtkStringToNumeric
+  svtkTableToArray
+  svtkTableToGraph
+  svtkTableToSparseArray
+  svtkTableToTreeFilter
+  svtkThresholdGraph
+  svtkThresholdTable
+  svtkTransferAttributes
+  svtkTransposeMatrix
+  svtkTreeDifferenceFilter
+  svtkTreeFieldAggregator
+  svtkTreeLevelsFilter
+  svtkVertexDegree
+  svtkWordCloud)
+
+svtk_module_add_module(SVTK::InfovisCore
+  CLASSES ${classes})

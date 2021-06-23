@@ -1,0 +1,30 @@
+NAME
+  SVTK::RenderingOpenVR
+LIBRARY_NAME
+  svtkRenderingOpenVR
+IMPLEMENTS
+  SVTK::RenderingCore
+DEPENDS
+  SVTK::CommonCore
+  SVTK::IOImage
+  SVTK::IOXMLParser
+  SVTK::InteractionStyle
+  SVTK::InteractionWidgets
+  SVTK::RenderingOpenGL2
+  SVTK::RenderingVolumeOpenGL2
+  SVTK::svtksys
+PRIVATE_DEPENDS
+  SVTK::CommonSystem
+  SVTK::FiltersSources
+  SVTK::IOXML
+  SVTK::ImagingSources
+  SVTK::glew
+  SVTK::opengl
+TEST_DEPENDS
+  SVTK::CommonSystem
+  SVTK::IOPLY
+  SVTK::IOXML
+  SVTK::InteractionWidgets
+  SVTK::RenderingVolume
+  SVTK::TestingCore
+  SVTK::TestingRendering

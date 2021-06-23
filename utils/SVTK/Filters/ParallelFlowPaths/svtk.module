@@ -1,0 +1,32 @@
+NAME
+  SVTK::FiltersParallelFlowPaths
+LIBRARY_NAME
+  svtkFiltersParallelFlowPaths
+KIT
+  SVTK::Parallel
+IMPLEMENTS
+  SVTK::FiltersFlowPaths
+DEPENDS
+  SVTK::CommonCore
+  SVTK::FiltersFlowPaths
+PRIVATE_DEPENDS
+  SVTK::CommonDataModel
+  SVTK::CommonExecutionModel
+  SVTK::CommonMath
+  SVTK::CommonSystem
+  SVTK::FiltersAMR
+  SVTK::FiltersCore
+  SVTK::FiltersGeneral
+  SVTK::IOCore
+  SVTK::ParallelCore
+  SVTK::ParallelMPI
+TEST_DEPENDS
+  SVTK::FiltersGeometry
+  SVTK::FiltersModeling
+  SVTK::FiltersSources
+  SVTK::IOAMR
+  SVTK::IOParallel
+  SVTK::ImagingCore
+  SVTK::ParallelMPI
+  SVTK::RenderingParallel
+  SVTK::TestingRendering

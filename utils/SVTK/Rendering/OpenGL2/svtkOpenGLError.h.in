@@ -1,0 +1,296 @@
+/*=========================================================================
+
+  Program:   Visualization Toolkit
+  Module:    svtkOpenGLError.h
+
+  Copyright (c) Ken Martin, Will Schroeder, Bill Lorensen
+  All rights reserved.
+  See Copyright.txt or http://www.kitware.com/Copyright.htm for details.
+
+     This software is distributed WITHOUT ANY WARRANTY; without even
+     the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR
+     PURPOSE.  See the above copyright notice for more information.
+
+=========================================================================*/
+#ifndef svtkOpenGLError_h
+#define svtkOpenGLError_h
+
+#include "svtkSetGet.h"
+#include "svtk_glew.h"
+#include <sstream>
+
+#ifndef NDEBUG
+// debug build.
+#cmakedefine SVTK_REPORT_OPENGL_ERRORS
+#else // NDEBUG
+// release build
+#cmakedefine SVTK_REPORT_OPENGL_ERRORS_IN_RELEASE_BUILDS
+#if defined(SVTK_REPORT_OPENGL_ERRORS_IN_RELEASE_BUILDS)
+#cmakedefine SVTK_REPORT_OPENGL_ERRORS
+#endif // defined(SVTK_REPORT_OPENGL_ERRORS_IN_RELEASE_BUILDS)
+#endif // NDEBUG
+
+/**
+ * The following functions can be used to detect and report, and/or
+ * silently clear OpenGL error flags. These are not intended to be
+ * used directly, instead use the following macros.
+ *
+ * svtkOpenGLClearErrorMacro() -- Silently clear OpenGL error flags.
+ *
+ * svtkOpenGLCheckErrorMacro(message) -- Check and clear OpenGL's error
+ * flags. Report errors detected via svtkErrorMacro.
+ *
+ * svtkOpenGLStaticCheckErrorMacro(message) -- Check and clear OpenGL's
+ * error flags. Report errors detected via svtkGenericWarningMacro.
+ * This may be used in static methods and outside of svtkObjects.
+ *
+ * The intended usage pattern is to 1) call svtkOpenGLClearErrorMacro
+ * at the top of, and 2) svtkOpenGLCheckErrorMacro at the bottom of
+ * methods that make OpenGL calls.
+ *
+ * By calling svtkOpenGLClearErrorMacro at the top of a method that
+ * makes OpenGL calls, you isolate the code and prevent it from
+ * detecting any preceding errors. By calling svtkOpenGLCheckErrorMacro
+ * at the bottom of the method you clear the error flags and report
+ * any errors that have occurred in the method where they occurred.
+ *
+ * The macros maybe completely disabled via the CMakeLists variable
+ * SVTK_REPORT_OPENGL_ERRORS. Note that in that case error flags are
+ * never cleared so that if an error occurs the flags will remain dirty
+ * making it impossible for anyone else to use them reliably. Please
+ * don't disable them with out a good reason.
+ */
+
+/**
+ * Convert an OpenGL error code into a descriptive
+ * string.
+ */
+inline
+const char *svtkOpenGLStrError(unsigned int code)
+{
+  switch(static_cast<GLenum>(code))
+  {
+    case GL_NO_ERROR:
+      return "No error";
+    case GL_INVALID_ENUM:
+      return "Invalid enum";
+    case GL_INVALID_VALUE:
+      return "Invalid value";
+    case GL_INVALID_OPERATION:
+      return "Invalid operation";
+    case GL_OUT_OF_MEMORY:
+      return "Out of memory";
+#ifndef GL_ES_VERSION_3_0
+    case GL_STACK_OVERFLOW:
+      return "Stack overflow";
+    case GL_STACK_UNDERFLOW:
+      return "Stack underflow";
+    case GL_TABLE_TOO_LARGE:
+      return "Table too large";
+    case GL_INVALID_FRAMEBUFFER_OPERATION_EXT:
+      return "Invalid framebuffer operation";
+#endif
+  }
+  return "Unknown error";
+}
+
+/**
+ * Check for OpenGL errors. Error status is querried until
+ * OpenGL reports no errors. The list of errors and their
+ * descriptions are returned in the user supplied arrays.
+ * User passes the size of the arrays as the first argument.
+ * Error flags will still be cleared if the user arrays are
+ * less than the number of errors.
+ */
+#if defined(SVTK_REPORT_OPENGL_ERRORS)
+inline
+int svtkGetOpenGLErrors(
+      int maxNum,
+      unsigned int *errCode,
+      const char **errDesc)
+{
+  int i = 0;
+  GLenum code = glGetError();
+  if (i < maxNum)
+  {
+    errCode[i] = static_cast<unsigned int>(code);
+    errDesc[i] = svtkOpenGLStrError(code);
+  }
+  while (code != GL_NO_ERROR && i < maxNum)
+  {
+    i++;
+    code = glGetError();
+    if (i < maxNum)
+    {
+      errCode[i] = static_cast<unsigned int>(code);
+      errDesc[i] = svtkOpenGLStrError(code);
+    }
+  }
+  return i;
+}
+#else
+inline
+int svtkGetOpenGLErrors(
+      int maxNum,
+      unsigned int *errCode,
+      const char **errDesc)
+{
+  (void)maxNum;
+  (void)errCode;
+  (void)errDesc;
+  return 0;
+}
+#endif
+
+/**
+ * Send a set of errors collected by GetOpenGLErrors
+ * to the give stream. The number of errors is obtained
+ * in the return value of GetOpenGLErrors, while the max
+ * errors gives the size of the error arrays.
+ */
+#if defined(SVTK_REPORT_OPENGL_ERRORS)
+inline
+void svtkPrintOpenGLErrors(
+      ostream &os,
+      int maxErrors,
+      int numErrors,
+      unsigned int *errCode,
+      const char **errDesc)
+{
+  os << numErrors << " OpenGL errors detected" << std::endl;
+  for (int i=0; (i<numErrors)&&(i<maxErrors); ++i)
+  {
+    os << "  " <<  i << " : (" << errCode[i] << ") " << errDesc[i] << std::endl;
+  }
+  if (numErrors>maxErrors)
+  {
+    os
+      << "More than " << maxErrors
+      << " detected! The remainder are not reported"
+      << std::endl;
+  }
+}
+#else
+inline
+void svtkPrintOpenGLErrors(
+      ostream &os,
+      int maxErrors,
+      int numErrors,
+      unsigned int *errCode,
+      const char **errDesc)
+{
+  (void)os;
+  (void)maxErrors;
+  (void)numErrors;
+  (void)errCode;
+  (void)errDesc;
+}
+#endif
+
+/**
+ * Errors are queried and reported via svtkGenericWarningMacro. An optional
+ * header message can be appended to the stream. Returns true if no errors
+ * were reported.
+ */
+#if defined(SVTK_REPORT_OPENGL_ERRORS)
+inline
+bool svtkOpenGLCheckErrors(const char* headerMessage = "")
+{
+  const int maxNumErrors = 16;
+  unsigned int errCode[maxNumErrors] = {0};
+  const char* errDesc[maxNumErrors] = {NULL};
+  int numErrors = svtkGetOpenGLErrors(maxNumErrors, errCode, errDesc);
+  if (numErrors > 0)
+  {
+    std::ostringstream oss;
+    svtkPrintOpenGLErrors(oss, maxNumErrors, numErrors, errCode, errDesc);
+    svtkGenericWarningMacro(<< headerMessage << oss.str().c_str());
+    return false;
+  }
+  return true;
+}
+#else
+inline
+bool svtkOpenGLCheckErrors(const char* errorMessage = "")
+{
+  (void)errorMessage;
+  return true;
+}
+#endif
+
+/**
+ * Clear OpenGL's error flags.
+ */
+#if defined(SVTK_REPORT_OPENGL_ERRORS)
+inline
+void svtkClearOpenGLErrors(const unsigned int maxErrors = 16)
+{
+  GLenum glError;
+  unsigned int i = 0;
+  do
+  {
+    glError = glGetError();
+    ++i;
+  }
+  while(i < maxErrors && glError != GL_NO_ERROR);
+}
+#else
+inline
+void svtkClearOpenGLErrors(const unsigned int maxErrors = 16)
+{
+  (void) maxErrors;
+}
+#endif
+
+#if !defined(SVTK_REPORT_OPENGL_ERRORS)
+# define svtkOpenGLClearErrorMacro()
+# define svtkOpenGLCheckErrorMacro(message)
+# define svtkOpenGLStaticCheckErrorMacro(message)
+#else
+# define svtkOpenGLClearErrorMacro() svtkClearOpenGLErrors(16);
+# include <sstream> // for error macro
+# define svtkOpenGLCheckErrorMacroImpl(ostr, message) \
+{                                                    \
+  const int maxErrors = 16;                          \
+  unsigned int errCode[maxErrors] = {0};             \
+  const char *errDesc[maxErrors] = {NULL};           \
+                                                     \
+  int numErrors                                      \
+    = svtkGetOpenGLErrors(                            \
+        maxErrors,                                   \
+        errCode,                                     \
+        errDesc);                                    \
+                                                     \
+  if (numErrors)                                     \
+  {                                                \
+    std::ostringstream oss;                          \
+    svtkPrintOpenGLErrors(                            \
+          oss,                                       \
+          maxErrors,                                 \
+          numErrors,                                 \
+          errCode,                                   \
+          errDesc);                                  \
+                                                     \
+    ostr(<< message << " " << oss.str().c_str());    \
+  }                                                \
+}
+# define svtkOpenGLCheckErrorMacro(message) \
+  svtkOpenGLCheckErrorMacroImpl(svtkErrorMacro, message)
+# define svtkOpenGLStaticCheckErrorMacro(message) \
+  svtkOpenGLCheckErrorMacroImpl(svtkGenericWarningMacro, message)
+#endif
+
+// Use this macro for fine grained error checking during
+// debugging. It is removed for Release builds.
+#ifdef NDEBUG
+# define svtkOpenGLDebugClearErrorMacro()
+# define svtkOpenGLDebugCheckErrorMacro(message)
+#else
+# define svtkOpenGLDebugClearErrorMacro() \
+  svtkOpenGLClearErrorMacro()
+# define svtkOpenGLDebugCheckErrorMacro(message) \
+  svtkOpenGLStaticCheckErrorMacro(message)
+#endif
+
+#endif
+// SVTK-HeaderTest-Exclude: svtkOpenGLError.h

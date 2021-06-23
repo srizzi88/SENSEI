@@ -1,0 +1,21 @@
+NAME
+  SVTK::FiltersOpenTURNS
+LIBRARY_NAME
+  svtkFiltersOpenTURNS
+IMPLEMENTS
+  SVTK::ChartsCore
+DEPENDS
+  SVTK::ChartsCore
+  SVTK::CommonCore
+  SVTK::CommonDataModel
+  SVTK::CommonExecutionModel
+  SVTK::FiltersCore
+PRIVATE_DEPENDS
+  SVTK::ImagingCore
+TEST_DEPENDS
+  SVTK::IOInfovis
+  SVTK::InteractionStyle
+  SVTK::RenderingContextOpenGL2
+  SVTK::TestingCore
+  SVTK::TestingRendering
+  SVTK::ViewsContext2D

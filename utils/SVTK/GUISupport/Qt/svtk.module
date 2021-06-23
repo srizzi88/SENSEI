@@ -1,0 +1,21 @@
+NAME
+  SVTK::GUISupportQt
+LIBRARY_NAME
+  svtkGUISupportQt
+GROUPS
+  Qt
+DEPENDS
+  SVTK::CommonCore
+  SVTK::RenderingCore
+  SVTK::RenderingOpenGL2
+  SVTK::InteractionWidgets
+PRIVATE_DEPENDS
+  SVTK::CommonDataModel
+  SVTK::FiltersExtraction
+  SVTK::InteractionStyle
+  SVTK::opengl
+TEST_DEPENDS
+  SVTK::FiltersSources
+  SVTK::TestingCore
+  SVTK::TestingRendering
+EXCLUDE_WRAP

@@ -1,0 +1,18 @@
+NAME
+  SVTK::WebPython
+LIBRARY_NAME
+  svtkWebPython
+CONDITION
+  SVTK_WRAP_PYTHON
+GROUPS
+  Web
+DEPENDS
+  SVTK::CommonCore
+PRIVATE_DEPENDS
+  SVTK::FiltersGeometry
+  SVTK::WebCore
+TEST_DEPENDS
+  SVTK::TestingCore
+TEST_LABELS
+  SVTK::Web
+EXCLUDE_WRAP

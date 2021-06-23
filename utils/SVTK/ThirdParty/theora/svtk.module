@@ -1,0 +1,7 @@
+NAME
+  SVTK::theora
+LIBRARY_NAME
+  svtktheora
+DEPENDS
+  SVTK::ogg
+THIRD_PARTY

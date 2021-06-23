@@ -1,0 +1,10 @@
+NAME
+  SVTK::TestingGenericBridge
+LIBRARY_NAME
+  svtkTestingGenericBridge
+DEPENDS
+  SVTK::CommonCore
+  SVTK::CommonDataModel
+PRIVATE_DEPENDS
+  SVTK::CommonMisc
+EXCLUDE_WRAP

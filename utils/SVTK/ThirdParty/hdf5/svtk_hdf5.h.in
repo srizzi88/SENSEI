@@ -1,0 +1,35 @@
+/*=========================================================================
+
+  Program:   Visualization Toolkit
+  Module:    svtk_hdf5.h
+
+  Copyright (c) Ken Martin, Will Schroeder, Bill Lorensen
+  All rights reserved.
+  See Copyright.txt or http://www.kitware.com/Copyright.htm for details.
+
+     This software is distributed WITHOUT ANY WARRANTY; without even
+     the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR
+     PURPOSE.  See the above copyright notice for more information.
+
+=========================================================================*/
+#ifndef svtk_hdf5_h
+#define svtk_hdf5_h
+
+/* Use the hdf5 library configured for SVTK.  */
+#cmakedefine01 SVTK_MODULE_USE_EXTERNAL_svtkhdf5
+
+#if SVTK_MODULE_USE_EXTERNAL_svtkhdf5
+#cmakedefine01 svtkhdf5_is_parallel
+#if svtkhdf5_is_parallel
+#include <svtk_mpi.h>
+#endif
+#undef svtkhdf5_is_parallel
+
+# include <hdf5.h>
+# include <hdf5_hl.h>
+#else
+# include <svtkhdf5/src/hdf5.h>
+# include <svtkhdf5/hl/src/hdf5_hl.h>
+#endif
+
+#endif

@@ -1,0 +1,28 @@
+NAME
+  SVTK::IOExodus
+LIBRARY_NAME
+  svtkIOExodus
+IMPLEMENTABLE
+KIT
+  SVTK::IO
+GROUPS
+  StandAlone
+DEPENDS
+  SVTK::CommonCore
+  SVTK::CommonDataModel
+  SVTK::CommonExecutionModel
+  SVTK::IOCore
+  SVTK::IOXMLParser
+  SVTK::exodusII
+PRIVATE_DEPENDS
+  SVTK::FiltersCore
+  SVTK::svtksys
+TEST_DEPENDS
+  SVTK::CommonSystem
+  SVTK::FiltersExtraction
+  SVTK::FiltersGeometry
+  SVTK::FiltersSources
+  SVTK::IOImage
+  SVTK::InteractionStyle
+  SVTK::RenderingOpenGL2
+  SVTK::TestingRendering

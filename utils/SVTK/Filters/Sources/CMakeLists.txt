@@ -1,0 +1,42 @@
+set(classes
+  svtkArcSource
+  svtkArrowSource
+  svtkButtonSource
+  svtkCapsuleSource
+  svtkCellTypeSource
+  svtkConeSource
+  svtkCubeSource
+  svtkCylinderSource
+  svtkDiagonalMatrixSource
+  svtkDiskSource
+  svtkEllipseArcSource
+  svtkEllipticalButtonSource
+  svtkFrustumSource
+  svtkGlyphSource2D
+  svtkGraphToPolyData
+  svtkHyperTreeGridSource
+  svtkLineSource
+  svtkOutlineCornerFilter
+  svtkOutlineCornerSource
+  svtkOutlineSource
+  svtkParametricFunctionSource
+  svtkPlaneSource
+  svtkPlatonicSolidSource
+  svtkPointSource
+  svtkPolyLineSource
+  svtkPolyPointSource
+  svtkProgrammableDataObjectSource
+  svtkProgrammableSource
+  svtkRandomHyperTreeGridSource
+  svtkRectangularButtonSource
+  svtkRegularPolygonSource
+  svtkSelectionSource
+  svtkSphereSource
+  svtkSuperquadricSource
+  svtkTessellatedBoxSource
+  svtkTextSource
+  svtkTexturedSphereSource
+  svtkUniformHyperTreeGridSource)
+
+svtk_module_add_module(SVTK::FiltersSources
+  CLASSES ${classes})

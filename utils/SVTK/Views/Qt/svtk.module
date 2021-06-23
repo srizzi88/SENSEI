@@ -1,0 +1,21 @@
+NAME
+  SVTK::ViewsQt
+LIBRARY_NAME
+  svtkViewsQt
+GROUPS
+  Qt
+DEPENDS
+  SVTK::CommonCore
+  SVTK::GUISupportQt
+  SVTK::ViewsCore
+  SVTK::ViewsInfovis
+PRIVATE_DEPENDS
+  SVTK::CommonDataModel
+  SVTK::CommonExecutionModel
+  SVTK::FiltersExtraction
+  SVTK::FiltersGeneral
+  SVTK::InfovisCore
+TEST_DEPENDS
+  SVTK::InfovisCore
+  SVTK::TestingCore
+EXCLUDE_WRAP

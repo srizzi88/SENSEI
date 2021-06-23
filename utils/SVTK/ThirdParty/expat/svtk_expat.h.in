@@ -1,0 +1,28 @@
+/*=========================================================================
+
+  Program:   Visualization Toolkit
+  Module:    svtk_expat.h
+
+  Copyright (c) Ken Martin, Will Schroeder, Bill Lorensen
+  All rights reserved.
+  See Copyright.txt or http://www.kitware.com/Copyright.htm for details.
+
+     This software is distributed WITHOUT ANY WARRANTY; without even
+     the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR
+     PURPOSE.  See the above copyright notice for more information.
+
+=========================================================================*/
+#ifndef svtk_expat_h
+#define svtk_expat_h
+
+/* Use the expat library configured for SVTK.  */
+#cmakedefine01 SVTK_MODULE_USE_EXTERNAL_svtkexpat
+
+#if SVTK_MODULE_USE_EXTERNAL_svtkexpat
+# include <expat.h>
+#else
+#cmakedefine XML_STATIC
+# include <svtkexpat/lib/expat.h>
+#endif
+
+#endif

@@ -1,0 +1,23 @@
+NAME
+  SVTK::CommonExecutionModel
+LIBRARY_NAME
+  svtkCommonExecutionModel
+DESCRIPTION
+  Core algorithms and execution
+KIT
+  SVTK::Common
+GROUPS
+  StandAlone
+DEPENDS
+  SVTK::CommonCore
+  SVTK::CommonDataModel
+PRIVATE_DEPENDS
+  SVTK::CommonMisc
+  SVTK::CommonSystem
+TEST_DEPENDS
+  SVTK::FiltersCore
+  SVTK::FiltersSources
+  SVTK::IOCore
+  SVTK::IOLegacy
+  SVTK::IOXML
+  SVTK::TestingCore

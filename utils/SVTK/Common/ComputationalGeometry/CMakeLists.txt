@@ -1,0 +1,30 @@
+set(classes
+  svtkBilinearQuadIntersection
+  svtkCardinalSpline
+  svtkKochanekSpline
+  svtkParametricBohemianDome
+  svtkParametricBour
+  svtkParametricBoy
+  svtkParametricCatalanMinimal
+  svtkParametricConicSpiral
+  svtkParametricCrossCap
+  svtkParametricDini
+  svtkParametricEllipsoid
+  svtkParametricEnneper
+  svtkParametricFigure8Klein
+  svtkParametricFunction
+  svtkParametricHenneberg
+  svtkParametricKlein
+  svtkParametricKuen
+  svtkParametricMobius
+  svtkParametricPluckerConoid
+  svtkParametricPseudosphere
+  svtkParametricRandomHills
+  svtkParametricRoman
+  svtkParametricSpline
+  svtkParametricSuperEllipsoid
+  svtkParametricSuperToroid
+  svtkParametricTorus)
+
+svtk_module_add_module(SVTK::CommonComputationalGeometry
+  CLASSES ${classes})

@@ -1,0 +1,20 @@
+NAME
+  SVTK::IOParallelLSDyna
+LIBRARY_NAME
+  svtkIOParallelLSDyna
+KIT
+  SVTK::Parallel
+DEPENDS
+  SVTK::IOLSDyna
+PRIVATE_DEPENDS
+  SVTK::CommonCore
+  SVTK::CommonDataModel
+  SVTK::CommonExecutionModel
+  SVTK::ParallelCore
+TEST_DEPENDS
+  SVTK::FiltersGeometry
+  SVTK::InteractionStyle
+  SVTK::ParallelMPI
+  SVTK::RenderingOpenGL2
+  SVTK::RenderingParallel
+  SVTK::TestingRendering

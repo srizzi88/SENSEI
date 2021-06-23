@@ -1,0 +1,23 @@
+NAME
+  SVTK::IOCityGML
+LIBRARY_NAME
+  svtkIOCityGML
+KIT
+  SVTK::IO
+GROUPS
+  StandAlone
+DEPENDS
+  SVTK::CommonExecutionModel
+PRIVATE_DEPENDS
+  SVTK::CommonCore
+  SVTK::CommonDataModel
+  SVTK::FiltersGeneral
+  SVTK::FiltersModeling
+  SVTK::pugixml
+  SVTK::svtksys
+TEST_DEPENDS
+  SVTK::IOImage
+  SVTK::InteractionStyle
+  SVTK::RenderingOpenGL2
+  SVTK::TestingCore
+  SVTK::TestingRendering

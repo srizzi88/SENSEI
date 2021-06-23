@@ -1,0 +1,50 @@
+set(classes
+  svtkAxis
+  svtkAxisExtended
+  svtkCategoryLegend
+  svtkChartBox
+  svtkChart
+  svtkChartHistogram2D
+  svtkChartLegend
+  svtkChartMatrix
+  svtkChartParallelCoordinates
+  svtkChartPie
+  svtkChartXY
+  svtkChartXYZ
+  svtkColorLegend
+  svtkColorTransferControlPointsItem
+  svtkColorTransferFunctionItem
+  svtkCompositeControlPointsItem
+  svtkCompositeTransferFunctionItem
+  svtkContextArea
+  svtkContextPolygon
+  svtkControlPointsItem
+  svtkInteractiveArea
+  svtkLookupTableItem
+  svtkPiecewiseControlPointsItem
+  svtkPiecewiseFunctionItem
+  svtkPiecewisePointHandleItem
+  svtkPlot3D
+  svtkPlotArea
+  svtkPlotBag
+  svtkPlotBar
+  svtkPlotBox
+  svtkPlot
+  svtkPlotFunctionalBag
+  svtkPlotGrid
+  svtkPlotHistogram2D
+  svtkPlotLine3D
+  svtkPlotLine
+  svtkPlotParallelCoordinates # This adds a svtkInfovisCore dep for one class...
+  svtkPlotPie
+  svtkPlotPoints3D
+  svtkPlotPoints
+  svtkPlotStacked
+  svtkPlotSurface
+  svtkRangeHandlesItem
+  svtkScalarsToColorsItem
+  svtkScatterPlotMatrix
+  )
+
+svtk_module_add_module(SVTK::ChartsCore
+  CLASSES ${classes})

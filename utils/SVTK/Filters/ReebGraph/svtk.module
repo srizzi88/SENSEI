@@ -1,0 +1,19 @@
+NAME
+  SVTK::FiltersReebGraph
+LIBRARY_NAME
+  svtkFiltersReebGraph
+KIT
+  SVTK::Filters
+DEPENDS
+  SVTK::CommonExecutionModel
+PRIVATE_DEPENDS
+  SVTK::CommonCore
+  SVTK::CommonDataModel
+  SVTK::FiltersCore
+TEST_DEPENDS
+  SVTK::FiltersGeneral
+  SVTK::FiltersSources
+  SVTK::IOImage
+  SVTK::InteractionStyle
+  SVTK::RenderingOpenGL2
+  SVTK::TestingRendering

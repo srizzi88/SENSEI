@@ -1,0 +1,23 @@
+NAME
+  SVTK::IOExportPDF
+LIBRARY_NAME
+  svtkIOExportPDF
+GROUPS
+  Rendering
+IMPLEMENTS
+  SVTK::IOExport
+DEPENDS
+  SVTK::IOExport
+  SVTK::RenderingContext2D
+PRIVATE_DEPENDS
+  SVTK::CommonCore
+  SVTK::ImagingCore
+  SVTK::libharu
+TEST_DEPENDS
+  SVTK::ChartsCore
+  SVTK::FiltersModeling
+  SVTK::ImagingCore
+  SVTK::InteractionStyle
+  SVTK::RenderingContextOpenGL2
+  SVTK::TestingRendering
+  SVTK::ViewsContext2D

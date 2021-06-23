@@ -1,0 +1,10 @@
+NAME
+  SVTK::xdmf3
+LIBRARY_NAME
+  svtkxdmf3
+# These are public dependencies of XdmfCore, but are exposed via a public link
+# to it, not from Xdmf3 itself.
+PRIVATE_DEPENDS
+  SVTK::hdf5
+  SVTK::libxml2
+THIRD_PARTY

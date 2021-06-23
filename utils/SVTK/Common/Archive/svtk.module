@@ -1,0 +1,12 @@
+NAME
+  SVTK::CommonArchive
+LIBRARY_NAME
+  svtkCommonArchive
+DEPENDS
+  SVTK::CommonCore
+TEST_DEPENDS
+  SVTK::FiltersSources
+  SVTK::IOExport
+  SVTK::TestingCore
+  SVTK::RenderingOpenGL2
+  SVTK::TestingRendering

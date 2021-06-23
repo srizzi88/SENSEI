@@ -1,0 +1,19 @@
+NAME
+  SVTK::InteractionStyle
+LIBRARY_NAME
+  svtkInteractionStyle
+KIT
+  SVTK::Interaction
+GROUPS
+  Rendering
+IMPLEMENTS
+  SVTK::RenderingCore
+DEPENDS
+  SVTK::CommonDataModel
+  SVTK::RenderingCore
+PRIVATE_DEPENDS
+  SVTK::CommonCore
+  SVTK::CommonMath
+  SVTK::CommonTransforms
+  SVTK::FiltersExtraction
+  SVTK::FiltersSources

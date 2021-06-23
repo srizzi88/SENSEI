@@ -1,0 +1,37 @@
+NAME
+  SVTK::RenderingParallel
+LIBRARY_NAME
+  svtkRenderingParallel
+KIT
+  SVTK::Parallel
+DEPENDS
+  SVTK::CommonCore
+  SVTK::RenderingCore
+  SVTK::RenderingOpenGL2
+PRIVATE_DEPENDS
+  SVTK::CommonDataModel
+  SVTK::CommonMath
+  SVTK::CommonSystem
+  SVTK::FiltersParallel
+  SVTK::IOImage
+  SVTK::ImagingCore
+  SVTK::ParallelCore
+  SVTK::glew
+  SVTK::opengl
+TEST_DEPENDS
+  SVTK::FiltersGeometry
+  SVTK::FiltersParallel
+  SVTK::FiltersSources
+  SVTK::ImagingCore
+  SVTK::ImagingSources
+  SVTK::IOImage
+  SVTK::IOImport
+  SVTK::IOLegacy
+  SVTK::InteractionStyle
+  SVTK::ParallelCore
+  SVTK::RenderingOpenGL2
+  SVTK::TestingCore
+  SVTK::TestingRendering
+TEST_OPTIONAL_DEPENDS
+  SVTK::FiltersParallelMPI
+  SVTK::ParallelMPI

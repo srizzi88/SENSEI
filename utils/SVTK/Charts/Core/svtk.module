@@ -1,0 +1,31 @@
+NAME
+  SVTK::ChartsCore
+LIBRARY_NAME
+  svtkChartsCore
+DESCRIPTION
+  Charts and plots
+IMPLEMENTABLE
+GROUPS
+  StandAlone
+DEPENDS
+  SVTK::CommonCore
+  SVTK::CommonDataModel
+  SVTK::FiltersGeneral
+  SVTK::RenderingContext2D
+  SVTK::RenderingCore
+  SVTK::svtksys
+PRIVATE_DEPENDS
+  SVTK::CommonColor
+  SVTK::CommonExecutionModel
+  SVTK::CommonTransforms
+  SVTK::InfovisCore
+TEST_DEPENDS
+  SVTK::CommonColor
+  SVTK::FiltersGeometry
+  SVTK::FiltersStatistics
+  SVTK::IOImage
+  SVTK::IOInfovis
+  SVTK::RenderingContextOpenGL2
+  SVTK::TestingCore
+  SVTK::TestingRendering
+  SVTK::ViewsContext2D

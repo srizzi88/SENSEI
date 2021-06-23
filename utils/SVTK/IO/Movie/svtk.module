@@ -1,0 +1,19 @@
+NAME
+  SVTK::IOMovie
+LIBRARY_NAME
+  svtkIOMovie
+KIT
+  SVTK::IO
+GROUPS
+  StandAlone
+DEPENDS
+  SVTK::CommonExecutionModel
+PRIVATE_DEPENDS
+  SVTK::CommonCore
+  SVTK::CommonDataModel
+  SVTK::CommonMisc
+  SVTK::CommonSystem
+TEST_DEPENDS
+  SVTK::ImagingCore
+  SVTK::ImagingSources
+  SVTK::TestingCore

@@ -1,0 +1,7 @@
+NAME
+  SVTK::glew
+LIBRARY_NAME
+  svtkglew
+DEPENDS
+  SVTK::opengl
+THIRD_PARTY

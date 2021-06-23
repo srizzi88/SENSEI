@@ -1,0 +1,21 @@
+NAME
+  SVTK::IOPIO
+LIBRARY_NAME
+  svtkIOPIO
+KIT
+  SVTK::Parallel
+DEPENDS
+  SVTK::CommonExecutionModel
+PRIVATE_DEPENDS
+  SVTK::CommonCore
+  SVTK::CommonDataModel
+  SVTK::CommonMisc
+  SVTK::CommonSystem
+  SVTK::ParallelCore
+  SVTK::svtksys
+TEST_DEPENDS
+  SVTK::FiltersGeometry
+  SVTK::IOImage
+  SVTK::InteractionStyle
+  SVTK::RenderingOpenGL2
+  SVTK::TestingRendering

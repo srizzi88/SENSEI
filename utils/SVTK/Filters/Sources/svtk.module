@@ -1,0 +1,31 @@
+NAME
+  SVTK::FiltersSources
+LIBRARY_NAME
+  svtkFiltersSources
+KIT
+  SVTK::Filters
+GROUPS
+  StandAlone
+DEPENDS
+  SVTK::CommonDataModel
+  SVTK::CommonExecutionModel
+PRIVATE_DEPENDS
+  SVTK::CommonComputationalGeometry
+  SVTK::CommonCore
+  SVTK::CommonTransforms
+  SVTK::FiltersCore
+  SVTK::FiltersGeneral
+TEST_DEPENDS
+  SVTK::CommonComputationalGeometry
+  SVTK::FiltersExtraction
+  SVTK::FiltersGeometry
+  SVTK::FiltersHyperTree
+  SVTK::FiltersModeling
+  SVTK::FiltersVerdict
+  SVTK::IOParallel
+  SVTK::IOXML
+  SVTK::InteractionStyle
+  SVTK::RenderingFreeType
+  SVTK::RenderingOpenGL2
+  SVTK::TestingCore
+  SVTK::TestingRendering

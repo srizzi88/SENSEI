@@ -1,0 +1,19 @@
+NAME
+  SVTK::FiltersImaging
+LIBRARY_NAME
+  svtkFiltersImaging
+DESCRIPTION
+  Filters and algorithms for images
+KIT
+  SVTK::Filters
+GROUPS
+  Imaging
+  StandAlone
+DEPENDS
+  SVTK::CommonCore
+  SVTK::CommonExecutionModel
+  SVTK::FiltersStatistics
+PRIVATE_DEPENDS
+  SVTK::CommonDataModel
+  SVTK::CommonSystem
+  SVTK::ImagingGeneral

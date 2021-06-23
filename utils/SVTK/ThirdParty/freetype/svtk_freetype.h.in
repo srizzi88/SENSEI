@@ -1,0 +1,32 @@
+/*=========================================================================
+
+  Program:   Visualization Toolkit
+  Module:    svtk_freetype.h
+
+  Copyright (c) Ken Martin, Will Schroeder, Bill Lorensen
+  All rights reserved.
+  See Copyright.txt or http://www.kitware.com/Copyright.htm for details.
+
+     This software is distributed WITHOUT ANY WARRANTY; without even
+     the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR
+     PURPOSE.  See the above copyright notice for more information.
+
+=========================================================================*/
+#ifndef svtk_freetype_h
+#define svtk_freetype_h
+
+/* Use the freetype library configured for SVTK.  */
+#cmakedefine01 SVTK_MODULE_USE_EXTERNAL_svtkfreetype
+
+#cmakedefine01 SVTK_FREETYPE_SHARED
+#if SVTK_FREETYPE_SHARED && defined(_WIN32)
+#define FT2_DLLIMPORT
+#endif
+
+#if SVTK_MODULE_USE_EXTERNAL_svtkfreetype
+# include <ft2build.h>
+#else
+# include <svtkfreetype/include/ft2build.h>
+#endif
+
+#endif // #ifndef svtk_freetype_h

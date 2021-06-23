@@ -1,0 +1,23 @@
+NAME
+  SVTK::ImagingMorphological
+LIBRARY_NAME
+  svtkImagingMorphological
+KIT
+  SVTK::Imaging
+GROUPS
+  Imaging
+  StandAlone
+DEPENDS
+  SVTK::CommonCore
+  SVTK::CommonDataModel
+  SVTK::CommonExecutionModel
+  SVTK::ImagingCore
+  SVTK::ImagingGeneral
+PRIVATE_DEPENDS
+  SVTK::ImagingSources
+TEST_DEPENDS
+  SVTK::InteractionImage
+  SVTK::InteractionStyle
+  SVTK::IOImage
+  SVTK::RenderingOpenGL2
+  SVTK::TestingRendering

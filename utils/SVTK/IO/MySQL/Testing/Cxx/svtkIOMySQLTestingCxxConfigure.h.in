@@ -1,0 +1,25 @@
+/*=========================================================================
+
+  Program:   Visualization Toolkit
+  Module:    svtkIOMySQLTestingCxxConfigure.h.in
+
+  Copyright (c) Ken Martin, Will Schroeder, Bill Lorensen
+  All rights reserved.
+  See Copyright.txt or http://www.kitware.com/Copyright.htm for details.
+
+     This software is distributed WITHOUT ANY WARRANTY; without even
+     the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR
+     PURPOSE.  See the above copyright notice for more information.
+
+=========================================================================*/
+
+#ifndef svtkIOMySQLTestingCxxConfigure_h
+#define svtkIOMySQLTestingCxxConfigure_h
+
+#cmakedefine SVTK_MYSQL_TEST_URL
+#ifdef SVTK_MYSQL_TEST_URL
+#  undef SVTK_MYSQL_TEST_URL
+#  define SVTK_MYSQL_TEST_URL "@SVTK_MYSQL_TEST_URL@"
+#endif
+
+#endif

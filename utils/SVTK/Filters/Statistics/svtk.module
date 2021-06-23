@@ -1,0 +1,19 @@
+NAME
+  SVTK::FiltersStatistics
+LIBRARY_NAME
+  svtkFiltersStatistics
+KIT
+  SVTK::Filters
+GROUPS
+  StandAlone
+DEPENDS
+  SVTK::CommonCore
+  SVTK::CommonExecutionModel
+PRIVATE_DEPENDS
+  SVTK::CommonDataModel
+  SVTK::CommonMisc
+  SVTK::ImagingFourier
+  SVTK::eigen
+TEST_DEPENDS
+  SVTK::CommonSystem
+  SVTK::TestingCore

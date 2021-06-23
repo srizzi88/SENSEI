@@ -1,0 +1,18 @@
+NAME
+  SVTK::FiltersVerdict
+LIBRARY_NAME
+  svtkFiltersVerdict
+KIT
+  SVTK::Filters
+GROUPS
+  StandAlone
+DEPENDS
+  SVTK::CommonExecutionModel
+  SVTK::verdict
+PRIVATE_DEPENDS
+  SVTK::CommonCore
+  SVTK::CommonDataModel
+TEST_DEPENDS
+  SVTK::FiltersSources
+  SVTK::IOLegacy
+  SVTK::TestingCore

@@ -1,0 +1,15 @@
+NAME
+  SVTK::PythonContext2D
+LIBRARY_NAME
+  svtkPythonContext2D
+CONDITION
+  SVTK_WRAP_PYTHON
+GROUPS
+  StandAlone
+DEPENDS
+  SVTK::RenderingContext2D
+PRIVATE_DEPENDS
+  SVTK::CommonCore
+  SVTK::WrappingPythonCore
+TEST_DEPENDS
+  SVTK::TestingCore

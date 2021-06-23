@@ -1,0 +1,22 @@
+NAME
+  SVTK::IOParallelXML
+LIBRARY_NAME
+  svtkIOParallelXML
+KIT
+  SVTK::Parallel
+GROUPS
+  StandAlone
+DEPENDS
+  SVTK::IOXML
+PRIVATE_DEPENDS
+  SVTK::CommonCore
+  SVTK::CommonDataModel
+  SVTK::CommonExecutionModel
+  SVTK::CommonMisc
+  SVTK::ParallelCore
+  SVTK::svtksys
+TEST_DEPENDS
+  SVTK::TestingCore
+  SVTK::ParallelCore
+TEST_OPTIONAL_DEPENDS
+  SVTK::ParallelMPI

@@ -1,0 +1,32 @@
+set(classes
+  svtkApplyColors
+  svtkApplyIcons
+  svtkDendrogramItem
+  svtkGraphItem
+  svtkGraphLayoutView
+  svtkHeatmapItem
+  svtkHierarchicalGraphPipeline
+  svtkHierarchicalGraphView
+  svtkIcicleView
+  svtkInteractorStyleAreaSelectHover
+  svtkInteractorStyleTreeMapHover
+  svtkParallelCoordinatesHistogramRepresentation
+  svtkParallelCoordinatesRepresentation
+  svtkParallelCoordinatesView
+  svtkRenderedGraphRepresentation
+  svtkRenderedHierarchyRepresentation
+  svtkRenderedRepresentation
+  svtkRenderedSurfaceRepresentation
+  svtkRenderedTreeAreaRepresentation
+  svtkRenderView
+  svtkSCurveSpline
+  svtkTanglegramItem
+  svtkTreeAreaView
+  svtkTreeHeatmapItem
+  svtkTreeMapView
+  svtkTreeRingView
+  svtkViewUpdater
+  )
+
+svtk_module_add_module(SVTK::ViewsInfovis
+  CLASSES ${classes})

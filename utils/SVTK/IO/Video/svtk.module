@@ -1,0 +1,15 @@
+NAME
+  SVTK::IOVideo
+LIBRARY_NAME
+  svtkIOVideo
+KIT
+  SVTK::IO
+GROUPS
+  StandAlone
+DEPENDS
+  SVTK::CommonExecutionModel
+PRIVATE_DEPENDS
+  SVTK::CommonCore
+  SVTK::CommonDataModel
+  SVTK::CommonSystem
+  SVTK::svtksys

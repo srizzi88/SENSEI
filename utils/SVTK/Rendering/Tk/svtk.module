@@ -1,0 +1,20 @@
+NAME
+  SVTK::RenderingTk
+LIBRARY_NAME
+  svtkRenderingTk
+CONDITION
+  SVTK_USE_TK
+GROUPS
+  Tk
+DEPENDS
+  SVTK::CommonCore
+  SVTK::InteractionImage
+  SVTK::RenderingCore
+  SVTK::RenderingOpenGL2
+PRIVATE_DEPENDS
+  SVTK::CommonDataModel
+  SVTK::CommonExecutionModel
+  SVTK::svtksys
+TEST_DEPENDS
+  SVTK::RenderingVolume
+EXCLUDE_WRAP

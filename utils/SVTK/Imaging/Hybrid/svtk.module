@@ -1,0 +1,24 @@
+NAME
+  SVTK::ImagingHybrid
+LIBRARY_NAME
+  svtkImagingHybrid
+GROUPS
+  Imaging
+  StandAlone
+DEPENDS
+  SVTK::CommonCore
+  SVTK::CommonExecutionModel
+PRIVATE_DEPENDS
+  SVTK::CommonDataModel
+  SVTK::IOImage
+  SVTK::ImagingCore
+TEST_DEPENDS
+  SVTK::CommonCore
+  SVTK::CommonDataModel
+  SVTK::FiltersSources
+  SVTK::IOImage
+  SVTK::ImagingStencil
+  SVTK::InteractionStyle
+  SVTK::RenderingOpenGL2
+  SVTK::TestingCore
+  SVTK::TestingRendering

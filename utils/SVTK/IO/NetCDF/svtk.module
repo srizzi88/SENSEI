@@ -1,0 +1,22 @@
+NAME
+  SVTK::IONetCDF
+LIBRARY_NAME
+  svtkIONetCDF
+IMPLEMENTABLE
+KIT
+  SVTK::IO
+GROUPS
+  StandAlone
+DEPENDS
+  SVTK::CommonCore
+  SVTK::CommonExecutionModel
+PRIVATE_DEPENDS
+  SVTK::CommonDataModel
+  SVTK::netcdf
+  SVTK::svtksys
+TEST_DEPENDS
+  SVTK::CommonExecutionModel
+  SVTK::FiltersGeometry
+  SVTK::InteractionStyle
+  SVTK::RenderingOpenGL2
+  SVTK::TestingRendering

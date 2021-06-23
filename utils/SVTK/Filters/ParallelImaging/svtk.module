@@ -1,0 +1,21 @@
+NAME
+  SVTK::FiltersParallelImaging
+LIBRARY_NAME
+  svtkFiltersParallelImaging
+KIT
+  SVTK::Parallel
+GROUPS
+  StandAlone
+DEPENDS
+  SVTK::CommonExecutionModel
+  SVTK::FiltersImaging
+  SVTK::FiltersParallel
+  SVTK::ImagingCore
+PRIVATE_DEPENDS
+  SVTK::CommonCore
+  SVTK::CommonDataModel
+  SVTK::CommonSystem
+  SVTK::FiltersExtraction
+  SVTK::FiltersStatistics
+  SVTK::ImagingGeneral
+  SVTK::ParallelCore

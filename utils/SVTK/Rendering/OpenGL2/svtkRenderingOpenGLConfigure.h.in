@@ -1,0 +1,65 @@
+/*=========================================================================
+
+  Program:   Visualization Toolkit
+  Module:    svtkRenderingOpenGLConfigure.h.in
+
+  Copyright (c) Ken Martin, Will Schroeder, Bill Lorensen
+  All rights reserved.
+  See Copyright.txt or http://www.kitware.com/Copyright.htm for details.
+
+     This software is distributed WITHOUT ANY WARRANTY; without even
+     the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR
+     PURPOSE.  See the above copyright notice for more information.
+
+=========================================================================*/
+
+#ifndef svtkRenderingOpenGLConfigure_h
+#define svtkRenderingOpenGLConfigure_h
+
+/* This header contains build settings for the svtkRenderingOpenGL2 module. */
+/* It provides some compatibility with the svtkRenderingOpenGL module. */
+
+#ifndef SVTK_OPENGL2
+#define SVTK_OPENGL2
+#endif
+
+/* Whether SVTK was built to support Cocoa on the Mac.  */
+#cmakedefine SVTK_USE_COCOA
+
+/*--------------------------------------------------------------------------*/
+/* Rendering Configuration                                                  */
+#cmakedefine SVTK_USE_X
+#define SVTK_USE_OPENGL_LIBRARY
+#cmakedefine SVTK_OPENGL_HAS_OSMESA
+#cmakedefine SVTK_OPENGL_HAS_EGL
+#cmakedefine SVTK_DEFAULT_RENDER_WINDOW_OFFSCREEN
+#cmakedefine SVTK_OPENGL_ENABLE_STREAM_ANNOTATIONS
+
+// for legacy codes (don't use these in new codes)
+#ifdef SVTK_DEFAULT_RENDER_WINDOW_OFFSCREEN
+# define SVTK_USE_OFFSCREEN
+#endif
+#ifdef SVTK_OPENGL_HAS_OSMESA
+# define SVTK_USE_OSMESA
+#endif
+
+#define SVTK_USE_GLSL_SHADERS
+
+/* Options for GPUInfo */
+#cmakedefine SVTK_USE_DIRECTX
+#cmakedefine SVTK_USE_CORE_GRAPHICS
+#cmakedefine SVTK_USE_NVCONTROL
+
+/*--------------------------------------------------------------------------*/
+/* Setup SVTK based on platform features and configuration.                  */
+
+/* OGLR */
+/* OGLR is for GLX. It can be on Unix, Mac or Windows */
+#if ((defined(SVTK_USE_OPENGL_LIBRARY) && defined(SVTK_USE_X) && \
+      !defined(_WIN32)) ||                                     \
+     (defined(SVTK_USE_X) && defined(_WIN32))) && \
+     !defined(SVTK_USE_COCOA)
+# define SVTK_USE_OGLR
+#endif
+
+#endif

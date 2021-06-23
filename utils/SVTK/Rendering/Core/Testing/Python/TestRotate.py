@@ -1,0 +1,31 @@
+#!/usr/bin/env python
+import svtk
+from svtk.util.misc import svtkGetDataRoot
+SVTK_DATA_ROOT = svtkGetDataRoot()
+
+cone = svtk.svtkConeSource()
+cone.SetRadius(0.05)
+cone.SetHeight(0.25)
+cone.SetResolution(256)
+cone.SetCenter(0.15,0.0,0.15)
+rotate = svtk.svtkRotationFilter()
+rotate.SetInputConnection(cone.GetOutputPort())
+rotate.SetAxisToZ()
+rotate.SetCenter(0.0,0.0,0.0)
+rotate.SetAngle(45)
+rotate.SetNumberOfCopies(7)
+rotate.CopyInputOn()
+mapper = svtk.svtkDataSetMapper()
+mapper.SetInputConnection(rotate.GetOutputPort())
+actor = svtk.svtkActor()
+actor.SetMapper(mapper)
+ren1 = svtk.svtkRenderer()
+ren1.AddActor(actor)
+renWin = svtk.svtkRenderWindow()
+renWin.AddRenderer(ren1)
+renWin.SetSize(512,512)
+iren = svtk.svtkRenderWindowInteractor()
+iren.SetRenderWindow(renWin)
+iren.Initialize()
+renWin.Render()
+# --- end of script --

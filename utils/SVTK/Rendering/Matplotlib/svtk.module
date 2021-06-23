@@ -1,0 +1,33 @@
+NAME
+  SVTK::RenderingMatplotlib
+LIBRARY_NAME
+  svtkRenderingMatplotlib
+IMPLEMENTS
+  SVTK::RenderingFreeType
+DEPENDS
+  SVTK::PythonInterpreter
+  SVTK::RenderingFreeType
+PRIVATE_DEPENDS
+  SVTK::CommonCore
+  SVTK::CommonDataModel
+  SVTK::CommonTransforms
+  SVTK::ImagingCore
+  SVTK::Python
+  SVTK::RenderingCore
+  SVTK::WrappingPythonCore
+TEST_DEPENDS
+  SVTK::CommonColor
+  SVTK::FiltersGeometry
+  SVTK::FiltersModeling
+  SVTK::IOExportGL2PS
+  SVTK::IOGeometry
+  SVTK::IOParallel
+  SVTK::InteractionImage
+  SVTK::InteractionStyle
+  SVTK::InteractionWidgets
+  SVTK::RenderingAnnotation
+  SVTK::RenderingContextOpenGL2
+  SVTK::RenderingGL2PSOpenGL2
+  SVTK::RenderingOpenGL2
+  SVTK::TestingRendering
+  SVTK::ViewsContext2D

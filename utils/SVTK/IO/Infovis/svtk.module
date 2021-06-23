@@ -1,0 +1,24 @@
+NAME
+  SVTK::IOInfovis
+LIBRARY_NAME
+  svtkIOInfovis
+GROUPS
+  StandAlone
+DEPENDS
+  SVTK::CommonCore
+  SVTK::CommonExecutionModel
+  SVTK::IOLegacy
+  SVTK::IOXML
+PRIVATE_DEPENDS
+  SVTK::CommonDataModel
+  SVTK::CommonMisc
+  SVTK::IOCore
+  SVTK::IOXMLParser
+  SVTK::InfovisCore
+  SVTK::libxml2
+  SVTK::svtksys
+TEST_DEPENDS
+  SVTK::InfovisCore
+  SVTK::InfovisLayout
+  SVTK::RenderingCore
+  SVTK::TestingRendering

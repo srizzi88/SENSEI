@@ -1,0 +1,31 @@
+NAME
+  SVTK::FiltersAMR
+LIBRARY_NAME
+  svtkFiltersAMR
+DESCRIPTION
+  Adaptive mesh refinement filters and algorithms
+KIT
+  SVTK::Parallel
+GROUPS
+  StandAlone
+DEPENDS
+  SVTK::CommonDataModel
+  SVTK::CommonExecutionModel
+PRIVATE_DEPENDS
+  SVTK::CommonCore
+  SVTK::CommonMath
+  SVTK::CommonSystem
+  SVTK::FiltersCore
+  SVTK::IOXML
+  SVTK::ParallelCore
+TEST_DEPENDS
+  SVTK::CommonColor
+  SVTK::FiltersCore
+  SVTK::FiltersGeometry
+  SVTK::IOAMR
+  SVTK::ImagingCore
+  SVTK::InteractionStyle
+  SVTK::TestingCore
+  SVTK::TestingRendering
+  SVTK::RenderingCore
+  SVTK::RenderingOpenGL2

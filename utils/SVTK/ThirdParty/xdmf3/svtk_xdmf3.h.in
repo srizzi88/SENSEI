@@ -1,0 +1,26 @@
+/*=========================================================================
+
+  Program:   Visualization Toolkit
+  Module:    svtk_xdmf2.h
+
+  Copyright (c) Ken Martin, Will Schroeder, Bill Lorensen
+  All rights reserved.
+  See Copyright.txt or http://www.kitware.com/Copyright.htm for details.
+
+     This software is distributed WITHOUT ANY WARRANTY; without even
+     the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR
+     PURPOSE.  See the above copyright notice for more information.
+
+=========================================================================*/
+#ifndef svtk_xdmf3_h
+#define svtk_xdmf3_h
+
+/* Use the xdmf3 library configured for SVTK.  */
+#cmakedefine01 SVTK_MODULE_USE_EXTERNAL_svtkxdmf3
+
+#ifdef SVTK_USE_SYSTEM_XDMF3
+#else
+#define SVTKXDMF3_HEADER(x)  <svtkxdmf3/x>
+#endif
+
+#endif

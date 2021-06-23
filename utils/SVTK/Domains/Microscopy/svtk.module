@@ -1,0 +1,17 @@
+NAME
+  SVTK::DomainsMicroscopy
+LIBRARY_NAME
+  svtkDomainsMicroscopy
+DESCRIPTION
+  File readers for microscopy file formats
+DEPENDS
+  SVTK::IOImage
+PRIVATE_DEPENDS
+  SVTK::CommonCore
+  SVTK::CommonDataModel
+  SVTK::CommonExecutionModel
+TEST_DEPENDS
+  SVTK::InteractionImage
+  SVTK::RenderingContextOpenGL2
+  SVTK::TestingCore
+  SVTK::TestingRendering

@@ -1,0 +1,30 @@
+NAME
+  SVTK::FiltersExtraction
+LIBRARY_NAME
+  svtkFiltersExtraction
+DESCRIPTION
+  Filters for selecting subsets data
+KIT
+  SVTK::Parallel
+GROUPS
+  StandAlone
+DEPENDS
+  SVTK::CommonCore
+  SVTK::CommonExecutionModel
+  SVTK::FiltersGeneral
+PRIVATE_DEPENDS
+  SVTK::CommonDataModel
+  SVTK::FiltersCore
+  SVTK::FiltersStatistics
+  SVTK::ParallelDIY
+OPTIONAL_DEPENDS
+  SVTK::ParallelMPI
+TEST_DEPENDS
+  SVTK::FiltersGeneral
+  SVTK::FiltersSources
+  SVTK::IOExodus
+  SVTK::IOLegacy
+  SVTK::IOXML
+  SVTK::InteractionStyle
+  SVTK::RenderingOpenGL2
+  SVTK::TestingRendering

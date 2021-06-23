@@ -1,0 +1,24 @@
+NAME
+  SVTK::ParallelMPI
+LIBRARY_NAME
+  svtkParallelMPI
+KIT
+  SVTK::Parallel
+GROUPS
+  MPI
+DEPENDS
+  SVTK::CommonCore
+  SVTK::ParallelCore
+  SVTK::mpi
+PRIVATE_DEPENDS
+  SVTK::CommonDataModel
+TEST_DEPENDS
+  SVTK::FiltersParallel
+  SVTK::FiltersSources
+  SVTK::IOParallel
+  SVTK::ImagingCore
+  SVTK::ImagingSources
+  SVTK::InteractionStyle
+  SVTK::RenderingOpenGL2
+  SVTK::RenderingParallel
+  SVTK::TestingRendering
