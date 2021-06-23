@@ -1,8 +1,8 @@
-#ifndef sensei_VTKHistogram_h
-#define sensei_VTKHistogram_h
+#ifndef sensei_SVTKHistogram_h
+#define sensei_SVTKHistogram_h
 
-class vtkUnsignedCharArray;
-class vtkDataArray;
+class svtkUnsignedCharArray;
+class svtkDataArray;
 
 #include <mpi.h>
 #include <string>
@@ -11,19 +11,19 @@ class vtkDataArray;
 namespace sensei
 {
 
-class VTKHistogram
+class SVTKHistogram
 {
 public:
-    VTKHistogram();
-    ~VTKHistogram();
+    SVTKHistogram();
+    ~SVTKHistogram();
 
-    void AddRange(vtkDataArray* da, vtkUnsignedCharArray* ghostArray);
+    void AddRange(svtkDataArray* da, svtkUnsignedCharArray* ghostArray);
 
     // compute the global min and max
     void PreCompute(MPI_Comm comm, int bins);
 
     // do the local histgram calculation
-    void Compute(vtkDataArray* da, vtkUnsignedCharArray* ghostArray);
+    void Compute(svtkDataArray* da, svtkUnsignedCharArray* ghostArray);
 
     // do the reduction, write the result to a file, or cout.
     // the result is cached on rank 0.

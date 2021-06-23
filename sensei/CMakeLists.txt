@@ -10,9 +10,9 @@ if (ENABLE_SENSEI)
     IsoSurfacePartitioner.cxx MappedPartitioner.cxx MemoryProfiler.cxx
     MeshMetadata.cxx MeshMetadataMap.cxx MPIManager.cxx PlanarPartitioner.cxx
     PlanarSlicePartitioner.cxx Profiler.cxx ProgrammableDataAdaptor.cxx
-    VTKHistogram.cxx VTKDataAdaptor.cxx VTKUtils.cxx XMLUtils.cxx)
+    SVTKHistogram.cxx SVTKDataAdaptor.cxx SVTKUtils.cxx XMLUtils.cxx)
 
-  set(senseiCore_libs pugixml thread sDIY sVTK sMPI)
+  set(senseiCore_libs pugixml thread sDIY sSVTK sMPI)
 
   if (ENABLE_CONDUIT)
     list(APPEND senseiCore_sources ConduitDataAdaptor.cxx)

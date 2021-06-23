@@ -2,7 +2,7 @@
 #define sensei_AnalysisAdaptor_h
 
 #include "senseiConfig.h"
-#include <vtkObjectBase.h>
+#include <svtkObjectBase.h>
 #include <mpi.h>
 
 namespace sensei
@@ -15,11 +15,11 @@ class DataAdaptor;
 /// AnalysisAdaptor is an adaptor for any insitu analysis framework or
 /// algorithm. Concrete subclasses use DataAdaptor instance passed to
 /// the Execute() method to access simulation data for further processing.
-class AnalysisAdaptor : public vtkObjectBase
+class AnalysisAdaptor : public svtkObjectBase
 {
 public:
-  senseiBaseTypeMacro(AnalysisAdaptor, vtkObjectBase);
-  void PrintSelf(ostream& os, vtkIndent indent) override;
+  senseiBaseTypeMacro(AnalysisAdaptor, svtkObjectBase);
+  void PrintSelf(ostream& os, svtkIndent indent) override;
 
   /// @breif Set the level of verbosity of console output.
   virtual void SetVerbose(int val){ this->Verbose = val; }

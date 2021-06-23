@@ -18,7 +18,7 @@ class ConfigurableAnalysis : public AnalysisAdaptor
 public:
   static ConfigurableAnalysis *New();
   senseiTypeMacro(ConfigurableAnalysis, AnalysisAdaptor);
-  void PrintSelf(ostream& os, vtkIndent indent) override;
+  void PrintSelf(ostream& os, svtkIndent indent) override;
 
   /// @brief Set the communicator used by the adaptor.
   /// The default communicator is a duplicate of MPI_COMMM_WORLD, giving

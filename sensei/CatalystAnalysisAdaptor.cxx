@@ -2,7 +2,7 @@
 
 #include "DataAdaptor.h"
 #include "MeshMetadata.h"
-#include "VTKUtils.h"
+#include "SVTKUtils.h"
 #include "Error.h"
 #include "Profiler.h"
 
@@ -164,7 +164,7 @@ int CatalystAnalysisAdaptor::SelectData(DataAdaptor *dataAdaptor,
           if (dataAdaptor->AddArray(dobj, meshName, assoc, arrayName))
             {
             SENSEI_ERROR("Failed to add "
-              << VTKUtils::GetAttributesName(assoc)
+              << SVTKUtils::GetAttributesName(assoc)
               << " data array \"" << arrayName << "\" to mesh \""
               << meshName << "\"")
             return -1;
@@ -173,7 +173,7 @@ int CatalystAnalysisAdaptor::SelectData(DataAdaptor *dataAdaptor,
         }
 
       // add ghost zones
-      if ((metadata[i]->NumGhostCells || VTKUtils::AMR(metadata[i])) &&
+      if ((metadata[i]->NumGhostCells || SVTKUtils::AMR(metadata[i])) &&
         dataAdaptor->AddGhostNodesArray(dobj, meshName))
         {
         SENSEI_ERROR("Failed to get ghost nodes array for mesh \""

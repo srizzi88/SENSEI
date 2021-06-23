@@ -1,37 +1,37 @@
-#ifndef VTKUtils_h
-#define VTKUtils_h
+#ifndef SVTKUtils_h
+#define SVTKUtils_h
 
 #include "MeshMetadata.h"
 
-class vtkDataSet;
-class vtkDataObject;
-class vtkFieldData;
-class vtkDataSetAttributes;
-class vtkCompositeDataSet;
+class svtkDataSet;
+class svtkDataObject;
+class svtkFieldData;
+class svtkDataSetAttributes;
+class svtkCompositeDataSet;
 
-#include <vtkSmartPointer.h>
+#include <svtkSmartPointer.h>
 #include <functional>
 #include <vector>
 #include <mpi.h>
 
-using vtkCompositeDataSetPtr = vtkSmartPointer<vtkCompositeDataSet>;
+using svtkCompositeDataSetPtr = svtkSmartPointer<svtkCompositeDataSet>;
 
 namespace sensei
 {
 
 /// A collection of generally useful funcitons implementing
-/// common access patterns or operations on VTK data structures
-namespace VTKUtils
+/// common access patterns or operations on SVTK data structures
+namespace SVTKUtils
 {
 
-/// given a VTK POD data type enum returns the size
-unsigned int Size(int vtkt);
+/// given a SVTK POD data type enum returns the size
+unsigned int Size(int svtkt);
 
-/// given a VTK data object enum returns true if it a legacy object
+/// given a SVTK data object enum returns true if it a legacy object
 int IsLegacyDataObject(int code);
 
-/// givne a VTK data object enum constructs an instance
-vtkDataObject *NewDataObject(int code);
+/// givne a SVTK data object enum constructs an instance
+svtkDataObject *NewDataObject(int code);
 
 /// returns the enum value given an association name. where name
 /// can be one of: point, cell or, field
@@ -40,87 +40,87 @@ int GetAssociation(std::string assocStr, int &assoc);
 /// returns the name of the association, point, cell or field
 const char *GetAttributesName(int association);
 
-/// returns the container for the associations: vtkPointData,
-/// vtkCellData, or vtkFieldData
-vtkFieldData *GetAttributes(vtkDataSet *dobj, int association);
+/// returns the container for the associations: svtkPointData,
+/// svtkCellData, or svtkFieldData
+svtkFieldData *GetAttributes(svtkDataSet *dobj, int association);
 
 /// callback that processes input and output datasets
 /// return 0 for success, > zero to stop without error, < zero to stop with error
-using BinaryDatasetFunction = std::function<int(vtkDataSet*, vtkDataSet*)>;
+using BinaryDatasetFunction = std::function<int(svtkDataSet*, svtkDataSet*)>;
 
 /// Applies the function to leaves of the structurally equivalent
 /// input and output data objects.
-int Apply(vtkDataObject *input, vtkDataObject *output,
+int Apply(svtkDataObject *input, svtkDataObject *output,
   BinaryDatasetFunction &func);
 
 /// callback that processes input and output datasets
 /// return 0 for success, > zero to stop without error, < zero to stop with error
-using DatasetFunction = std::function<int(vtkDataSet*)>;
+using DatasetFunction = std::function<int(svtkDataSet*)>;
 
 /// Applies the function to the data object
 /// The function is called once for each leaf dataset
-int Apply(vtkDataObject *dobj, DatasetFunction &func);
+int Apply(svtkDataObject *dobj, DatasetFunction &func);
 
 /// Store ghost layer metadata in the mesh
-int SetGhostLayerMetadata(vtkDataObject *mesh,
+int SetGhostLayerMetadata(svtkDataObject *mesh,
   int nGhostCellLayers, int nGhostNodeLayers);
 
 /// Retreive ghost layer metadata from the mesh. returns non-zero if
 /// no such metadata is found.
-int GetGhostLayerMetadata(vtkDataObject *mesh,
+int GetGhostLayerMetadata(svtkDataObject *mesh,
   int &nGhostCellLayers, int &nGhostNodeLayers);
 
 /// Get  metadata, note that data set variant is not meant to
 /// be used on blocks of a multi-block
-int GetMetadata(MPI_Comm comm, vtkDataSet *ds, MeshMetadataPtr);
-int GetMetadata(MPI_Comm comm, vtkCompositeDataSet *cd, MeshMetadataPtr);
+int GetMetadata(MPI_Comm comm, svtkDataSet *ds, MeshMetadataPtr);
+int GetMetadata(MPI_Comm comm, svtkCompositeDataSet *cd, MeshMetadataPtr);
 
 /// Given a data object ensure that it is a composite data set
 /// If it already is, then the call is a no-op, if it is not
 /// then it is converted to a multiblock. The flag take determines
 /// if the smart pointer takes ownership or adds a reference.
-vtkCompositeDataSetPtr AsCompositeData(MPI_Comm comm,
-  vtkDataObject *dobj, bool take = true);
+svtkCompositeDataSetPtr AsCompositeData(MPI_Comm comm,
+  svtkDataObject *dobj, bool take = true);
 
 /// Return true if the mesh or block type is AMR
 inline bool AMR(const MeshMetadataPtr &md)
 {
-  return (md->MeshType == VTK_OVERLAPPING_AMR) ||
-    (md->MeshType == VTK_NON_OVERLAPPING_AMR);
+  return (md->MeshType == SVTK_OVERLAPPING_AMR) ||
+    (md->MeshType == SVTK_NON_OVERLAPPING_AMR);
 }
 
 /// Return true if the mesh or block type is logically Cartesian
 inline bool Structured(const MeshMetadataPtr &md)
 {
-  return (md->BlockType == VTK_STRUCTURED_GRID) ||
-    (md->MeshType == VTK_STRUCTURED_GRID);
+  return (md->BlockType == SVTK_STRUCTURED_GRID) ||
+    (md->MeshType == SVTK_STRUCTURED_GRID);
 }
 
 /// Return true if the mesh or block type is polydata
 inline bool Polydata(const MeshMetadataPtr &md)
 {
-  return (md->BlockType == VTK_POLY_DATA) || (md->MeshType == VTK_POLY_DATA);
+  return (md->BlockType == SVTK_POLY_DATA) || (md->MeshType == SVTK_POLY_DATA);
 }
 
 /// Return true if the mesh or block type is unstructured
 inline bool Unstructured(const MeshMetadataPtr &md)
 {
-  return (md->BlockType == VTK_UNSTRUCTURED_GRID) ||
-    (md->MeshType == VTK_UNSTRUCTURED_GRID);
+  return (md->BlockType == SVTK_UNSTRUCTURED_GRID) ||
+    (md->MeshType == SVTK_UNSTRUCTURED_GRID);
 }
 
 /// Return true if the mesh or block type is stretched Cartesian
 inline bool StretchedCartesian(const MeshMetadataPtr &md)
 {
-  return (md->BlockType == VTK_RECTILINEAR_GRID) ||
-    (md->MeshType == VTK_RECTILINEAR_GRID);
+  return (md->BlockType == SVTK_RECTILINEAR_GRID) ||
+    (md->MeshType == SVTK_RECTILINEAR_GRID);
 }
 
 /// Return true if the mesh or block type is uniform Cartesian
 inline bool UniformCartesian(const MeshMetadataPtr &md)
 {
-  return (md->BlockType == VTK_IMAGE_DATA) || (md->MeshType == VTK_IMAGE_DATA)
-    || (md->BlockType == VTK_UNIFORM_GRID) || (md->MeshType == VTK_UNIFORM_GRID);
+  return (md->BlockType == SVTK_IMAGE_DATA) || (md->MeshType == SVTK_IMAGE_DATA)
+    || (md->BlockType == SVTK_UNIFORM_GRID) || (md->MeshType == SVTK_UNIFORM_GRID);
 }
 
 /// Return true if the mesh or block type is logically Cartesian

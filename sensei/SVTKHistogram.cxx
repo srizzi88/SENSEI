@@ -1,5 +1,5 @@
 #include "senseiConfig.h"
-#include "VTKHistogram.h"
+#include "SVTKHistogram.h"
 #include "Error.h"
 
 #include <algorithm>
@@ -8,25 +8,25 @@
 #include <cstring>
 #include <errno.h>
 
-#include <vtkSmartPointer.h>
-#include <vtkUnsignedCharArray.h>
-#ifdef ENABLE_VTK_GENERIC_ARRAYS
-#include <vtkAOSDataArrayTemplate.h>
-#include <vtkArrayDispatch.h>
-#include <vtkCompositeDataIterator.h>
-#include <vtkCompositeDataSet.h>
-#include <vtkDataArray.h>
-#include <vtkDataObject.h>
-#include <vtkFieldData.h>
-#include <vtkObjectFactory.h>
+#include <svtkSmartPointer.h>
+#include <svtkUnsignedCharArray.h>
+#ifdef ENABLE_SVTK_GENERIC_ARRAYS
+#include <svtkAOSDataArrayTemplate.h>
+#include <svtkArrayDispatch.h>
+#include <svtkCompositeDataIterator.h>
+#include <svtkCompositeDataSet.h>
+#include <svtkDataArray.h>
+#include <svtkDataObject.h>
+#include <svtkFieldData.h>
+#include <svtkObjectFactory.h>
 #else
-#include <vtkDataArrayDispatcher.h>
+#include <svtkDataArrayDispatcher.h>
 #endif
 
 namespace sensei
 {
 // Private worker for Histogram method. Computes the local Histogram on
-// array (passed to operator()). To be used with vtkArrayDispatch.
+// array (passed to operator()). To be used with svtkArrayDispatch.
 //
 // Inputs:
 // range: Global range of data
@@ -35,8 +35,8 @@ namespace sensei
 //
 // Outputs:
 // Histogram: The Histogram of the local data.
-#ifdef ENABLE_VTK_GENERIC_ARRAYS
-struct VTKHistogram::Internals
+#ifdef ENABLE_SVTK_GENERIC_ARRAYS
+struct SVTKHistogram::Internals
 {
   const double *Range;
   int Bins;
@@ -57,12 +57,12 @@ struct VTKHistogram::Internals
       - this->Range[0]) / this->Bins);
 
     ValueType min = static_cast<ValueType>(this->Range[0]);
-    vtkIdType numTuples = array->GetNumberOfTuples();
+    svtkIdType numTuples = array->GetNumberOfTuples();
 
     // + 1 to store val == max. These will be moved to this last bin before
     // returning (Avoids having to branch in the loop below);
     this->Histogram.resize(this->Bins + 1, 0);
-    for (vtkIdType tIdx = 0; tIdx < numTuples; ++tIdx)
+    for (svtkIdType tIdx = 0; tIdx < numTuples; ++tIdx)
       {
       int bin = static_cast<int>((array->GetComponent(tIdx, 0) - min) / width);
       ++this->Histogram[bin];
@@ -74,9 +74,9 @@ struct VTKHistogram::Internals
   }
 };
 #else
-struct VTKHistogram::Internals
+struct SVTKHistogram::Internals
 {
-  vtkUnsignedCharArray* GhostArray;
+  svtkUnsignedCharArray* GhostArray;
   const double *Range;
   int Bins;
   std::vector<unsigned int> Histogram;
@@ -85,21 +85,21 @@ struct VTKHistogram::Internals
     GhostArray(NULL), Range(range), Bins(bins), Histogram(bins,0.0) {}
 
   template <typename T>
-  void operator()(const vtkDataArrayDispatcherPointer<T>& array)
+  void operator()(const svtkDataArrayDispatcherPointer<T>& array)
   {
     assert(array.NumberOfComponents == 1);
 
     typedef T ValueType;
     ValueType width = static_cast<ValueType>((this->Range[1] - this->Range[0]) / this->Bins);
     ValueType min = static_cast<ValueType>(this->Range[0]);
-    vtkIdType numTuples = array.NumberOfTuples;
+    svtkIdType numTuples = array.NumberOfTuples;
 
     // + 1 to store val == max. These will be moved to this last bin before
     // returning (Avoids having to branch in the loop below);
     this->Histogram.resize(this->Bins + 1, 0);
     if (this->GhostArray)
       {
-      for (vtkIdType tIdx = 0; tIdx < numTuples; ++tIdx)
+      for (svtkIdType tIdx = 0; tIdx < numTuples; ++tIdx)
         {
         if (this->GhostArray->GetValue(tIdx) == 0)
           {
@@ -110,7 +110,7 @@ struct VTKHistogram::Internals
       }
     else
       {
-      for (vtkIdType tIdx = 0; tIdx < numTuples; ++tIdx)
+      for (svtkIdType tIdx = 0; tIdx < numTuples; ++tIdx)
         {
         int bin = static_cast<int>((array.RawPointer[tIdx] - min) / width);
         ++this->Histogram[bin];
@@ -127,19 +127,19 @@ struct VTKHistogram::Internals
 class ComponentRangeWorker
 {
 public:
-  ComponentRangeWorker(vtkUnsignedCharArray* ghostArray) :
+  ComponentRangeWorker(svtkUnsignedCharArray* ghostArray) :
     GhostArray(ghostArray)
     {
-    this->Range[0] = vtkTypeTraits<double>::Max();
-    this->Range[1] = vtkTypeTraits<double>::Min();
+    this->Range[0] = svtkTypeTraits<double>::Max();
+    this->Range[1] = svtkTypeTraits<double>::Min();
     }
 
   template <typename T>
-  void operator()(const vtkDataArrayDispatcherPointer<T>& array)
+  void operator()(const svtkDataArrayDispatcherPointer<T>& array)
     {
     assert(array.NumberOfComponents == 1);
-    vtkIdType numTuples = array.NumberOfTuples;
-    for (vtkIdType cc=0; cc < numTuples; cc++)
+    svtkIdType numTuples = array.NumberOfTuples;
+    for (svtkIdType cc=0; cc < numTuples; cc++)
       {
       if (this->GhostArray->GetValue(cc) == 0)
         {
@@ -155,29 +155,29 @@ public:
     }
 private:
   double Range[2];
-  vtkUnsignedCharArray* GhostArray;
+  svtkUnsignedCharArray* GhostArray;
 };
 #endif
 
 // --------------------------------------------------------------------------
-VTKHistogram::VTKHistogram()
+SVTKHistogram::SVTKHistogram()
 {
-  this->Range[0] = VTK_DOUBLE_MAX;
-  this->Range[1] = VTK_DOUBLE_MIN;
+  this->Range[0] = SVTK_DOUBLE_MAX;
+  this->Range[1] = SVTK_DOUBLE_MIN;
   this->Worker = NULL;
 }
 
 // --------------------------------------------------------------------------
-VTKHistogram::~VTKHistogram()
+SVTKHistogram::~SVTKHistogram()
 {
   delete this->Worker;
 }
 
 // --------------------------------------------------------------------------
-void VTKHistogram::AddRange(vtkDataArray* da,
-  vtkUnsignedCharArray* ghostArray)
+void SVTKHistogram::AddRange(svtkDataArray* da,
+  svtkUnsignedCharArray* ghostArray)
 {
-#ifdef ENABLE_VTK_GENERIC_ARRAYS
+#ifdef ENABLE_SVTK_GENERIC_ARRAYS
   (void)ghostArray;
   if (da)
     {
@@ -187,11 +187,11 @@ void VTKHistogram::AddRange(vtkDataArray* da,
     this->Range[1] = std::max(this->Range[1], crange[1]);
     }
 #else
-  double crange[2] = { vtkTypeTraits<double>::Max(), vtkTypeTraits<double>::Min() };
+  double crange[2] = { svtkTypeTraits<double>::Max(), svtkTypeTraits<double>::Min() };
   if (da && ghostArray)
     {
     ComponentRangeWorker worker(ghostArray);
-    vtkDataArrayDispatcher<ComponentRangeWorker> dispatcher(worker);
+    svtkDataArrayDispatcher<ComponentRangeWorker> dispatcher(worker);
     dispatcher.Go(da);
     worker.GetRange(crange);
     }
@@ -205,17 +205,17 @@ void VTKHistogram::AddRange(vtkDataArray* da,
 }
 
 // --------------------------------------------------------------------------
-void VTKHistogram::Compute(vtkDataArray* da,
-  vtkUnsignedCharArray* ghostArray)
+void SVTKHistogram::Compute(svtkDataArray* da,
+  svtkUnsignedCharArray* ghostArray)
 {
   if (da)
     {
-#ifdef ENABLE_VTK_GENERIC_ARRAYS
+#ifdef ENABLE_SVTK_GENERIC_ARRAYS
     (void)ghostArray;
-    vtkArrayDispatch::Dispatch::Execute(da, *this->Worker);
+    svtkArrayDispatch::Dispatch::Execute(da, *this->Worker);
 #else
     this->Worker->GhostArray = ghostArray;
-    vtkDataArrayDispatcher<Internals> dispatcher(*this->Worker);
+    svtkDataArrayDispatcher<Internals> dispatcher(*this->Worker);
     dispatcher.Go(da);
     this->Worker->GhostArray = NULL;
 #endif
@@ -223,7 +223,7 @@ void VTKHistogram::Compute(vtkDataArray* da,
 }
 
 // --------------------------------------------------------------------------
-void VTKHistogram::PreCompute(MPI_Comm comm, int bins)
+void SVTKHistogram::PreCompute(MPI_Comm comm, int bins)
 {
   double g_range[2];
   // Find the global max/min
@@ -235,7 +235,7 @@ void VTKHistogram::PreCompute(MPI_Comm comm, int bins)
 }
 
 // --------------------------------------------------------------------------
-void VTKHistogram::PostCompute(MPI_Comm comm, int nBins, int step,
+void SVTKHistogram::PostCompute(MPI_Comm comm, int nBins, int step,
   double time, const std::string &meshName, const std::string &arrayName,
   const std::string &fileName)
 {
@@ -316,7 +316,7 @@ void VTKHistogram::PostCompute(MPI_Comm comm, int nBins, int step,
 }
 
 // --------------------------------------------------------------------------
-int VTKHistogram::GetHistogram(MPI_Comm comm, double &min, double &max,
+int SVTKHistogram::GetHistogram(MPI_Comm comm, double &min, double &max,
   std::vector<unsigned int> &bins)
 {
   if (!this->Worker)

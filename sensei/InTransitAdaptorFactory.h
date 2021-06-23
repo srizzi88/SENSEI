@@ -4,14 +4,14 @@
 #include "InTransitDataAdaptor.h"
 #include "AnalysisAdaptor.h"
 
-#include <vtkSmartPointer.h>
+#include <svtkSmartPointer.h>
 
 
 namespace sensei
 {
 
-using InTransitDataAdaptorPtr = vtkSmartPointer<sensei::InTransitDataAdaptor>;
-using AnalysisAdaptorPtr = vtkSmartPointer<sensei::AnalysisAdaptor>;
+using InTransitDataAdaptorPtr = svtkSmartPointer<sensei::InTransitDataAdaptor>;
+using AnalysisAdaptorPtr = svtkSmartPointer<sensei::AnalysisAdaptor>;
 
 // the InTransitAdaptorFactory creates a sensei::ConfigurableAnalysis adaptor
 // and sensei::InTransitDataAdaptor based on a SENSEI XML config file. The

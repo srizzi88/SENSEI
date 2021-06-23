@@ -2,20 +2,20 @@
 #include "MeshMetadata.h"
 #include "Error.h"
 
-#include <vtkCellArray.h>
-#include <vtkCellData.h>
-#include <vtkFloatArray.h>
-#include <vtkIdTypeArray.h>
-#include <vtkIntArray.h>
-#include <vtkImageData.h>
-#include <vtkMultiBlockDataSet.h>
-#include <vtkObjectFactory.h>
-#include <vtkPoints.h>
-#include <vtkSmartPointer.h>
-#include <vtkUnsignedCharArray.h>
-#include <vtkUnstructuredGrid.h>
-#include <vtkPolyData.h>
-#include <vtkNew.h>
+#include <svtkCellArray.h>
+#include <svtkCellData.h>
+#include <svtkFloatArray.h>
+#include <svtkIdTypeArray.h>
+#include <svtkIntArray.h>
+#include <svtkImageData.h>
+#include <svtkMultiBlockDataSet.h>
+#include <svtkObjectFactory.h>
+#include <svtkPoints.h>
+#include <svtkSmartPointer.h>
+#include <svtkUnsignedCharArray.h>
+#include <svtkUnstructuredGrid.h>
+#include <svtkPolyData.h>
+#include <svtkNew.h>
 
 #include <sdiy/master.hpp>
 
@@ -49,7 +49,7 @@ void getBlockBounds(const sdiy::DiscreteBounds &ext,
 static
 void getBlockExtent(const sdiy::DiscreteBounds &db, int *ext)
 {
-  // converts from DIY layout to VTK
+  // converts from DIY layout to SVTK
   ext[0] = db.min[0];
   ext[1] = db.max[0];
   ext[2] = db.min[1];
@@ -59,11 +59,11 @@ void getBlockExtent(const sdiy::DiscreteBounds &db, int *ext)
 }
 
 static
-vtkImageData *newCartesianBlock(double *origin,
+svtkImageData *newCartesianBlock(double *origin,
   double *spacing, const sdiy::DiscreteBounds &cellExts,
   bool structureOnly)
 {
-  vtkImageData *id = vtkImageData::New();
+  svtkImageData *id = svtkImageData::New();
 
   if (!structureOnly)
     {
@@ -78,11 +78,11 @@ vtkImageData *newCartesianBlock(double *origin,
 }
 
 static
-vtkUnstructuredGrid *newUnstructuredBlock(const double *origin,
+svtkUnstructuredGrid *newUnstructuredBlock(const double *origin,
   const double *spacing, const sdiy::DiscreteBounds &cellExts,
   bool structureOnly)
 {
-  vtkUnstructuredGrid *ug = vtkUnstructuredGrid::New();
+  svtkUnstructuredGrid *ug = svtkUnstructuredGrid::New();
 
   if (!structureOnly)
     {
@@ -91,11 +91,11 @@ vtkUnstructuredGrid *newUnstructuredBlock(const double *origin,
     int ny = cellExts.max[1] - cellExts.min[1] + 1 + 1;
     int nz = cellExts.max[2] - cellExts.min[2] + 1 + 1;
 
-    vtkPoints *pts = vtkPoints::New();
+    svtkPoints *pts = svtkPoints::New();
     pts->SetDataTypeToDouble();
     pts->SetNumberOfPoints(nx*ny*nz);
 
-    vtkIdType idx = 0;
+    svtkIdType idx = 0;
 
     for(int k = cellExts.min[2]; k <= cellExts.max[2]+1; ++k)
       {
@@ -118,24 +118,24 @@ vtkUnstructuredGrid *newUnstructuredBlock(const double *origin,
     int ncx = nx - 1;
     int ncy = ny - 1;
     int ncz = nz - 1;
-    vtkIdType ncells = ncx*ncy*ncz;
-    vtkIdTypeArray *nlist = vtkIdTypeArray::New();
+    svtkIdType ncells = ncx*ncy*ncz;
+    svtkIdTypeArray *nlist = svtkIdTypeArray::New();
     nlist->SetNumberOfValues(ncells * 9);
-    vtkUnsignedCharArray *cellTypes = vtkUnsignedCharArray::New();
+    svtkUnsignedCharArray *cellTypes = svtkUnsignedCharArray::New();
     cellTypes->SetNumberOfValues(ncells);
-    vtkIdTypeArray *cellLocations = vtkIdTypeArray::New();
+    svtkIdTypeArray *cellLocations = svtkIdTypeArray::New();
     cellLocations->SetNumberOfValues(ncells);
 
-    vtkIdType *nl = nlist->GetPointer(0);
+    svtkIdType *nl = nlist->GetPointer(0);
     unsigned char *ct = cellTypes->GetPointer(0);
-    vtkIdType *cl = cellLocations->GetPointer(0);
+    svtkIdType *cl = cellLocations->GetPointer(0);
     int nxny = nx*ny;
     int offset = 0;
     for(int k = 0; k < ncz; ++k)
     for(int j = 0; j < ncy; ++j)
     for(int i = 0; i < ncx; ++i)
       {
-      *ct++ = VTK_HEXAHEDRON;
+      *ct++ = SVTK_HEXAHEDRON;
       *cl++ = offset;
       offset += 9;
 
@@ -151,7 +151,7 @@ vtkUnstructuredGrid *newUnstructuredBlock(const double *origin,
       nl += 9;
       }
 
-    vtkCellArray *cells = vtkCellArray::New();
+    svtkCellArray *cells = svtkCellArray::New();
     cells->SetCells(ncells, nlist);
     nlist->Delete();
     ug->SetCells(cellTypes, cellLocations, cells);
@@ -164,20 +164,20 @@ vtkUnstructuredGrid *newUnstructuredBlock(const double *origin,
 }
 
 static
-vtkPolyData *newParticleBlock(const std::vector<Particle> *particles,
+svtkPolyData *newParticleBlock(const std::vector<Particle> *particles,
   bool structureOnly)
 {
-  vtkPolyData *block = vtkPolyData::New();
+  svtkPolyData *block = svtkPolyData::New();
 
   if (structureOnly)
     return block;
 
-  vtkNew<vtkPoints> points;
-  vtkNew<vtkCellArray> cells;
+  svtkNew<svtkPoints> points;
+  svtkNew<svtkCellArray> cells;
   points->Allocate(particles->size());
   cells->Allocate(particles->size());
 
-  vtkIdType pointId = 0;
+  svtkIdType pointId = 0;
   for (const auto &p : *particles)
     {
     points->InsertNextPoint(p.position[0], p.position[1], p.position[2]);
@@ -192,11 +192,11 @@ vtkPolyData *newParticleBlock(const std::vector<Particle> *particles,
 
 static
 int newParticleArray(const std::vector<Particle> &particles,
-  const std::string &arrayName, vtkFloatArray *&fa)
+  const std::string &arrayName, svtkFloatArray *&fa)
 {
   enum {PID, VEL, VELMAG};
 
-  fa = vtkFloatArray::New();
+  fa = svtkFloatArray::New();
 
   int aid = PID;
   if (arrayName == "pid")
@@ -252,7 +252,7 @@ int newParticleArray(const std::vector<Particle> &particles,
 }
 
 static
-vtkUnsignedCharArray *newGhostCellsArray(int *shape,
+svtkUnsignedCharArray *newGhostCellsArray(int *shape,
   sdiy::DiscreteBounds &cellExt, int ng)
 {
     // This sim is a:lways 3D.
@@ -268,10 +268,10 @@ vtkUnsignedCharArray *newGhostCellsArray(int *shape,
     int nxny = nx*ny;
     int ncells = nx*ny*nz;
 
-    vtkUnsignedCharArray *g = vtkUnsignedCharArray::New();
+    svtkUnsignedCharArray *g = svtkUnsignedCharArray::New();
     g->SetNumberOfTuples(ncells);
     memset(g->GetVoidPointer(0), 0, sizeof(unsigned char) * ncells);
-    g->SetName("vtkGhostType");
+    g->SetName("svtkGhostType");
     unsigned char *gptr = (unsigned char *)g->GetVoidPointer(0);
     unsigned char ghost = 1;
 
@@ -433,7 +433,7 @@ void DataAdaptor::SetParticleData(int gid, const std::vector<Particle> &particle
 
 //-----------------------------------------------------------------------------
 int DataAdaptor::GetMesh(const std::string &meshName, bool structureOnly,
-    vtkDataObject *&mesh)
+    svtkDataObject *&mesh)
 {
   mesh = nullptr;
 
@@ -447,7 +447,7 @@ int DataAdaptor::GetMesh(const std::string &meshName, bool structureOnly,
   int particleBlocks = meshName == "particles";
   int unstructuredBlocks = particleBlocks ? 0 : meshName == "ucdmesh";
 
-  vtkMultiBlockDataSet *mb = vtkMultiBlockDataSet::New();
+  svtkMultiBlockDataSet *mb = svtkMultiBlockDataSet::New();
   mb->SetNumberOfBlocks(this->Internals->NumBlocks);
 
   auto it = this->Internals->BlockExtents.begin();
@@ -456,7 +456,7 @@ int DataAdaptor::GetMesh(const std::string &meshName, bool structureOnly,
     {
     if (particleBlocks)
       {
-      vtkPolyData *pd =
+      svtkPolyData *pd =
         newParticleBlock(this->Internals->ParticleData[it->first],
         structureOnly);
 
@@ -465,7 +465,7 @@ int DataAdaptor::GetMesh(const std::string &meshName, bool structureOnly,
       }
     else if (unstructuredBlocks)
       {
-      vtkUnstructuredGrid *ug = newUnstructuredBlock(this->Internals->Origin,
+      svtkUnstructuredGrid *ug = newUnstructuredBlock(this->Internals->Origin,
         this->Internals->Spacing, it->second, structureOnly);
 
       mb->SetBlock(it->first, ug);
@@ -473,7 +473,7 @@ int DataAdaptor::GetMesh(const std::string &meshName, bool structureOnly,
       }
     else
       {
-      vtkImageData *id = newCartesianBlock(this->Internals->Origin,
+      svtkImageData *id = newCartesianBlock(this->Internals->Origin,
         this->Internals->Spacing, it->second, structureOnly);
 
       mb->SetBlock(it->first, id);
@@ -487,10 +487,10 @@ int DataAdaptor::GetMesh(const std::string &meshName, bool structureOnly,
 }
 
 //-----------------------------------------------------------------------------
-int DataAdaptor::AddArray(vtkDataObject* mesh, const std::string &meshName,
+int DataAdaptor::AddArray(svtkDataObject* mesh, const std::string &meshName,
     int association, const std::string &arrayName)
 {
-  vtkMultiBlockDataSet *mb = dynamic_cast<vtkMultiBlockDataSet*>(mesh);
+  svtkMultiBlockDataSet *mb = dynamic_cast<svtkMultiBlockDataSet*>(mesh);
   if (!mb)
     {
     SENSEI_ERROR("unexpected mesh type "
@@ -503,7 +503,7 @@ int DataAdaptor::AddArray(vtkDataObject* mesh, const std::string &meshName,
   if ((meshName == "mesh") || (meshName == "ucdmesh"))
     {
     meshId = BLOCK;
-    if ((arrayName != "data") || (association != vtkDataObject::CELL))
+    if ((arrayName != "data") || (association != svtkDataObject::CELL))
       {
       SENSEI_ERROR("mesh \"" << meshName
         << "\" only has cell data array named \"data\"")
@@ -513,7 +513,7 @@ int DataAdaptor::AddArray(vtkDataObject* mesh, const std::string &meshName,
   else if (meshName == "particles")
     {
     meshId = PARTICLE;
-    if (association != vtkDataObject::POINT)
+    if (association != svtkDataObject::POINT)
       {
       SENSEI_ERROR("mesh \"particles\" only has point data")
       return -1;
@@ -538,29 +538,29 @@ int DataAdaptor::AddArray(vtkDataObject* mesh, const std::string &meshName,
     // this code is the same for the Cartesian and unstructured blocks
     // because they both have the same number of cells and are in the
     // same order
-    vtkDataObject *blk = mb->GetBlock(it->first);
+    svtkDataObject *blk = mb->GetBlock(it->first);
     if (!blk)
       {
       SENSEI_ERROR("encountered empty block at index " << it->first)
       return -1;
       }
 
-    vtkFloatArray *fa = nullptr;
-    vtkDataSetAttributes *dsa = nullptr;
+    svtkFloatArray *fa = nullptr;
+    svtkDataSetAttributes *dsa = nullptr;
 
     if (meshId == BLOCK)
       {
-      dsa = blk->GetAttributes(vtkDataObject::CELL);
-      vtkIdType nCells = getBlockNumCells(this->Internals->BlockExtents[it->first]);
+      dsa = blk->GetAttributes(svtkDataObject::CELL);
+      svtkIdType nCells = getBlockNumCells(this->Internals->BlockExtents[it->first]);
 
       // zero coopy the array
-      fa = vtkFloatArray::New();
+      fa = svtkFloatArray::New();
       fa->SetName("data");
       fa->SetArray(it->second, nCells, 1);
       }
     else
       {
-      dsa = blk->GetAttributes(vtkDataObject::POINT);
+      dsa = blk->GetAttributes(svtkDataObject::POINT);
       newParticleArray(*this->Internals->ParticleData[it->first], arrayName, fa);
       }
 
@@ -573,7 +573,7 @@ int DataAdaptor::AddArray(vtkDataObject* mesh, const std::string &meshName,
 
 
 //----------------------------------------------------------------------------
-int DataAdaptor::AddGhostCellsArray(vtkDataObject *mesh, const std::string &meshName)
+int DataAdaptor::AddGhostCellsArray(svtkDataObject *mesh, const std::string &meshName)
 {
   if ((meshName != "mesh") && (meshName != "ucdmesh"))
     {
@@ -581,7 +581,7 @@ int DataAdaptor::AddGhostCellsArray(vtkDataObject *mesh, const std::string &mesh
     return -1;
     }
 
-  vtkMultiBlockDataSet *mb = dynamic_cast<vtkMultiBlockDataSet*>(mesh);
+  svtkMultiBlockDataSet *mb = dynamic_cast<svtkMultiBlockDataSet*>(mesh);
   if (!mb)
     {
     SENSEI_ERROR("unexpected mesh type "
@@ -596,16 +596,16 @@ int DataAdaptor::AddGhostCellsArray(vtkDataObject *mesh, const std::string &mesh
     // this code is the same for the Cartesian and unstructured blocks
     // because they both have the same number of cells and are in the
     // same order
-    vtkDataObject *blk = mb->GetBlock(it->first);
+    svtkDataObject *blk = mb->GetBlock(it->first);
     if (!blk)
       {
       SENSEI_ERROR("encountered empty block at index " << it->first)
       return -1;
       }
 
-    vtkDataSetAttributes *dsa = blk->GetAttributes(vtkDataObject::CELL);
+    svtkDataSetAttributes *dsa = blk->GetAttributes(svtkDataObject::CELL);
 
-    vtkUnsignedCharArray *ga = newGhostCellsArray(this->Internals->Shape,
+    svtkUnsignedCharArray *ga = newGhostCellsArray(this->Internals->Shape,
       it->second, this->Internals->NumGhostCells);
 
     dsa->AddArray(ga);
@@ -645,17 +645,17 @@ int DataAdaptor::GetMeshMetadata(unsigned int id, sensei::MeshMetadataPtr &metad
 
   metadata->MeshName = (id == 0 ? "mesh" : "ucdmesh");
 
-  metadata->MeshType = VTK_MULTIBLOCK_DATA_SET;
-  metadata->BlockType = (id == 0 ? VTK_IMAGE_DATA : VTK_UNSTRUCTURED_GRID);
-  metadata->CoordinateType = VTK_DOUBLE;
+  metadata->MeshType = SVTK_MULTIBLOCK_DATA_SET;
+  metadata->BlockType = (id == 0 ? SVTK_IMAGE_DATA : SVTK_UNSTRUCTURED_GRID);
+  metadata->CoordinateType = SVTK_DOUBLE;
   metadata->NumBlocks = this->Internals->NumBlocks;
   metadata->NumBlocksLocal = {nBlocks};
   metadata->NumGhostCells = this->Internals->NumGhostCells;
   metadata->NumArrays = 1;
   metadata->ArrayName = {"data"};
-  metadata->ArrayCentering = {vtkDataObject::CELL};
+  metadata->ArrayCentering = {svtkDataObject::CELL};
   metadata->ArrayComponents = {1};
-  metadata->ArrayType = {VTK_FLOAT};
+  metadata->ArrayType = {SVTK_FLOAT};
   metadata->StaticMesh = 1;
 
   if ((id == 0) && metadata->Flags.BlockExtentsSet())

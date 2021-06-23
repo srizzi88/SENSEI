@@ -2,31 +2,31 @@
 #include "DataAdaptor.h"
 #include "Error.h"
 #include "MeshMetadataMap.h"
-#include "VTKUtils.h"
+#include "SVTKUtils.h"
 
 #include <mpi.h>
 
 #include <conduit_blueprint.hpp>
 
-#include <vtkObjectFactory.h>
-#include <vtkCellArray.h>
-#include <vtkDataObject.h>
-#include <vtkDataArray.h>
-#include <vtkFieldData.h>
-#include <vtkDataSet.h>
-#include <vtkDataSetAttributes.h>
-#include <vtkCompositeDataIterator.h>
-#include <vtkCompositeDataSet.h>
-#include <vtkImageData.h>
-#include <vtkRectilinearGrid.h>
-#include <vtkStructuredGrid.h>
-#include <vtkUnstructuredGrid.h>
-#include <vtkCellData.h>
-#include <vtkPointData.h>
-#include <vtkAOSDataArrayTemplate.h>
-#include <vtkSOADataArrayTemplate.h>
-#include <vtkDataArrayTemplate.h>
-#include <vtkUnsignedCharArray.h>
+#include <svtkObjectFactory.h>
+#include <svtkCellArray.h>
+#include <svtkDataObject.h>
+#include <svtkDataArray.h>
+#include <svtkFieldData.h>
+#include <svtkDataSet.h>
+#include <svtkDataSetAttributes.h>
+#include <svtkCompositeDataIterator.h>
+#include <svtkCompositeDataSet.h>
+#include <svtkImageData.h>
+#include <svtkRectilinearGrid.h>
+#include <svtkStructuredGrid.h>
+#include <svtkUnstructuredGrid.h>
+#include <svtkCellData.h>
+#include <svtkPointData.h>
+#include <svtkAOSDataArrayTemplate.h>
+#include <svtkSOADataArrayTemplate.h>
+#include <svtkDataArrayTemplate.h>
+#include <svtkUnsignedCharArray.h>
 
 namespace
 {
@@ -101,7 +101,7 @@ void DebugSaveAscentData( conduit::Node &data, conduit::Node &_optionsNode )
 #endif  // DEBUG_SAVE_DATA
 
 //------------------------------------------------------------------------------
-int PassGhostsZones(vtkDataSet* ds, conduit::Node& node)
+int PassGhostsZones(svtkDataSet* ds, conduit::Node& node)
 {
   // Check if the mesh has ghost zone data.
   if( ds->HasAnyGhostCells() || ds->HasAnyGhostPoints() )
@@ -111,7 +111,7 @@ int PassGhostsZones(vtkDataSet* ds, conduit::Node& node)
     node["fields/ascent_ghosts/topology"] = "mesh";
     node["fields/ascent_ghosts/type"] = "scalar";
 
-    vtkUnsignedCharArray *gc = vtkUnsignedCharArray::SafeDownCast(ds->GetCellData()->GetArray("vtkGhostType"));
+    svtkUnsignedCharArray *gc = svtkUnsignedCharArray::SafeDownCast(ds->GetCellData()->GetArray("svtkGhostType"));
     unsigned char *gcp = (unsigned char *)gc->GetVoidPointer( 0 );
     auto size = gc->GetSize();
 
@@ -119,7 +119,7 @@ int PassGhostsZones(vtkDataSet* ds, conduit::Node& node)
     std::vector<conduit::int32> ghost_flags(size);
 
     // Ascent needs int32 not unsigned char. I don't know why, that is the way.
-    for(vtkIdType i=0; i < size ;++i)
+    for(svtkIdType i=0; i < size ;++i)
     {
         ghost_flags[i] = gcp[i];
     }
@@ -130,12 +130,12 @@ int PassGhostsZones(vtkDataSet* ds, conduit::Node& node)
 }
 
 /* TODO look at
-int PassFields(vtkDataSetAttributes *dsa, int centering, conduit::Node &node)
+int PassFields(svtkDataSetAttributes *dsa, int centering, conduit::Node &node)
 {
   int nArrays = dsa->GetNumberOfArrays();
   for (int i = 0; i < nArrays; ++i)
   {
-    vtkDataArray *da = dsa->GetArray(i);
+    svtkDataArray *da = dsa->GetArray(i);
     const char *name = da->GetName();
     long nElem = da->GetNumberOfTuples();
     int nComps = da->GetNumberOfComponents();
@@ -169,17 +169,17 @@ int PassFields(vtkDataSetAttributes *dsa, int centering, conduit::Node &node)
 
     switch (da->GetDataType())
     {
-      vtkTemplateMacro(
-        vtkAOSDataArrayTemplate<VTK_TT> *aosda =
-          dynamic_cast<vtkAOSDataArrayTemplate<VTK_TT>*>(da);
+      svtkTemplateMacro(
+        svtkAOSDataArrayTemplate<SVTK_TT> *aosda =
+          dynamic_cast<svtkAOSDataArrayTemplate<SVTK_TT>*>(da);
 
-        vtkSOADataArrayTemplate<VTK_TT> *soada =
-          dynamic_cast<vtkSOADataArrayTemplate<VTK_TT>*>(da);
+        svtkSOADataArrayTemplate<SVTK_TT> *soada =
+          dynamic_cast<svtkSOADataArrayTemplate<SVTK_TT>*>(da);
 
         if (aosda)
         {
           // AOS
-          //VTK_TT *ptr = aosda->GetPointer(0);
+          //SVTK_TT *ptr = aosda->GetPointer(0);
 
           // TODO -- Have to set the u v w separately -- like below
           // Not sure how to do that with zero copy
@@ -194,26 +194,26 @@ int PassFields(vtkDataSetAttributes *dsa, int centering, conduit::Node &node)
           // SOA
           for (int j = 0; j < nComps; ++j)
           {
-            VTK_TT *ptr = soada->GetComponentArrayPointer(j);
+            SVTK_TT *ptr = soada->GetComponentArrayPointer(j);
             if(nComps == 1)
             {
-              node[valPath].set_external((conduit_tt<VTK_TT>::conduit_type*)ptr, nElem, 0,
-                sizeof(VTK_TT), sizeof(VTK_TT), conduit::Endianness::DEFAULT_ID);
+              node[valPath].set_external((conduit_tt<SVTK_TT>::conduit_type*)ptr, nElem, 0,
+                sizeof(SVTK_TT), sizeof(SVTK_TT), conduit::Endianness::DEFAULT_ID);
               node[typePath] = "scalar";
             }
             else
             {
               switch(j)
               {
-                 case 0: node[uValPath].set_external((conduit_tt<VTK_TT>::conduit_type*)ptr, nElem, 0,
-                           sizeof(VTK_TT), sizeof(VTK_TT), conduit::Endianness::DEFAULT_ID);
+                 case 0: node[uValPath].set_external((conduit_tt<SVTK_TT>::conduit_type*)ptr, nElem, 0,
+                           sizeof(SVTK_TT), sizeof(SVTK_TT), conduit::Endianness::DEFAULT_ID);
                          node[typePath] = "vector";
                          break;
-                 case 1: node[vValPath].set_external((conduit_tt<VTK_TT>::conduit_type*)ptr, nElem, 0,
-                           sizeof(VTK_TT), sizeof(VTK_TT), conduit::Endianness::DEFAULT_ID);
+                 case 1: node[vValPath].set_external((conduit_tt<SVTK_TT>::conduit_type*)ptr, nElem, 0,
+                           sizeof(SVTK_TT), sizeof(SVTK_TT), conduit::Endianness::DEFAULT_ID);
                          break;
-                 case 2: node[wValPath].set_external((conduit_tt<VTK_TT>::conduit_type*)ptr, nElem, 0,
-                           sizeof(VTK_TT), sizeof(VTK_TT), conduit::Endianness::DEFAULT_ID);
+                 case 2: node[wValPath].set_external((conduit_tt<SVTK_TT>::conduit_type*)ptr, nElem, 0,
+                           sizeof(SVTK_TT), sizeof(SVTK_TT), conduit::Endianness::DEFAULT_ID);
                          break;
 
               }
@@ -227,7 +227,7 @@ int PassFields(vtkDataSetAttributes *dsa, int centering, conduit::Node &node)
         }
         );
       default:
-        SENSEI_ERROR("Invalid type from " << VTKUtils::GetAttributesName(centering)
+        SENSEI_ERROR("Invalid type from " << SVTKUtils::GetAttributesName(centering)
           << " data array " << i << " named \"" << (name ? name : "") << "\"");
     }
   }
@@ -235,16 +235,16 @@ int PassFields(vtkDataSetAttributes *dsa, int centering, conduit::Node &node)
   return( 0 );
 }
 
-int PassFields(int bid, vtkDataSet *ds, conduit::Node &node)
+int PassFields(int bid, svtkDataSet *ds, conduit::Node &node)
 {
   // handle the arrays
-  if (PassFields(ds->GetPointData(), vtkDataObject::POINT, node))
+  if (PassFields(ds->GetPointData(), svtkDataObject::POINT, node))
   {
     SENSEI_ERROR("Failed to transfer point data from block " << bid);
     return( -1 );
   }
 
-  if (PassFields(ds->GetCellData(), vtkDataObject::CELL, node))
+  if (PassFields(ds->GetCellData(), svtkDataObject::CELL, node))
   {
     SENSEI_ERROR("Failed to transfer cell data from block " << bid);
     return( -1 );
@@ -255,7 +255,7 @@ int PassFields(int bid, vtkDataSet *ds, conduit::Node &node)
 */
 
 // **************************************************************************
-int PassFields(vtkDataSet* ds, conduit::Node& node,
+int PassFields(svtkDataSet* ds, conduit::Node& node,
   const std::string &arrayName, int arrayCen)
 {
   std::stringstream ss;
@@ -305,14 +305,14 @@ int PassFields(vtkDataSet* ds, conduit::Node& node,
 
 
   // tell ascent the centering
-  vtkDataSetAttributes *atts = ds->GetAttributes(arrayCen);
-  vtkDataArray *da = atts->GetArray(arrayName.c_str());
+  svtkDataSetAttributes *atts = ds->GetAttributes(arrayCen);
+  svtkDataArray *da = atts->GetArray(arrayName.c_str());
   std::string cenType;
-  if (arrayCen == vtkDataObject::POINT)
+  if (arrayCen == svtkDataObject::POINT)
   {
     cenType = "vertex";
   }
-  else if (arrayCen == vtkDataObject::CELL)
+  else if (arrayCen == svtkDataObject::CELL)
   {
     cenType = "element";
   }
@@ -331,7 +331,7 @@ int PassFields(vtkDataSet* ds, conduit::Node& node,
   {
     node[typePath] = "scalar";
 
-    // FIXME -- get the type from VTK
+    // FIXME -- get the type from SVTK
     std::vector<conduit::float64> vals(tuples, 0.0);
 
     for(int i = 0; i < tuples; ++i)
@@ -386,12 +386,12 @@ int PassFields(vtkDataSet* ds, conduit::Node& node,
 }
 
 //------------------------------------------------------------------------------
-int PassTopology(vtkDataSet* ds, conduit::Node& node)
+int PassTopology(svtkDataSet* ds, conduit::Node& node)
 {
-  vtkImageData *uniform             = vtkImageData::SafeDownCast(ds);
-  vtkRectilinearGrid *rectilinear   = vtkRectilinearGrid::SafeDownCast(ds);
-  vtkStructuredGrid *structured     = vtkStructuredGrid::SafeDownCast(ds);
-  vtkUnstructuredGrid *unstructured = vtkUnstructuredGrid::SafeDownCast(ds);
+  svtkImageData *uniform             = svtkImageData::SafeDownCast(ds);
+  svtkRectilinearGrid *rectilinear   = svtkRectilinearGrid::SafeDownCast(ds);
+  svtkStructuredGrid *structured     = svtkStructuredGrid::SafeDownCast(ds);
+  svtkUnstructuredGrid *unstructured = svtkUnstructuredGrid::SafeDownCast(ds);
 
   if(uniform != nullptr)
   {
@@ -444,8 +444,8 @@ int PassTopology(vtkDataSet* ds, conduit::Node& node)
     node["topologies/mesh/type"]     = "unstructured";
     node["topologies/mesh/coordset"] = "coords";
 
-    vtkCellArray* cellarray = unstructured->GetCells();
-    vtkIdType *ptr = cellarray->GetPointer();
+    svtkCellArray* cellarray = unstructured->GetCells();
+    svtkIdType *ptr = cellarray->GetPointer();
 
     std::string shape;
     GetShape(shape, ptr[0]);
@@ -479,7 +479,7 @@ int PassTopology(vtkDataSet* ds, conduit::Node& node)
 }
 
 //------------------------------------------------------------------------------
-int PassState(vtkDataSet *, conduit::Node& node, sensei::DataAdaptor *dataAdaptor)
+int PassState(svtkDataSet *, conduit::Node& node, sensei::DataAdaptor *dataAdaptor)
 {
     node["state/time"] = dataAdaptor->GetDataTime();
     node["state/cycle"] = (int)dataAdaptor->GetDataTimeStep();
@@ -487,12 +487,12 @@ int PassState(vtkDataSet *, conduit::Node& node, sensei::DataAdaptor *dataAdapto
 }
 
 //------------------------------------------------------------------------------
-int PassCoordsets(vtkDataSet* ds, conduit::Node& node)
+int PassCoordsets(svtkDataSet* ds, conduit::Node& node)
 {
-  vtkImageData *uniform             = vtkImageData::SafeDownCast(ds);
-  vtkRectilinearGrid *rectilinear   = vtkRectilinearGrid::SafeDownCast(ds);
-  vtkStructuredGrid *structured     = vtkStructuredGrid::SafeDownCast(ds);
-  vtkUnstructuredGrid *unstructured = vtkUnstructuredGrid::SafeDownCast(ds);
+  svtkImageData *uniform             = svtkImageData::SafeDownCast(ds);
+  svtkRectilinearGrid *rectilinear   = svtkRectilinearGrid::SafeDownCast(ds);
+  svtkStructuredGrid *structured     = svtkStructuredGrid::SafeDownCast(ds);
+  svtkUnstructuredGrid *unstructured = svtkUnstructuredGrid::SafeDownCast(ds);
 
   if(uniform != nullptr)
   {
@@ -531,9 +531,9 @@ int PassCoordsets(vtkDataSet* ds, conduit::Node& node)
     int dims[3] = {0, 0, 0};
     rectilinear->GetDimensions(dims);
 
-    vtkDataArray *x = rectilinear->GetXCoordinates();
-    vtkDataArray *y = rectilinear->GetYCoordinates();
-    vtkDataArray *z = rectilinear->GetZCoordinates();
+    svtkDataArray *x = rectilinear->GetXCoordinates();
+    svtkDataArray *y = rectilinear->GetYCoordinates();
+    svtkDataArray *z = rectilinear->GetZCoordinates();
 
     if (!x || !y || !z)
     {
@@ -543,29 +543,29 @@ int PassCoordsets(vtkDataSet* ds, conduit::Node& node)
 
     switch (x->GetDataType())
     {
-      vtkTemplateMacro(
+      svtkTemplateMacro(
         // x
-        vtkAOSDataArrayTemplate<VTK_TT> *tx =
-           dynamic_cast<vtkAOSDataArrayTemplate<VTK_TT>*>(x);
-        VTK_TT *ptr = tx->GetPointer(0);
+        svtkAOSDataArrayTemplate<SVTK_TT> *tx =
+           dynamic_cast<svtkAOSDataArrayTemplate<SVTK_TT>*>(x);
+        SVTK_TT *ptr = tx->GetPointer(0);
         long nElem = tx->GetNumberOfTuples();
-        node["coordsets/coords/values/x"].set_external((conduit_tt<VTK_TT>::conduit_type*)ptr, nElem, 0,
-          sizeof(VTK_TT), sizeof(VTK_TT), conduit::Endianness::DEFAULT_ID);
+        node["coordsets/coords/values/x"].set_external((conduit_tt<SVTK_TT>::conduit_type*)ptr, nElem, 0,
+          sizeof(SVTK_TT), sizeof(SVTK_TT), conduit::Endianness::DEFAULT_ID);
         // y
-        vtkAOSDataArrayTemplate<VTK_TT> *ty =
-           dynamic_cast<vtkAOSDataArrayTemplate<VTK_TT>*>(y);
+        svtkAOSDataArrayTemplate<SVTK_TT> *ty =
+           dynamic_cast<svtkAOSDataArrayTemplate<SVTK_TT>*>(y);
         ptr = ty->GetPointer(0);
         nElem = ty->GetNumberOfTuples();
-        node["coordsets/coords/values/y"].set_external((conduit_tt<VTK_TT>::conduit_type*)ptr, nElem, 0,
-          sizeof(VTK_TT), sizeof(VTK_TT), conduit::Endianness::DEFAULT_ID);
+        node["coordsets/coords/values/y"].set_external((conduit_tt<SVTK_TT>::conduit_type*)ptr, nElem, 0,
+          sizeof(SVTK_TT), sizeof(SVTK_TT), conduit::Endianness::DEFAULT_ID);
         // z
-        vtkAOSDataArrayTemplate<VTK_TT> *tz =
-           dynamic_cast<vtkAOSDataArrayTemplate<VTK_TT>*>(z);
+        svtkAOSDataArrayTemplate<SVTK_TT> *tz =
+           dynamic_cast<svtkAOSDataArrayTemplate<SVTK_TT>*>(z);
         ptr = tz->GetPointer(0);
         nElem = tz->GetNumberOfTuples();
         if( nElem > 1 )
-            node["coordsets/coords/values/z"].set_external((conduit_tt<VTK_TT>::conduit_type*)ptr, nElem, 0,
-                sizeof(VTK_TT), sizeof(VTK_TT), conduit::Endianness::DEFAULT_ID);
+            node["coordsets/coords/values/z"].set_external((conduit_tt<SVTK_TT>::conduit_type*)ptr, nElem, 0,
+                sizeof(SVTK_TT), sizeof(SVTK_TT), conduit::Endianness::DEFAULT_ID);
         );
       default:
         SENSEI_ERROR("Invlaid data type for recilinear grid coordinates");
@@ -650,7 +650,7 @@ void NodeIter(const conduit::Node& node, std::set<std::string>& fields)
 }
 
 // **************************************************************************
-int PassData(vtkDataSet* ds, conduit::Node& node,
+int PassData(svtkDataSet* ds, conduit::Node& node,
   const std::string &arrayName, int arrayCen, sensei::DataAdaptor *dataAdaptor)
 {
     // FIXME -- do error checking on all these and report any errors
@@ -794,7 +794,7 @@ bool AscentAnalysisAdaptor::Execute(DataAdaptor* dataAdaptor)
   int arrayCen = ait.Association();
 
   conduit::Node root;
-  vtkDataObject* obj = nullptr;
+  svtkDataObject* obj = nullptr;
 
   // see what the simulation is providing
   MeshMetadataMap mdMap;
@@ -827,7 +827,7 @@ bool AscentAnalysisAdaptor::Execute(DataAdaptor* dataAdaptor)
   }
 
   // Add the ghost cell arrays to the mesh.
-  if ((metadata->NumGhostCells || VTKUtils::AMR(metadata)) &&
+  if ((metadata->NumGhostCells || SVTKUtils::AMR(metadata)) &&
     dataAdaptor->AddGhostCellsArray(obj, meshName))
   {
       SENSEI_ERROR("Failed to get ghost cells for mesh \"" << meshName << "\"");
@@ -843,13 +843,13 @@ bool AscentAnalysisAdaptor::Execute(DataAdaptor* dataAdaptor)
   }
 
   int domainNum = 0;
-  if (vtkCompositeDataSet *cds = dynamic_cast<vtkCompositeDataSet*>(obj))
+  if (svtkCompositeDataSet *cds = dynamic_cast<svtkCompositeDataSet*>(obj))
   {
     size_t numBlocks = 0;
-    vtkCompositeDataIterator *itr = cds->NewIterator();
+    svtkCompositeDataIterator *itr = cds->NewIterator();
 
     // FIXME - use metadata to get the number of blocks
-    vtkCompositeDataIterator *iter = cds->NewIterator();
+    svtkCompositeDataIterator *iter = cds->NewIterator();
     iter->SkipEmptyNodesOn();
     for(iter->InitTraversal(); !iter->IsDoneWithTraversal(); iter->GoToNextItem())
       ++numBlocks;
@@ -858,7 +858,7 @@ bool AscentAnalysisAdaptor::Execute(DataAdaptor* dataAdaptor)
     itr->InitTraversal();
     while(!itr->IsDoneWithTraversal())
     {
-      if (vtkDataSet *ds = dynamic_cast<vtkDataSet*>(cds->GetDataSet(itr)))
+      if (svtkDataSet *ds = dynamic_cast<svtkDataSet*>(cds->GetDataSet(itr)))
       {
         char domain[20] = "";
         if( numBlocks > 1 )
@@ -880,7 +880,7 @@ bool AscentAnalysisAdaptor::Execute(DataAdaptor* dataAdaptor)
       itr->GoToNextItem();
     }
   }
-  else if (vtkDataSet *ds = vtkDataSet::SafeDownCast(obj))
+  else if (svtkDataSet *ds = svtkDataSet::SafeDownCast(obj))
   {
     conduit::Node &temp_node = root;
 

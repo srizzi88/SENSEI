@@ -13,8 +13,8 @@
 #include "HDF5Schema.h"
 
 // namespace senseiHDF5 { class DataObjectCollectionSchema; }
-class vtkDataObject;
-class vtkCompositeDataSet;
+class svtkDataObject;
+class svtkCompositeDataSet;
 
 namespace sensei {
 
@@ -23,7 +23,7 @@ class HDF5AnalysisAdaptor : public AnalysisAdaptor {
 public:
   static HDF5AnalysisAdaptor *New();
   senseiTypeMacro(HDF5AnalysisAdaptor, AnalysisAdaptor);
-  void PrintSelf(ostream &os, vtkIndent indent) override;
+  void PrintSelf(ostream &os, svtkIndent indent) override;
 
   /// Sets the maximum buffer allocated by HDF5 in MB
   /// takes affect on first Execute
@@ -65,7 +65,7 @@ protected:
   /*
   bool WriteTimestep(unsigned long timeStep, double time,
                      const std::vector<MeshMetadataPtr> &metadata,
-                     const std::vector<vtkCompositeDataSet*> &dobjects);
+                     const std::vector<svtkCompositeDataSet*> &dobjects);
   */
   unsigned int MaxBufferSize;
   sensei::DataRequirements Requirements;
