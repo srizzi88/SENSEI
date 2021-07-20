@@ -80,6 +80,12 @@
 // clang-format on
 
 /* Various compiler-specific performance hints. */
+#if defined(SWIG)
+#define SVTK_ALWAYS_INLINE inline
+#define SVTK_ALWAYS_OPTIMIZE_START
+#define SVTK_ALWAYS_OPTIMIZE_END
+#else
+
 #if defined(SVTK_COMPILER_GCC) //------------------------------------------------
 
 #define SVTK_ALWAYS_INLINE __attribute__((always_inline)) inline
@@ -115,6 +121,7 @@
 #define SVTK_ALWAYS_OPTIMIZE_START
 #define SVTK_ALWAYS_OPTIMIZE_END
 
+#endif
 #endif
 
 //

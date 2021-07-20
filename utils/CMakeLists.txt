@@ -20,6 +20,29 @@ else ()
 endif()
 
 #add_subdirectory(ImageTester)
+
+
+set(SENSEI_PYTHON_VERSION 3 CACHE STRING
+  "The major version number of Python SENSEI should use.")
+set_property(CACHE SENSEI_PYTHON_VERSION PROPERTY STRINGS 2 3)
+find_package(PythonInterp ${SENSEI_PYTHON_VERSION} REQUIRED)
+find_package(PythonLibs ${SENSEI_PYTHON_VERSION} REQUIRED)
+find_package(NUMPY REQUIRED)
+find_program(swig_cmd NAMES swig swig3.0)
+if (swig_cmd-NOTFOUND)
+	message(SEND_ERROR "Failed to locate swig")
+endif()
+find_package(MPI4PY REQUIRED)
+
+add_library(sPython INTERFACE)
+target_include_directories(sPython INTERFACE ${PYTHON_INCLUDE_PATH} ${MPI4PY_INCLUDE_DIR})
+target_link_libraries(sPython INTERFACE ${PYTHON_LIBRARIES})
+install(TARGETS sPython EXPORT sPython)
+install(EXPORT sPython DESTINATION lib/cmake EXPORT_LINK_INTERFACE_LIBRARIES)
+
+
+
+
 set(SVTK_BUILD_EXAMPLES OFF CACHE INTERNAL "")
 set(SVTK_BUILD_TESTING OFF CACHE INTERNAL "")
 set(SVTK_BUILD_DOCUMENTATION OFF CACHE INTERNAL "")
@@ -240,3 +263,62 @@ set(SVTK_WRAP_PYTHON OFF CACHE INTERNAL "")
 set(SVTK_USE_MPI OFF CACHE INTERNAL "")
 set(SVTK_ENABLE_LOGGING OFF CACHE INTERNAL "")
 add_subdirectory(SVTK)
+
+cmake_policy(SET CMP0078 NEW)
+cmake_policy(SET CMP0086 NEW)
+find_package(SWIG COMPONENTS python)
+include(UseSWIG)
+
+set_property(SOURCE SVTK.i PROPERTY CPLUSPLUS ON)
+set_property(SOURCE SVTK.i PROPERTY SWIG_MODULE_NAME pySVTK)
+
+swig_add_library(pySVTK
+  TYPE SHARED
+  LANGUAGE python
+  SOURCES SVTK.i
+  OUTPUT_DIR ${CMAKE_BINARY_DIR}/lib
+  )
+
+target_link_libraries(pySVTK SVTK::CommonCore SVTK::CommonDataModel sPython)
+
+target_include_directories(pySVTK
+  PRIVATE
+  ${Python_INCLUDE_DIRS}
+/work/SENSEI/sensei-svtk-build/utils/SVTK/Common/Core 
+/work/SENSEI/sensei-svtk/utils/SVTK/Common/Core 
+/work/SENSEI/sensei-svtk-build/utils/SVTK/Common/Core/../DataModel 
+ /work/SENSEI/sensei-svtk-build/utils/SVTK/Utilities/KWIML 
+ /work/SENSEI/sensei-svtk/utils/SVTK/Utilities/KWIML 
+ /work/SENSEI/sensei-svtk-build/utils/SVTK/Utilities/KWSys 
+ /work/SENSEI/sensei-svtk/utils/SVTK/Utilities/KWSys 
+ /work/SENSEI/sensei-svtk-build/utils/SVTK/ThirdParty/utf8 
+ /work/SENSEI/sensei-svtk/utils/SVTK/ThirdParty/utf8
+ /work/SENSEI/sensei-svtk/utils/SVTK/Utilities/KWIML/svtkkwiml/include/
+  )
+
+set_property(TARGET pySVTK PROPERTY SWIG_USE_TARGET_INCLUDE_DIRECTORIES ON)
+#set_property(TARGET pySVTK PROPERTY SWIG_COMPILE_DEFINITIONS SVTKCOMMONCORE_EXPORT SVTKCOMMONDATAMODEL_EXPORT)
+#   ${CMAKE_CURRENT_SOURCE_DIR}/SVTK/Utilities/KWIML
+#   ${CMAKE_CURRENT_SOURCE_DIR}/SVTK/Common/Archive
+#   ${CMAKE_CURRENT_SOURCE_DIR}/SVTK/Common/Color
+#   ${CMAKE_CURRENT_SOURCE_DIR}/SVTK/Common/ComputationalGeometry
+#   ${CMAKE_CURRENT_SOURCE_DIR}/SVTK/Common/Core
+#   ${CMAKE_CURRENT_SOURCE_DIR}/SVTK/Common/DataModel
+#   ${CMAKE_CURRENT_SOURCE_DIR}/SVTK/Common/ExecutionModel
+#   ${CMAKE_CURRENT_SOURCE_DIR}/SVTK/Common/Math
+#   ${CMAKE_CURRENT_SOURCE_DIR}/SVTK/Common/Misc
+#   ${CMAKE_CURRENT_SOURCE_DIR}/SVTK/Common/Python
+#   ${CMAKE_CURRENT_SOURCE_DIR}/SVTK/Common/System
+#   ${CMAKE_CURRENT_SOURCE_DIR}/SVTK/Common/Transforms
+#   ${CMAKE_CURRENT_BINARY_DIR}/SVTK/Utilities/KWIML
+#   ${CMAKE_CURRENT_BINARY_DIR}/SVTK/Common/Archive
+#   ${CMAKE_CURRENT_BINARY_DIR}/SVTK/Common/Color
+#   ${CMAKE_CURRENT_BINARY_DIR}/SVTK/Common/ComputationalGeometry
+#   ${CMAKE_CURRENT_BINARY_DIR}/SVTK/Common/Core
+#   ${CMAKE_CURRENT_BINARY_DIR}/SVTK/Common/DataModel
+#   ${CMAKE_CURRENT_BINARY_DIR}/SVTK/Common/ExecutionModel
+#   ${CMAKE_CURRENT_BINARY_DIR}/SVTK/Common/Math
+#   ${CMAKE_CURRENT_BINARY_DIR}/SVTK/Common/Misc
+#   ${CMAKE_CURRENT_BINARY_DIR}/SVTK/Common/Python
+#   ${CMAKE_CURRENT_BINARY_DIR}/SVTK/Common/System
+#   ${CMAKE_CURRENT_BINARY_DIR}/SVTK/Common/Transforms
