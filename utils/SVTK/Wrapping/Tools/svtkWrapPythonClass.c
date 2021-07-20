@@ -54,7 +54,7 @@ const char* svtkWrapPython_GetSuperClass(ClassInfo* data, HierarchyInfo* hinfo)
   {
     supername = data->SuperClasses[i];
 
-    if (strncmp(supername, "svtkTypeTemplate<", 16) == 0)
+    if (strncmp(supername, "svtkTypeTemplate<", 18) == 0)
     {
       svtkParse_DecomposeTemplatedType(supername, &name, 2, &args, defaults);
       cp = (char*)malloc(strlen(args[1]) + 1);
@@ -138,7 +138,7 @@ const char* svtkWrapPython_HasWrappedSuperClass(
     {
       break;
     }
-    else if (strncmp(entry->Name, "svtk", 3) != 0)
+    else if (strncmp(entry->Name, "svtk", 4) != 0)
     {
       break;
     }

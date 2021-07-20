@@ -10200,7 +10200,7 @@ unsigned int guess_constant_type(const char *valstring)
     return SVTK_PARSE_CHAR;
   }
 
-  if (strncmp(valstring, "SVTK_TYPE_CAST(", 14) == 0 ||
+  if (strncmp(valstring, "SVTK_TYPE_CAST(", 15) == 0 ||
       strncmp(valstring, "static_cast<", 12) == 0 ||
       strncmp(valstring, "const_cast<", 11) == 0 ||
       strncmp(valstring, "(", 1) == 0)
@@ -10429,7 +10429,7 @@ unsigned int guess_id_type(const char *cp)
     {
       t = SVTK_PARSE_UNICODE_STRING;
     }
-    else if (strncmp(dp, "svtk", 3) == 0)
+    else if (strncmp(dp, "svtk", 4) == 0)
     {
       t = SVTK_PARSE_OBJECT;
     }
@@ -10659,7 +10659,7 @@ void handle_attribute(const char *att, int pack)
   }
 
   /* check for namespace */
-  if (strncmp(att, "svtk::", 5) == 0)
+  if (strncmp(att, "svtk::", 6) == 0)
   {
     if (pack)
     {
@@ -10667,23 +10667,23 @@ void handle_attribute(const char *att, int pack)
       print_parser_error("attribute takes no ...", att, l);
       exit(1);
     }
-    else if (l == 16 && strncmp(att, "svtk::wrapexclude", l) == 0 &&
+    else if (l == 17 && strncmp(att, "svtk::wrapexclude", l) == 0 &&
              !args && (role == SVTK_PARSE_ATTRIB_DECL ||
                        role == SVTK_PARSE_ATTRIB_CLASS))
     {
       setTypeMod(SVTK_PARSE_WRAPEXCLUDE);
     }
-    else if (l == 16 && strncmp(att, "svtk::newinstance", l) == 0 &&
+    else if (l == 17 && strncmp(att, "svtk::newinstance", l) == 0 &&
              !args && role == SVTK_PARSE_ATTRIB_DECL)
     {
       setTypeMod(SVTK_PARSE_NEWINSTANCE);
     }
-    else if (l == 13 && strncmp(att, "svtk::zerocopy", l) == 0 &&
+    else if (l == 14 && strncmp(att, "svtk::zerocopy", l) == 0 &&
              !args && role == SVTK_PARSE_ATTRIB_DECL)
     {
       setTypeMod(SVTK_PARSE_ZEROCOPY);
     }
-    else if (l == 12 && strncmp(att, "svtk::expects", l) == 0 &&
+    else if (l == 13 && strncmp(att, "svtk::expects", l) == 0 &&
              args && role == SVTK_PARSE_ATTRIB_FUNC)
     {
       /* add to the preconditions */
@@ -10691,7 +10691,7 @@ void handle_attribute(const char *att, int pack)
                                 &currentFunction->NumberOfPreconds,
                                 svtkstrndup(args, la));
     }
-    else if (l == 13 && strncmp(att, "svtk::sizehint", l) == 0 &&
+    else if (l == 14 && strncmp(att, "svtk::sizehint", l) == 0 &&
              args && role == SVTK_PARSE_ATTRIB_FUNC)
     {
       /* first arg is parameter name, unless return value hint */

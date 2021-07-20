@@ -90,14 +90,14 @@ int svtkWrap_IsSVTKObject(ValueInfo* val)
 {
   unsigned int t = (val->Type & SVTK_PARSE_UNQUALIFIED_TYPE);
   return (t == SVTK_PARSE_OBJECT_PTR && !val->IsEnum && val->Class[0] == 'v' &&
-    strncmp(val->Class, "svtk", 3) == 0);
+    strncmp(val->Class, "svtk", 4) == 0);
 }
 
 int svtkWrap_IsSpecialObject(ValueInfo* val)
 {
   unsigned int t = (val->Type & SVTK_PARSE_UNQUALIFIED_TYPE);
   return ((t == SVTK_PARSE_OBJECT || t == SVTK_PARSE_OBJECT_REF) && !val->IsEnum &&
-    val->Class[0] == 'v' && strncmp(val->Class, "svtk", 3) == 0);
+    val->Class[0] == 'v' && strncmp(val->Class, "svtk", 4) == 0);
 }
 
 int svtkWrap_IsPythonObject(ValueInfo* val)
@@ -382,7 +382,7 @@ int svtkWrap_IsInheritedMethod(ClassInfo* c, FunctionInfo* f)
 
 int svtkWrap_IsSetVectorMethod(FunctionInfo* f)
 {
-  if (f->Macro && strncmp(f->Macro, "svtkSetVector", 12) == 0)
+  if (f->Macro && strncmp(f->Macro, "svtkSetVector", 13) == 0)
   {
     return 1;
   }
@@ -392,7 +392,7 @@ int svtkWrap_IsSetVectorMethod(FunctionInfo* f)
 
 int svtkWrap_IsGetVectorMethod(FunctionInfo* f)
 {
-  if (f->Macro && strncmp(f->Macro, "svtkGetVector", 12) == 0)
+  if (f->Macro && strncmp(f->Macro, "svtkGetVector", 13) == 0)
   {
     return 1;
   }
@@ -460,7 +460,7 @@ int svtkWrap_IsSVTKObjectBaseType(HierarchyInfo* hinfo, const char* classname)
   }
 
   /* fallback if no HierarchyInfo, but skip smart pointers */
-  if (strncmp("svtk", classname, 3) == 0 && strncmp("svtkSmartPointer", classname, 15) != 0)
+  if (strncmp("svtk", classname, 4) == 0 && strncmp("svtkSmartPointer", classname, 16) != 0)
   {
     return 1;
   }
@@ -489,7 +489,7 @@ int svtkWrap_IsSpecialType(HierarchyInfo* hinfo, const char* classname)
   }
 
   /* fallback if no HierarchyInfo */
-  if (strncmp("svtk", classname, 3) == 0)
+  if (strncmp("svtk", classname, 4) == 0)
   {
     return -1;
   }
@@ -536,7 +536,7 @@ int svtkWrap_IsClassWrapped(HierarchyInfo* hinfo, const char* classname)
       return 1;
     }
   }
-  else if (strncmp("svtk", classname, 3) == 0)
+  else if (strncmp("svtk", classname, 4) == 0)
   {
     return 1;
   }

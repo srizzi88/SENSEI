@@ -624,7 +624,7 @@ int svtkWrapPython_IsSpecialTypeWrappable(ClassInfo* data)
   }
 
   /* restrict wrapping to classes that have a "svtk" prefix */
-  if (strncmp(data->Name, "svtk", 3) != 0)
+  if (strncmp(data->Name, "svtk", 4) != 0)
   {
     return 0;
   }

@@ -1739,7 +1739,7 @@ void preprocessor_directive(const char *text, size_t l)
   else if (n == 6 && strncmp(directive, "define", n) == 0)
   {
     closeComment();
-    if (ep - cp > 4 && strncmp(cp, "SVTK", 3) == 0)
+    if (ep - cp > 4 && strncmp(cp, "SVTK", 4) == 0)
     {
       /* macros that start with "SVTK" */
       MacroInfo *macro;

@@ -54,7 +54,7 @@ void svtkParseOutput(FILE* fp, FileInfo* data)
     tok = strtok(dup, " ");
     while (tok)
     {
-      if (!strncmp("svtk", tok, 3))
+      if (!strncmp("svtk", tok, 4))
       {
         fprintf(fp, "<a href=\"%s.html\">%s</a> ", tok, tok);
       }

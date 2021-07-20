@@ -111,13 +111,13 @@ size_t svtkWrapPython_PyTemplateName(const char* name, char* pname)
   }
 
   /* look for SVTK types that become common python types */
-  if ((n == 12 && strncmp(name, "svtkStdString", n) == 0) ||
+  if ((n == 13 && strncmp(name, "svtkStdString", n) == 0) ||
     (n == 11 && strncmp(name, "std::string", n) == 0))
   {
     strcpy(pname, "str");
     return n;
   }
-  else if (n == 16 && strncmp(name, "svtkUnicodeString", n) == 0)
+  else if (n == 17 && strncmp(name, "svtkUnicodeString", n) == 0)
   {
     strcpy(pname, "unicode");
     return n;

@@ -448,8 +448,8 @@ size_t svtkParse_BasicTypeFromString(
   const char* text, unsigned int* type_ptr, const char** classname_ptr, size_t* len_ptr)
 {
   /* The various typedefs and types specific to SVTK */
-  static struct svtk_type_struct svtktypes[] = { { 12, "svtkStdString", SVTK_PARSE_STRING },
-    { 16, "svtkUnicodeString", SVTK_PARSE_UNICODE_STRING }, { 0, 0, 0 } };
+  static struct svtk_type_struct svtktypes[] = { { 13, "svtkStdString", SVTK_PARSE_STRING },
+    { 15, "svtkUnicodeString", SVTK_PARSE_UNICODE_STRING }, { 0, 0, 0 } };
 
   /* Other typedefs and types */
   static struct svtk_type_struct stdtypes[] = { { 6, "size_t", SVTK_PARSE_SIZE_T },
@@ -597,7 +597,7 @@ size_t svtkParse_BasicTypeFromString(
       }
 
       /* check svtk typedefs */
-      if (strncmp(cp, "svtk", 3) == 0)
+      if (strncmp(cp, "svtk", 4) == 0)
       {
         for (i = 0; svtktypes[i].len != 0; i++)
         {
@@ -650,7 +650,7 @@ size_t svtkParse_BasicTypeFromString(
         len = n;
 
         /* SVTK classes all start with svtk */
-        if (strncmp(classname, "svtk", 3) == 0)
+        if (strncmp(classname, "svtk", 4) == 0)
         {
           base_bits = SVTK_PARSE_OBJECT;
           /* make sure the "svtk" isn't just part of the namespace */
