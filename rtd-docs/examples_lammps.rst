@@ -1,6 +1,6 @@
 .. _example_lammps:
 
-LAMMPS In Transit with Catalyst backend
+LAMMPS In Transit with Paraview/Catalyst backend
 ==========================
 
 
@@ -17,9 +17,18 @@ In this example we instrument the molecular dynamics simulation code LAMMPS with
 Setting Up
 ##########
 
-Here, we provide instructions on how to setup the build environment. Briefly describe which options you want for this example in SENSEI, but don't worry about going into detail about building dependencies that SENSEI needs as that is documented elsewhere (I hope...). Detail whatever unique build options and weird steps are required to build the science code with SENSEI enabled, but do not go into depth on how to build that science code in general, simply link to their build instructions (which are hopefully well documented).
+Here, I will point to the Docker recipes used to build the producer and consumer code. The Dockerfiles take care of building all dependencies. 
 
-If there are multiple ways of setting up the science code, or there are multiple ways to build SENSEI which provide different functionality, detail those variations here as well.
+Specifically, for the producer we build VTK and ADIOS2 prior to SENSEI (once I update the code to SENSEI 4.0 the VTK dependency will likely go away)
+
+Similarly, for the consumer we build Paraview/Catalyst and ADIOS2.
+
+I also plan to explain how to build these in Docker and how to pull from Singularity.
+
+
+.. Here, we provide instructions on how to setup the build environment. Briefly describe which options you want for this example in SENSEI, but don't worry about going into detail about building dependencies that SENSEI needs as that is documented elsewhere (I hope...). Detail whatever unique build options and weird steps are required to build the science code with SENSEI enabled, but do not go into depth on how to build that science code in general, simply link to their build instructions (which are hopefully well documented).
+
+.. If there are multiple ways of setting up the science code, or there are multiple ways to build SENSEI which provide different functionality, detail those variations here as well.
 
 Running the Example
 ###################
