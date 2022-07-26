@@ -1,14 +1,18 @@
 .. _example_lammps:
 
-Example Template
+LAMMPS In Transit with Catalyst backend
 ==========================
 
-Come up with a decent title and underline it with your favorite non-alphanumeric character (# is a good choice).
+
 
 Synopsis
 ########
 
-Write a quick synopsis of your example. Detail briefly how it uses SENSEI and what code you are connecting to. `Hyperlinks <https://xkcd.com/2632/>`_ to the science code/repository are appropriated here.
+In this example we instrument the molecular dynamics simulation code LAMMPS with SENSEI and demonstrate in transit capabilities. Our example showcases M to N ranks redistribution and the Catalyst analysis adaptor to generate a Cinema database.
+
+
+
+.. Write a quick synopsis of your example. Detail briefly how it uses SENSEI and what code you are connecting to. `Hyperlinks <https://xkcd.com/2632/>`_ to the science code/repository are appropriated here.
 
 Setting Up
 ##########
